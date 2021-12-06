@@ -1,0 +1,78 @@
+name: auto_ilitoi
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #firebase
+  firebase_core: ^1.10.0
+  firebase_auth: ^3.2.0
+  cloud_firestore: ^3.1.0
+  firebase_storage: ^10.1.0
+
+  #flutter
+  flutter_redux: ^0.8.2
+  image_picker: ^0.8.4+2
+  syncfusion_flutter_charts: ^19.3.44+1
+  flutter_neumorphic:
+    git:
+      url: "https://github.com/alionour/Flutter-Neumorphic"
+  flutter_svg: ^0.22.0
+  flutter_keyboard_visibility: ^5.0.3
+  #Alpaca
+  #alpaca: ^0.1.1
+
+
+  #dart
+  rxdart: ^0.27.2
+  redux: ^5.0.0
+  redux_epics: ^0.15.0
+  built_value: ^8.1.2
+  built_collection: ^5.1.1
+  freezed_annotation: ^0.15.0
+  http: ^0.13.4
+
+  fl_chart: ^0.40.2
+  google_fonts: ^2.1.0
+  path_provider: ^2.0.7
+  pdf: ^3.6.3
+  rive: ^0.7.30
+  email_validator: ^2.0.1
+  shimmer: ^2.0.0
+  cupertino_icons: ^1.0.3
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  #image_path_android: ""
+  #image_path_ios: ""
+  android: true
+  ios: true
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.1.4
+  built_value_generator: ^8.1.2
+  freezed: ^0.15.0+1
+
+
+dependency_overrides:
+  analyzer: ^2.5.0
+  meta: ^1.7.0
+  rxdart: ^0.27.2
+
+flutter:
+  assets:
+    - assets/images/
+    - assets/fonts/Freeroad-Regular.ttf
+  uses-material-design: true
+
+
