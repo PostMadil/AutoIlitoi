@@ -77,16 +77,20 @@ Widget listOfOrders() {
               if(currentOrder.clientId != null && currentOrder.clientId != ''){
                 currentClient = clients.firstWhere((element) => element.id == currentOrder.clientId);
               }
-              Color unfinishedOrder = Colors.amber;
+              Color currentColor = Colors.amber;
 
               if (isOrderValid(currentOrder)) {
-                unfinishedOrder = Colors.blue;
+                if(index ~/ 6 % 2 == 1) currentColor = Colors.white60;
+                else currentColor = Colors.blue;
+              } else {
+                currentColor = Colors.amberAccent;
               }
+
               switch (index % 6) {
                 case 0:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder) ? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: Center(
                         child: Text(currentOrder.clientId == null || currentOrder.clientId ==''? currentOrder.name:currentClient!.name) ,
                       ),
@@ -95,7 +99,7 @@ Widget listOfOrders() {
                 case 1:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder)? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: Center(
                         child: Text(currentOrder.carPlate),
                       ),
@@ -104,7 +108,7 @@ Widget listOfOrders() {
                 case 2:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder)? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: Center(
                         child: SelectableText(currentOrder.chassisNumber),
                       ),
@@ -113,7 +117,7 @@ Widget listOfOrders() {
                 case 3:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder)? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: Center(
                         child: Text(currentOrder.total),
                       ),
@@ -122,7 +126,7 @@ Widget listOfOrders() {
                 case 4:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder)? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +141,7 @@ Widget listOfOrders() {
                 case 5:
                   {
                     return Container(
-                      color: index ~/ 6 % 2 == 1 || isOrderValid(currentOrder)? unfinishedOrder : Colors.white60,
+                      color: currentColor,
                       child: IconButton(
                         icon: Icon(Icons.arrow_forward_outlined),
                         onPressed: () {
@@ -161,6 +165,7 @@ Widget listOfOrders() {
 
 bool isOrderValid(Order order) {
   int length = order.items.length;
+  if(length < 1 ) return false;
   for (int i = 0; i < length; i++) {
     if (order.items[i].name == '' || order.items[i].name == null) {
       return false;

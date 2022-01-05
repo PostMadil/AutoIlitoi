@@ -221,6 +221,7 @@ Widget selectedOrderDetails(List<Client> clients) {
 
 bool isOrderValid(Order order) {
   int length = order.items.length;
+  if(length < 1 ) return false;
   for (int i = 0; i < length; i++) {
     if (order.items[i].name == '' || order.items[i].name == null) {
       return false;

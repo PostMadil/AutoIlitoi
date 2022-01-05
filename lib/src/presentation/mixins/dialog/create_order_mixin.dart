@@ -623,57 +623,73 @@ mixin CreateOrderMixin {
                     ),
                   ],
                 ),
+
                 actions: <Widget>[
-                  TextButton(
-                    child: const Text('Create'),
-                    onPressed: () {
-                      if (true) {
-                        List<CarPart> builtItems = <CarPart>[];
-                        items.forEach((element) {
-                          builtItems.add(element.build());
-                        });
-                        StoreProvider.of<AppState>(context).dispatch(CreateOrder(
-                          details: OrderDetails.fromData(
-                              isOffer: isOffer,
-                              carPlate: _numarInmatriculare,
-                              chassisNumber: _serieSasiu,
-                              name: _nume,
-                              phoneNumber: _telefon,
-                              total: _total.toString(),
-                              paid: _isPaid,
-                              make: _make,
-                              model: _model,
-                              clientId: _chooseFromClients == true? selectedClient.id:null,
-                          ),
-                          items: builtItems,
-                        ));
-                        Navigator.pop(context);
-                      } else {
-                        setState(() {
-                          // if (_nume == '') {
-                          //   _numeErrorText = 'Nume cannot be empty';
-                          // } else {
-                          //   _numeErrorText = null;
-                          // }
-                          // if (_numarInmatriculare == '') {
-                          //   _numarInmatriculareErrorText = 'Numar inmatriculare cannot be empty';
-                          // } else {
-                          //   _numarInmatriculareErrorText = null;
-                          // }
-                          // if (_telefon == '') {
-                          //   _telefonErrorText = 'Telefon cannot be empty';
-                          // } else {
-                          //   _telefonErrorText = null;
-                          // }
-                          //
-                          // if (_serieSasiu == '') {
-                          //   _serieSasiuErrorText = 'Serie cannot be empty';
-                          // } else {
-                          //   _serieSasiuErrorText = null;
-                          // }
-                        });
-                      }
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 6,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: ElevatedButton(
+                          child: const Text('Creeaza',style: TextStyle(fontSize: 24),),
+                          onPressed: () {
+                            if (true) {
+                              List<CarPart> builtItems = <CarPart>[];
+                              items.forEach((element) {
+                                builtItems.add(element.build());
+                              });
+                              StoreProvider.of<AppState>(context).dispatch(CreateOrder(
+                                details: OrderDetails.fromData(
+                                  isOffer: isOffer,
+                                  carPlate: _numarInmatriculare,
+                                  chassisNumber: _serieSasiu,
+                                  name: _nume,
+                                  phoneNumber: _telefon,
+                                  total: _total.toString(),
+                                  paid: _isPaid,
+                                  make: _make,
+                                  model: _model,
+                                  clientId: _chooseFromClients == true? selectedClient.id:null,
+                                ),
+                                items: builtItems,
+                              ));
+                              Navigator.pop(context);
+                            } else {
+                              setState(() {
+                                // if (_nume == '') {
+                                //   _numeErrorText = 'Nume cannot be empty';
+                                // } else {
+                                //   _numeErrorText = null;
+                                // }
+                                // if (_numarInmatriculare == '') {
+                                //   _numarInmatriculareErrorText = 'Numar inmatriculare cannot be empty';
+                                // } else {
+                                //   _numarInmatriculareErrorText = null;
+                                // }
+                                // if (_telefon == '') {
+                                //   _telefonErrorText = 'Telefon cannot be empty';
+                                // } else {
+                                //   _telefonErrorText = null;
+                                // }
+                                //
+                                // if (_serieSasiu == '') {
+                                //   _serieSasiuErrorText = 'Serie cannot be empty';
+                                // } else {
+                                //   _serieSasiuErrorText = null;
+                                // }
+                              });
+                            }
+                          },
+                        ),
+                      )
+
+
+                    ],
                   ),
                 ],
               );

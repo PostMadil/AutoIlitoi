@@ -244,16 +244,28 @@ AppState _filterOrders(AppState state, FilterOrders action) {
         case 'Nume':
           {
             orders.forEach((Order order) {
-              if (order.name != null &&
-                  order.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+              if(order.clientId != null && order.clientId !=''){
+                Client currentClient = state.clients.firstWhere((Client client) => client.id == order.clientId);
+                if(currentClient.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                  aux.add(order);
+              } else {
+                if (order.name != null &&
+                    order.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+              }
             });
             break;
           }
         case 'Telefon':
           {
             orders.forEach((Order order) {
-              if (order.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
-                aux.add(order);
+              if(order.clientId != null && order.clientId != ''){
+                Client currentClient = state.clients.firstWhere((Client client) => client.id == order.clientId);
+                if(currentClient.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                  aux.add(order);
+              } else {
+                if (order.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                  aux.add(order);
+              }
             });
             break;
           }
