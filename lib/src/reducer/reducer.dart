@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
+import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:built_collection/built_collection.dart';
@@ -13,11 +14,19 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, dynamic>(_general),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful),
-  TypedReducer<AppState, GetOrdersSuccessful>(_getOrdersSuccessful),
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
+
+  TypedReducer<AppState, GetOrdersSuccessful>(_getOrdersSuccessful),
+  TypedReducer<AppState, DeleteOrderSuccessful>(_deleteOrderSuccessful),
+
+  TypedReducer<AppState, GetClientsSuccessful>(_getClientsSuccessful),
+  TypedReducer<AppState, DeleteClientSuccessful>(_deleteClientSuccessful),
+  TypedReducer<AppState, CreateClientSuccessful>(_createClientSuccessful),
+
+
+  TypedReducer<AppState, SetSelectedClient>(_setSelectedClient),
   TypedReducer<AppState, SetSelectedOrder>(_setSelectedOrder),
   TypedReducer<AppState, SetSelectedView>(_setSelectedView),
-
   TypedReducer<AppState, SetOnlyPaid>(_setOnlyPaid),
   TypedReducer<AppState, SetOnlyUnpaid>(_setOnlyUnpaid),
   TypedReducer<AppState, SetHigherThan>(_setHigherThan),
@@ -26,6 +35,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, SetLowerThanAmount>(_setLowerThanAmount),
   TypedReducer<AppState, FilterOrders>(_filterOrders),
   TypedReducer<AppState, SetSearchParam>(_setSearchParam),
+  TypedReducer<AppState, SetSearchBy>(_setSearchBy),
 ]);
 
 AppState _general(AppState state, dynamic action) {
@@ -43,8 +53,19 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
 
 AppState _getOrdersSuccessful(AppState state, GetOrdersSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
+    List<Order> offers = <Order>[];
+    List<Order> orders = <Order>[];
+
+    action.orders.forEach((Order order) {
+      if (order.isOffer) {
+        offers.add(order);
+      } else {
+        orders.add(order);
+      }
+    });
+    b.offers = ListBuilder(offers);
     b.orders = ListBuilder(action.orders);
-    b.selectedOrders = ListBuilder(action.orders);
+    b.selectedOrders = ListBuilder(orders);
 
     double total = 0;
     double totalPaid = 0;
@@ -199,13 +220,78 @@ AppState _filterOrders(AppState state, FilterOrders action) {
   return state.rebuild((AppStateBuilder b) {
     List<Order> orders = <Order>[];
 
-    orders.addAll(b.orders.build().toList());
+    b.orders.build().toList().forEach((Order order) {
+      if (!order.isOffer) {
+        orders.add(order);
+      }
+    });
+    if(state.filterOptions.selectedClient != null){
+      List<Order> aux = <Order>[];
+      orders.forEach((Order order) {
+        if(order.clientId != null  && order.clientId != ''){
+          if(order.clientId == state.filterOptions.selectedClient!.id){
+            aux.add(order);
+          }
+        }
+      });
+      orders.clear();
+      orders.addAll(aux);
+    }
     if (state.filterOptions.searchParam != '') {
       log('filtering only containing ${state.filterOptions.searchParam}...');
       List<Order> aux = <Order>[];
-      orders.forEach((Order order) {
-        if (order.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
-      });
+      switch (state.filterOptions.searchBy) {
+        case 'Nume':
+          {
+            orders.forEach((Order order) {
+              if (order.name != null &&
+                  order.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+            });
+            break;
+          }
+        case 'Telefon':
+          {
+            orders.forEach((Order order) {
+              if (order.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                aux.add(order);
+            });
+            break;
+          }
+        case 'Numar inmatricullare':
+          {
+            orders.forEach((Order order) {
+              if (order.chassisNumber != null &&
+                  order.carPlate.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+            });
+            break;
+          }
+        case 'Serie sasiu':
+          {
+            orders.forEach((Order order) {
+              if (order.chassisNumber != null &&
+                  order.chassisNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                aux.add(order);
+            });
+            break;
+          }
+        case 'Marca':
+          {
+            orders.forEach((Order order) {
+              log('Filter my make with param: ${state.filterOptions.searchBy}');
+              if (order.make != null &&
+                  order.make!.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+            });
+            break;
+          }
+        case 'Model':
+          {
+            orders.forEach((Order order) {
+              if (order.model != null &&
+                  order.model!.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase())) aux.add(order);
+            });
+            break;
+          }
+      }
       orders.clear();
       orders.addAll(aux);
     }
@@ -253,5 +339,52 @@ AppState _filterOrders(AppState state, FilterOrders action) {
 AppState _setSearchParam(AppState state, SetSearchParam action) {
   return state.rebuild((AppStateBuilder b) {
     b.filterOptions.searchParam = action.value;
+  });
+}
+
+AppState _setSearchBy(AppState state, SetSearchBy action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.filterOptions.searchBy = action.value;
+  });
+}
+
+AppState _deleteOrderSuccessful(AppState state, DeleteOrderSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    if(b.selectedOrder.isOffer == true) {
+      b.selectedView = 4;
+    } else {
+      b.selectedView = 0;
+    }
+    b.orders.remove(action.order);
+    b.selectedOrders.remove(action.order);
+
+  });
+}
+
+AppState _getClientsSuccessful(AppState state, GetClientsSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.clients = ListBuilder(action.clients);
+  });
+}
+
+AppState _deleteClientSuccessful(AppState state, DeleteClientSuccessful action) {
+  return state.rebuild((AppStateBuilder b ) {
+    b.clients.remove(action.client);
+  });
+}
+
+AppState _createClientSuccessful(AppState state, CreateClientSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.clients.add(action.client);
+  });
+}
+
+AppState _setSelectedClient(AppState state, SetSelectedClient action) {
+  return state.rebuild((AppStateBuilder b) {
+    if(action.client != null) {
+      b.filterOptions.selectedClient = action.client!.toBuilder();
+    } else {
+      b.filterOptions.selectedClient = null;
+    }
   });
 }

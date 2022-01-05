@@ -10,6 +10,7 @@ part 'serializers.g.dart';
 @SerializersFor(<Type>[
   AppUser,
   Order,
+  Client,
 ])
 Serializers serializers = (_$serializers.toBuilder() //
       ..addPlugin(StandardJsonPlugin()))

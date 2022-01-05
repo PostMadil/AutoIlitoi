@@ -9,7 +9,12 @@ import 'package:pdf/widgets.dart' as pw;
 
 class PdfApi {
   static Future<void> generate(
-      {required Order order, required String serie, required String numar, required String modPlata}) async {
+      {required Order order,
+      required String serie,
+      required String numar,
+      required String modPlata,
+      required String cif,
+      required String address}) async {
     //Create the style/font
 
     final myFont = await rootBundle.load('assets/fonts/Freeroad-Regular.ttf');
@@ -19,16 +24,29 @@ class PdfApi {
 
     pw.TextStyle headerStyle = pw.TextStyle(font: ttf, fontSize: 12);
     pw.TextStyle cellStyle = pw.TextStyle(font: ttf, fontSize: 10);
-    pdf.addPage(pw.MultiPage(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return [
-            buildHeader1(serie: serie, numar: numar, headerStyle: headerStyle),
-            buildHeader2(order: order, style: headerStyle),
-            buildOrder(order, ttf),
-            buildFooter(order: order, style: headerStyle, modPlata: modPlata),
-          ];
-        }));
+
+    if(!order.isOffer){
+      pdf.addPage(pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return [
+              buildHeader1(serie: serie, numar: numar, headerStyle: headerStyle),
+              buildHeader2(order: order, style: headerStyle, cif: cif, address: address),
+              buildOrder(order, ttf),
+              buildFooter(order: order, style: headerStyle, modPlata: modPlata),
+            ];
+          }));
+    } else {
+      pdf.addPage(pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return [
+              buildOfferHeader(make: order.make!,model: order.model!),
+              buildOrder(order, ttf),
+              buildFooter(order: order, style: headerStyle, modPlata: ''),
+            ];
+          }));
+    }
 
     final bytes = await pdf.save();
 
@@ -43,6 +61,20 @@ class PdfApi {
     anchor.click();
     html.document.body!.children.remove(anchor);
     html.Url.revokeObjectUrl(url);
+  }
+
+  static pw.Widget buildOfferHeader({required String make, required String model}){
+    return pw.Padding(
+        padding: const pw.EdgeInsets.all(16),
+        child: pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.start,
+          children: <pw.Widget>[
+            pw.Text(make),
+            pw.SizedBox(width: 8),
+            pw.Text(model),
+          ],
+        )
+    );
   }
 
   static pw.Widget buildHeader1({required String serie, required String numar, required pw.TextStyle headerStyle}) {
@@ -72,7 +104,8 @@ class PdfApi {
     );
   }
 
-  static pw.Widget buildHeader2({required Order order, required pw.TextStyle style}) {
+  static pw.Widget buildHeader2(
+      {required Order order, required pw.TextStyle style, required String cif, required String address}) {
     return pw.Column(
       children: <pw.Widget>[
         pw.Row(
@@ -127,8 +160,8 @@ class PdfApi {
                 children: <pw.Widget>[
                   pw.Text(order.name.toString(), style: style),
                   pw.SizedBox(height: 8),
-                  order.cif == null ? pw.Text('') : pw.Text('CIF: ${order.cif}', style: style),
-                  order.address == null ? pw.Text('') : pw.Text(order.address.toString(), style: style),
+                  cif == null ? pw.Text('') : pw.Text('CIF: ${cif}', style: style),
+                  address == null ? pw.Text('') : pw.Text(address.toString(), style: style),
                 ],
               ),
             ),
@@ -152,15 +185,15 @@ class PdfApi {
     int index = 0;
     final data = order.items.map((CarPart item) {
       index++;
-      final total = double.parse(item.price!) * double.parse(item.qty!) * 1.19;
+      final total = double.parse(item.price!) * double.parse(item.qty!);
       return <String>[
         index.toString(),
         item.name!,
         item.type == null ? '' : item.type!,
         double.parse(item.qty!).toStringAsFixed(3),
-        double.parse(item.price!).toStringAsFixed(4),
-        (double.parse(item.price!) * double.parse(item.qty!)).toStringAsFixed(2),
-        (double.parse(item.price!) * double.parse(item.qty!) * 0.19).toStringAsFixed(2),
+        ((double.parse(item.price!))/1.19).toStringAsFixed(4),
+        (double.parse(((double.parse(item.price!))/1.19).toStringAsFixed(4)) * double.parse(item.qty!)).toStringAsFixed(2),
+        (double.parse(item.price!) /1.19 * double.parse(item.qty!) * 0.19).toStringAsFixed(2),
       ];
     }).toList();
 
@@ -188,8 +221,8 @@ class PdfApi {
     double valoareTotala = 0;
     double tvaTotal = 0;
     order.items.forEach((CarPart item) {
-      valoareTotala += double.parse((double.parse(item.price!) * double.parse(item.qty!)).toStringAsFixed(2));
-      tvaTotal += double.parse((double.parse(item.price!) * double.parse(item.qty!) * 0.19).toStringAsFixed(2));
+      valoareTotala += double.parse((double.parse(item.price!) / 1.19 * double.parse(item.qty!)).toStringAsFixed(2));
+      tvaTotal += double.parse((double.parse(item.price!) / 1.19 * double.parse(item.qty!) * 0.19).toStringAsFixed(2));
     });
 
     return pw.Column(

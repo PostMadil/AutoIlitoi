@@ -14,7 +14,9 @@ abstract class FilterOptions implements Built<FilterOptions, FilterOptionsBuilde
         ..higherThanAmount = 0
         ..lowerThan = false
         ..lowerThanAmount = double.infinity
-        ..searchParam = '';
+        ..searchParam = ''
+        ..selectedClient = null
+        ..searchBy = 'Nume';
     });
   }
 
@@ -32,7 +34,11 @@ abstract class FilterOptions implements Built<FilterOptions, FilterOptionsBuilde
 
   double get lowerThanAmount;
 
+  String get searchBy;
+
   String get searchParam;
+
+  Client? get selectedClient;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

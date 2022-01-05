@@ -1,5 +1,6 @@
 import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
+import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/actions/index.dart';
 import 'package:auto_ilitoi/src/data/firebase_api.dart';
@@ -16,10 +17,17 @@ class AppEpics {
     return combineEpics(<Epic<AppState>>[
       TypedEpic<AppState, Login$>(_login),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
+      TypedEpic<AppState, InitializeAppStart>(_initializeAppStart),
+      // -- CRUD ORDER
       TypedEpic<AppState, GetOrdersStart>(_getOrdersStart),
       TypedEpic<AppState, CreateOrderStart>(_createOrder),
-      TypedEpic<AppState, InitializeAppStart>(_initializeAppStart),
       TypedEpic<AppState, UpdateOrderStart>(_updateOrderStart),
+      TypedEpic<AppState, DeleteOrderStart>(_deleteOrderStart),
+      // -- CRUD CLIENT
+      TypedEpic<AppState, GetClientsStart>(_getClientsStart),
+      TypedEpic<AppState, CreateClientStart>(_createClientStart),
+      TypedEpic<AppState, UpdateClientStart>(_updateClientStart),
+      TypedEpic<AppState, DeleteClientStart>(_deleteClientStart),
     ]);
   }
 
@@ -49,7 +57,7 @@ class AppEpics {
             .asyncMap((GetOrdersStart action) => _firebaseApi.getOrders())
             .expand((List<Order> orders) => <AppAction>[
                   GetOrders.successful(orders),
-                  FilterOrders(store.state.filterOptions),
+                  FilterOrders(),
                 ])
             .onErrorReturnWith((error, stackTrace) => GetOrders.error(error, stackTrace)));
   }
@@ -87,5 +95,50 @@ class AppEpics {
                   SetSelectedView(1),
                 ])
             .onErrorReturnWith((error, stackTrace) => InitializeApp.error(error, stackTrace)));
+  }
+
+  Stream<AppAction> _deleteOrderStart(Stream<DeleteOrderStart> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((DeleteOrderStart action) => Stream<DeleteOrderStart>.value(action)
+            .asyncMap((DeleteOrderStart action) => _firebaseApi.deleteOrder(store.state.selectedOrder!.id))
+            .map((String id) => DeleteOrder.successful(store.state.selectedOrder!))
+            .onErrorReturnWith((error, stackTrace) => DeleteOrder.error(error, stackTrace)));
+  }
+
+  Stream<AppAction> _getClientsStart(Stream<GetClientsStart> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((GetClientsStart action) => Stream<GetClientsStart>.value(action)
+            .asyncMap((GetClientsStart action) => _firebaseApi.getClients())
+            .map((List<Client> clients) => GetClients.successful(clients))
+            .onErrorReturnWith((error, stackTrace) => GetClients.error(error, stackTrace)));
+  }
+
+  Stream<AppAction> _createClientStart(Stream<CreateClientStart> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((CreateClientStart action) => Stream<CreateClientStart>.value(action)
+            .asyncMap((CreateClientStart action) =>
+                _firebaseApi.createClient(name: action.name, phoneNumber: action.phoneNumber))
+            .map((Client client) => CreateClient.successful(client))
+            .onErrorReturnWith((error, stackTrace) => CreateClient.error(error, stackTrace)));
+  }
+
+  Stream<AppAction> _updateClientStart(Stream<UpdateClientStart> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((UpdateClientStart action) => Stream<UpdateClientStart>.value(action)
+            .asyncMap((UpdateClientStart action) => _firebaseApi.updateClient(action.client))
+            .expand((_) => <AppAction>[
+                  UpdateClient.successful(),
+                  GetClients(),
+                ])
+            .onErrorReturnWith((error, stackTrace) => UpdateClient.error(error, stackTrace)));
+  }
+
+  Stream<AppAction> _deleteClientStart(Stream<DeleteClientStart> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((DeleteClientStart action) => Stream<DeleteClientStart>.value(action)
+            .asyncMap(
+                (DeleteClientStart action) => _firebaseApi.deleteClient(action.client, store.state.orders.toList()))
+            .expand((Client client) => <AppAction>[DeleteClient.successful(client), GetOrders()])
+            .onErrorReturnWith((error, stackTrace) => DeleteClient.error(error, stackTrace)));
   }
 }

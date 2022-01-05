@@ -6,9 +6,10 @@ abstract class Order implements Built<Order, OrderBuilder> {
   factory Order.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
 
   factory Order.fromData(
-      {required String id, required OrderDetails details, required List<CarPart> items, required String dateTime}) {
+      {required String id, required OrderDetails details, required List<CarPart> items, required String dateTime,}) {
     return _$Order((OrderBuilder b) {
       b
+        ..isOffer = details.isOffer
         ..id = id
         ..items = ListBuilder(items)
         ..name = details.name!
@@ -18,8 +19,9 @@ abstract class Order implements Built<Order, OrderBuilder> {
         ..carPlate = details.carPlate!
         ..paid = details.paid!
         ..total = details.total!
-        ..cif = details.cif
-        ..address = details.address;
+        ..make = details.make
+        ..clientId = details.clientId
+        ..model = details.model;
     });
   }
 
@@ -41,11 +43,15 @@ abstract class Order implements Built<Order, OrderBuilder> {
 
   bool get paid;
 
-  String? get cif;
+  String? get make;
 
-  String? get address;
+  String? get model;
 
   BuiltList<CarPart> get items;
+
+  bool get isOffer;
+
+  String? get clientId;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 

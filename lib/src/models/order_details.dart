@@ -18,25 +18,29 @@ abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> 
   }
 
   factory OrderDetails.fromData({
+    required bool isOffer,
     required String carPlate,
     required String chassisNumber,
     required String name,
     required String phoneNumber,
     required String total,
     required bool paid,
-    required String cif,
-    required String address,
+    required String make,
+    required String model,
+    required String? clientId
   }) {
     return _$OrderDetails((OrderDetailsBuilder b) {
       b
+        ..isOffer = isOffer
         ..carPlate = carPlate
         ..chassisNumber = chassisNumber
         ..name = name
         ..phoneNumber = phoneNumber
         ..total = total
         ..paid = paid
-        ..address = address
-        ..cif = cif;
+        ..make = make
+        ..clientId = clientId
+        ..model = model;
     });
   }
 
@@ -54,9 +58,13 @@ abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> 
 
   bool? get paid;
 
-  String? get cif;
+  String? get make;
 
-  String? get address;
+  String? get model;
+
+  bool get isOffer;
+
+  String? get clientId;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseApi {
   FirebaseApi({required FirebaseAuth auth, required FirebaseFirestore firestore})
@@ -54,7 +55,6 @@ class FirebaseApi {
 
     return orders;
   }
-
   Future<void> createOrder(OrderDetails details, List<CarPart> items) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     String docId = ordersList.doc().id;
@@ -68,7 +68,6 @@ class FirebaseApi {
       log(e.toString());
     }
   }
-
   Future<Order> updateOrder(Order order) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     try {
@@ -77,6 +76,70 @@ class FirebaseApi {
       log(e.toString());
     }
     return order;
+  }
+  Future<String> deleteOrder(String id) async {
+    final CollectionReference ordersList = _firestore.collection('orders');
+    try {
+      await ordersList.doc(id).delete();
+    } catch (e) {
+      log(e.toString());
+    }
+    return id;
+  }
+  Future<List<Client>> getClients() async {
+    final CollectionReference clientsList = _firestore.collection('clients');
+    final List<Client> clients = <Client>[];
+    try{
+      await clientsList.orderBy('name',descending: false).get().then((querySnapshot) {
+        querySnapshot.docs.forEach((element) {
+          print(element.data);
+          clients.add(Client.fromJson(element.data()));
+        });
+      });
+    }catch(e) {
+      print(e);
+    }
+    return clients;
+  }
+
+  Future<Client> createClient({required String name, required String phoneNumber}) async {
+    final CollectionReference clientsList = _firestore.collection('clients');
+    String docId = clientsList.doc().id;
+    final Client newClient = Client.fromData(id: docId, name: name, phoneNumber: phoneNumber);
+    try{
+      clientsList.doc(docId).set(newClient.json);
+    } catch(e) {
+      print(e);
+    }
+    return newClient;
+  }
+
+  Future<void> updateClient(Client client) async {
+    final CollectionReference clientsList = _firestore.collection('clients');
+
+    try{
+      await clientsList.doc(client.id).update(client.json);
+    }catch(e) {
+      print(e);
+    }
+  }
+
+  Future<Client> deleteClient(Client client,List<Order> orders) async {
+    final  CollectionReference clientsList = _firestore.collection('clients');
+    final CollectionReference ordersList = _firestore.collection('orders');
+    try {
+      orders.forEach((element)  async {
+        if(element.clientId != null && element.clientId != ''){
+          if(element.clientId == client.id){
+             await ordersList.doc(element.id).delete();
+          }
+        }
+      });
+      await clientsList.doc(client.id).delete();
+    } catch (e) {
+      log(e.toString());
+    }
+    return client;
   }
 
   Future<void> forgotPassword(String email) async {

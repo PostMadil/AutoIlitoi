@@ -29,7 +29,7 @@ class _CarPartsDBState extends State<CarPartsDB> with InitMixin<CarPartsDB> {
             store: store,
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Patron',
+              title: 'AutoIlitoi',
               theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'ProximaNova'),
               routes: AppRoutes.routes,
             ),
@@ -53,7 +53,7 @@ class _CarPartsDBState extends State<CarPartsDB> with InitMixin<CarPartsDB> {
                         child: CircularProgressIndicator(),
                       ),
                       Text(
-                        'CarPartsDB',
+                        'AutoIlitoi',
                         style: TextStyle(
                           fontFamily: 'ProximaNova',
                           fontWeight: FontWeight.w700,

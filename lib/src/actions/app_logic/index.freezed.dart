@@ -32,18 +32,21 @@ mixin _$SetSelectedView {
   int get selectedView => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SetSelectedViewCopyWith<SetSelectedView> get copyWith => throw _privateConstructorUsedError;
+  $SetSelectedViewCopyWith<SetSelectedView> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SetSelectedViewCopyWith<$Res> {
-  factory $SetSelectedViewCopyWith(SetSelectedView value, $Res Function(SetSelectedView) then) =
+  factory $SetSelectedViewCopyWith(
+          SetSelectedView value, $Res Function(SetSelectedView) then) =
       _$SetSelectedViewCopyWithImpl<$Res>;
   $Res call({int selectedView});
 }
 
 /// @nodoc
-class _$SetSelectedViewCopyWithImpl<$Res> implements $SetSelectedViewCopyWith<$Res> {
+class _$SetSelectedViewCopyWithImpl<$Res>
+    implements $SetSelectedViewCopyWith<$Res> {
   _$SetSelectedViewCopyWithImpl(this._value, this._then);
 
   final SetSelectedView _value;
@@ -64,17 +67,21 @@ class _$SetSelectedViewCopyWithImpl<$Res> implements $SetSelectedViewCopyWith<$R
 }
 
 /// @nodoc
-abstract class $SetSelectedView$CopyWith<$Res> implements $SetSelectedViewCopyWith<$Res> {
-  factory $SetSelectedView$CopyWith(SetSelectedView$ value, $Res Function(SetSelectedView$) then) =
+abstract class $SetSelectedView$CopyWith<$Res>
+    implements $SetSelectedViewCopyWith<$Res> {
+  factory $SetSelectedView$CopyWith(
+          SetSelectedView$ value, $Res Function(SetSelectedView$) then) =
       _$SetSelectedView$CopyWithImpl<$Res>;
   @override
   $Res call({int selectedView});
 }
 
 /// @nodoc
-class _$SetSelectedView$CopyWithImpl<$Res> extends _$SetSelectedViewCopyWithImpl<$Res>
+class _$SetSelectedView$CopyWithImpl<$Res>
+    extends _$SetSelectedViewCopyWithImpl<$Res>
     implements $SetSelectedView$CopyWith<$Res> {
-  _$SetSelectedView$CopyWithImpl(SetSelectedView$ _value, $Res Function(SetSelectedView$) _then)
+  _$SetSelectedView$CopyWithImpl(
+      SetSelectedView$ _value, $Res Function(SetSelectedView$) _then)
       : super(_value, (v) => _then(v as SetSelectedView$));
 
   @override
@@ -111,7 +118,8 @@ class _$SetSelectedView$ implements SetSelectedView$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SetSelectedView$ &&
-            (identical(other.selectedView, selectedView) || other.selectedView == selectedView));
+            (identical(other.selectedView, selectedView) ||
+                other.selectedView == selectedView));
   }
 
   @override
@@ -130,7 +138,8 @@ abstract class SetSelectedView$ implements SetSelectedView {
   int get selectedView;
   @override
   @JsonKey(ignore: true)
-  $SetSelectedView$CopyWith<SetSelectedView$> get copyWith => throw _privateConstructorUsedError;
+  $SetSelectedView$CopyWith<SetSelectedView$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -152,18 +161,21 @@ mixin _$SetSelectedOrder {
   Order get order => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SetSelectedOrderCopyWith<SetSelectedOrder> get copyWith => throw _privateConstructorUsedError;
+  $SetSelectedOrderCopyWith<SetSelectedOrder> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SetSelectedOrderCopyWith<$Res> {
-  factory $SetSelectedOrderCopyWith(SetSelectedOrder value, $Res Function(SetSelectedOrder) then) =
+  factory $SetSelectedOrderCopyWith(
+          SetSelectedOrder value, $Res Function(SetSelectedOrder) then) =
       _$SetSelectedOrderCopyWithImpl<$Res>;
   $Res call({Order order});
 }
 
 /// @nodoc
-class _$SetSelectedOrderCopyWithImpl<$Res> implements $SetSelectedOrderCopyWith<$Res> {
+class _$SetSelectedOrderCopyWithImpl<$Res>
+    implements $SetSelectedOrderCopyWith<$Res> {
   _$SetSelectedOrderCopyWithImpl(this._value, this._then);
 
   final SetSelectedOrder _value;
@@ -184,17 +196,21 @@ class _$SetSelectedOrderCopyWithImpl<$Res> implements $SetSelectedOrderCopyWith<
 }
 
 /// @nodoc
-abstract class $SetSelectedOrder$CopyWith<$Res> implements $SetSelectedOrderCopyWith<$Res> {
-  factory $SetSelectedOrder$CopyWith(SetSelectedOrder$ value, $Res Function(SetSelectedOrder$) then) =
+abstract class $SetSelectedOrder$CopyWith<$Res>
+    implements $SetSelectedOrderCopyWith<$Res> {
+  factory $SetSelectedOrder$CopyWith(
+          SetSelectedOrder$ value, $Res Function(SetSelectedOrder$) then) =
       _$SetSelectedOrder$CopyWithImpl<$Res>;
   @override
   $Res call({Order order});
 }
 
 /// @nodoc
-class _$SetSelectedOrder$CopyWithImpl<$Res> extends _$SetSelectedOrderCopyWithImpl<$Res>
+class _$SetSelectedOrder$CopyWithImpl<$Res>
+    extends _$SetSelectedOrderCopyWithImpl<$Res>
     implements $SetSelectedOrder$CopyWith<$Res> {
-  _$SetSelectedOrder$CopyWithImpl(SetSelectedOrder$ _value, $Res Function(SetSelectedOrder$) _then)
+  _$SetSelectedOrder$CopyWithImpl(
+      SetSelectedOrder$ _value, $Res Function(SetSelectedOrder$) _then)
       : super(_value, (v) => _then(v as SetSelectedOrder$));
 
   @override
@@ -250,5 +266,6 @@ abstract class SetSelectedOrder$ implements SetSelectedOrder {
   Order get order;
   @override
   @JsonKey(ignore: true)
-  $SetSelectedOrder$CopyWith<SetSelectedOrder$> get copyWith => throw _privateConstructorUsedError;
+  $SetSelectedOrder$CopyWith<SetSelectedOrder$> get copyWith =>
+      throw _privateConstructorUsedError;
 }

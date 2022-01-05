@@ -8,6 +8,6 @@ class OrdersContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, List<Order>>(
-        builder: builder, converter: (Store<AppState> store) => store.state.orders.toList());
+        builder: builder, converter: (Store<AppState> store) => store.state.selectedOrders.toList());
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/data/firebase_api.dart';
 import 'package:auto_ilitoi/src/epics/app_epics.dart';
@@ -30,6 +31,7 @@ Future<Store<AppState>> init() async {
     EpicMiddleware<AppState>(epics.epics),
   ]);
   store.dispatch(const InitializeApp());
+  store.dispatch(const GetClients());
 
   return store;
 }

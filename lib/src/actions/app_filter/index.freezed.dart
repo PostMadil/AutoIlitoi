@@ -14,6 +14,260 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+class _$SetSelectedClientTearOff {
+  const _$SetSelectedClientTearOff();
+
+  SetSelectedClient$ call(Client? client) {
+    return SetSelectedClient$(
+      client,
+    );
+  }
+}
+
+/// @nodoc
+const $SetSelectedClient = _$SetSelectedClientTearOff();
+
+/// @nodoc
+mixin _$SetSelectedClient {
+  Client? get client => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetSelectedClientCopyWith<SetSelectedClient> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetSelectedClientCopyWith<$Res> {
+  factory $SetSelectedClientCopyWith(
+          SetSelectedClient value, $Res Function(SetSelectedClient) then) =
+      _$SetSelectedClientCopyWithImpl<$Res>;
+  $Res call({Client? client});
+}
+
+/// @nodoc
+class _$SetSelectedClientCopyWithImpl<$Res>
+    implements $SetSelectedClientCopyWith<$Res> {
+  _$SetSelectedClientCopyWithImpl(this._value, this._then);
+
+  final SetSelectedClient _value;
+  // ignore: unused_field
+  final $Res Function(SetSelectedClient) _then;
+
+  @override
+  $Res call({
+    Object? client = freezed,
+  }) {
+    return _then(_value.copyWith(
+      client: client == freezed
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $SetSelectedClient$CopyWith<$Res>
+    implements $SetSelectedClientCopyWith<$Res> {
+  factory $SetSelectedClient$CopyWith(
+          SetSelectedClient$ value, $Res Function(SetSelectedClient$) then) =
+      _$SetSelectedClient$CopyWithImpl<$Res>;
+  @override
+  $Res call({Client? client});
+}
+
+/// @nodoc
+class _$SetSelectedClient$CopyWithImpl<$Res>
+    extends _$SetSelectedClientCopyWithImpl<$Res>
+    implements $SetSelectedClient$CopyWith<$Res> {
+  _$SetSelectedClient$CopyWithImpl(
+      SetSelectedClient$ _value, $Res Function(SetSelectedClient$) _then)
+      : super(_value, (v) => _then(v as SetSelectedClient$));
+
+  @override
+  SetSelectedClient$ get _value => super._value as SetSelectedClient$;
+
+  @override
+  $Res call({
+    Object? client = freezed,
+  }) {
+    return _then(SetSelectedClient$(
+      client == freezed
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedClient$ implements SetSelectedClient$ {
+  const _$SetSelectedClient$(this.client);
+
+  @override
+  final Client? client;
+
+  @override
+  String toString() {
+    return 'SetSelectedClient(client: $client)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SetSelectedClient$ &&
+            (identical(other.client, client) || other.client == client));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, client);
+
+  @JsonKey(ignore: true)
+  @override
+  $SetSelectedClient$CopyWith<SetSelectedClient$> get copyWith =>
+      _$SetSelectedClient$CopyWithImpl<SetSelectedClient$>(this, _$identity);
+}
+
+abstract class SetSelectedClient$ implements SetSelectedClient {
+  const factory SetSelectedClient$(Client? client) = _$SetSelectedClient$;
+
+  @override
+  Client? get client;
+  @override
+  @JsonKey(ignore: true)
+  $SetSelectedClient$CopyWith<SetSelectedClient$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$SetSearchByTearOff {
+  const _$SetSearchByTearOff();
+
+  SetSearchBy$ call(String value) {
+    return SetSearchBy$(
+      value,
+    );
+  }
+}
+
+/// @nodoc
+const $SetSearchBy = _$SetSearchByTearOff();
+
+/// @nodoc
+mixin _$SetSearchBy {
+  String get value => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetSearchByCopyWith<SetSearchBy> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetSearchByCopyWith<$Res> {
+  factory $SetSearchByCopyWith(
+          SetSearchBy value, $Res Function(SetSearchBy) then) =
+      _$SetSearchByCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$SetSearchByCopyWithImpl<$Res> implements $SetSearchByCopyWith<$Res> {
+  _$SetSearchByCopyWithImpl(this._value, this._then);
+
+  final SetSearchBy _value;
+  // ignore: unused_field
+  final $Res Function(SetSearchBy) _then;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $SetSearchBy$CopyWith<$Res>
+    implements $SetSearchByCopyWith<$Res> {
+  factory $SetSearchBy$CopyWith(
+          SetSearchBy$ value, $Res Function(SetSearchBy$) then) =
+      _$SetSearchBy$CopyWithImpl<$Res>;
+  @override
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$SetSearchBy$CopyWithImpl<$Res> extends _$SetSearchByCopyWithImpl<$Res>
+    implements $SetSearchBy$CopyWith<$Res> {
+  _$SetSearchBy$CopyWithImpl(
+      SetSearchBy$ _value, $Res Function(SetSearchBy$) _then)
+      : super(_value, (v) => _then(v as SetSearchBy$));
+
+  @override
+  SetSearchBy$ get _value => super._value as SetSearchBy$;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(SetSearchBy$(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSearchBy$ implements SetSearchBy$ {
+  const _$SetSearchBy$(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'SetSearchBy(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SetSearchBy$ &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  $SetSearchBy$CopyWith<SetSearchBy$> get copyWith =>
+      _$SetSearchBy$CopyWithImpl<SetSearchBy$>(this, _$identity);
+}
+
+abstract class SetSearchBy$ implements SetSearchBy {
+  const factory SetSearchBy$(String value) = _$SetSearchBy$;
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  $SetSearchBy$CopyWith<SetSearchBy$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$SetSearchParamTearOff {
   const _$SetSearchParamTearOff();
 
@@ -32,18 +286,21 @@ mixin _$SetSearchParam {
   String get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SetSearchParamCopyWith<SetSearchParam> get copyWith => throw _privateConstructorUsedError;
+  $SetSearchParamCopyWith<SetSearchParam> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SetSearchParamCopyWith<$Res> {
-  factory $SetSearchParamCopyWith(SetSearchParam value, $Res Function(SetSearchParam) then) =
+  factory $SetSearchParamCopyWith(
+          SetSearchParam value, $Res Function(SetSearchParam) then) =
       _$SetSearchParamCopyWithImpl<$Res>;
   $Res call({String value});
 }
 
 /// @nodoc
-class _$SetSearchParamCopyWithImpl<$Res> implements $SetSearchParamCopyWith<$Res> {
+class _$SetSearchParamCopyWithImpl<$Res>
+    implements $SetSearchParamCopyWith<$Res> {
   _$SetSearchParamCopyWithImpl(this._value, this._then);
 
   final SetSearchParam _value;
@@ -64,17 +321,21 @@ class _$SetSearchParamCopyWithImpl<$Res> implements $SetSearchParamCopyWith<$Res
 }
 
 /// @nodoc
-abstract class $SetSearchParam$CopyWith<$Res> implements $SetSearchParamCopyWith<$Res> {
-  factory $SetSearchParam$CopyWith(SetSearchParam$ value, $Res Function(SetSearchParam$) then) =
+abstract class $SetSearchParam$CopyWith<$Res>
+    implements $SetSearchParamCopyWith<$Res> {
+  factory $SetSearchParam$CopyWith(
+          SetSearchParam$ value, $Res Function(SetSearchParam$) then) =
       _$SetSearchParam$CopyWithImpl<$Res>;
   @override
   $Res call({String value});
 }
 
 /// @nodoc
-class _$SetSearchParam$CopyWithImpl<$Res> extends _$SetSearchParamCopyWithImpl<$Res>
+class _$SetSearchParam$CopyWithImpl<$Res>
+    extends _$SetSearchParamCopyWithImpl<$Res>
     implements $SetSearchParam$CopyWith<$Res> {
-  _$SetSearchParam$CopyWithImpl(SetSearchParam$ _value, $Res Function(SetSearchParam$) _then)
+  _$SetSearchParam$CopyWithImpl(
+      SetSearchParam$ _value, $Res Function(SetSearchParam$) _then)
       : super(_value, (v) => _then(v as SetSearchParam$));
 
   @override
@@ -130,17 +391,16 @@ abstract class SetSearchParam$ implements SetSearchParam {
   String get value;
   @override
   @JsonKey(ignore: true)
-  $SetSearchParam$CopyWith<SetSearchParam$> get copyWith => throw _privateConstructorUsedError;
+  $SetSearchParam$CopyWith<SetSearchParam$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$FilterOrdersTearOff {
   const _$FilterOrdersTearOff();
 
-  FilterOrders$ call(FilterOptions filterOptions) {
-    return FilterOrders$(
-      filterOptions,
-    );
+  FilterOrders$ call() {
+    return const FilterOrders$();
   }
 }
 
@@ -148,18 +408,13 @@ class _$FilterOrdersTearOff {
 const $FilterOrders = _$FilterOrdersTearOff();
 
 /// @nodoc
-mixin _$FilterOrders {
-  FilterOptions get filterOptions => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FilterOrdersCopyWith<FilterOrders> get copyWith => throw _privateConstructorUsedError;
-}
+mixin _$FilterOrders {}
 
 /// @nodoc
 abstract class $FilterOrdersCopyWith<$Res> {
-  factory $FilterOrdersCopyWith(FilterOrders value, $Res Function(FilterOrders) then) =
+  factory $FilterOrdersCopyWith(
+          FilterOrders value, $Res Function(FilterOrders) then) =
       _$FilterOrdersCopyWithImpl<$Res>;
-  $Res call({FilterOptions filterOptions});
 }
 
 /// @nodoc
@@ -169,87 +424,48 @@ class _$FilterOrdersCopyWithImpl<$Res> implements $FilterOrdersCopyWith<$Res> {
   final FilterOrders _value;
   // ignore: unused_field
   final $Res Function(FilterOrders) _then;
-
-  @override
-  $Res call({
-    Object? filterOptions = freezed,
-  }) {
-    return _then(_value.copyWith(
-      filterOptions: filterOptions == freezed
-          ? _value.filterOptions
-          : filterOptions // ignore: cast_nullable_to_non_nullable
-              as FilterOptions,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $FilterOrders$CopyWith<$Res> implements $FilterOrdersCopyWith<$Res> {
-  factory $FilterOrders$CopyWith(FilterOrders$ value, $Res Function(FilterOrders$) then) =
+abstract class $FilterOrders$CopyWith<$Res> {
+  factory $FilterOrders$CopyWith(
+          FilterOrders$ value, $Res Function(FilterOrders$) then) =
       _$FilterOrders$CopyWithImpl<$Res>;
-  @override
-  $Res call({FilterOptions filterOptions});
 }
 
 /// @nodoc
 class _$FilterOrders$CopyWithImpl<$Res> extends _$FilterOrdersCopyWithImpl<$Res>
     implements $FilterOrders$CopyWith<$Res> {
-  _$FilterOrders$CopyWithImpl(FilterOrders$ _value, $Res Function(FilterOrders$) _then)
+  _$FilterOrders$CopyWithImpl(
+      FilterOrders$ _value, $Res Function(FilterOrders$) _then)
       : super(_value, (v) => _then(v as FilterOrders$));
 
   @override
   FilterOrders$ get _value => super._value as FilterOrders$;
-
-  @override
-  $Res call({
-    Object? filterOptions = freezed,
-  }) {
-    return _then(FilterOrders$(
-      filterOptions == freezed
-          ? _value.filterOptions
-          : filterOptions // ignore: cast_nullable_to_non_nullable
-              as FilterOptions,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$FilterOrders$ implements FilterOrders$ {
-  const _$FilterOrders$(this.filterOptions);
-
-  @override
-  final FilterOptions filterOptions;
+  const _$FilterOrders$();
 
   @override
   String toString() {
-    return 'FilterOrders(filterOptions: $filterOptions)';
+    return 'FilterOrders()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is FilterOrders$ &&
-            (identical(other.filterOptions, filterOptions) || other.filterOptions == filterOptions));
+        (other.runtimeType == runtimeType && other is FilterOrders$);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filterOptions);
-
-  @JsonKey(ignore: true)
-  @override
-  $FilterOrders$CopyWith<FilterOrders$> get copyWith => _$FilterOrders$CopyWithImpl<FilterOrders$>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 }
 
 abstract class FilterOrders$ implements FilterOrders {
-  const factory FilterOrders$(FilterOptions filterOptions) = _$FilterOrders$;
-
-  @override
-  FilterOptions get filterOptions;
-  @override
-  @JsonKey(ignore: true)
-  $FilterOrders$CopyWith<FilterOrders$> get copyWith => throw _privateConstructorUsedError;
+  const factory FilterOrders$() = _$FilterOrders$;
 }
 
 /// @nodoc
@@ -271,18 +487,21 @@ mixin _$SetHigherThanAmount {
   double get limit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SetHigherThanAmountCopyWith<SetHigherThanAmount> get copyWith => throw _privateConstructorUsedError;
+  $SetHigherThanAmountCopyWith<SetHigherThanAmount> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SetHigherThanAmountCopyWith<$Res> {
-  factory $SetHigherThanAmountCopyWith(SetHigherThanAmount value, $Res Function(SetHigherThanAmount) then) =
+  factory $SetHigherThanAmountCopyWith(
+          SetHigherThanAmount value, $Res Function(SetHigherThanAmount) then) =
       _$SetHigherThanAmountCopyWithImpl<$Res>;
   $Res call({double limit});
 }
 
 /// @nodoc
-class _$SetHigherThanAmountCopyWithImpl<$Res> implements $SetHigherThanAmountCopyWith<$Res> {
+class _$SetHigherThanAmountCopyWithImpl<$Res>
+    implements $SetHigherThanAmountCopyWith<$Res> {
   _$SetHigherThanAmountCopyWithImpl(this._value, this._then);
 
   final SetHigherThanAmount _value;
@@ -303,17 +522,21 @@ class _$SetHigherThanAmountCopyWithImpl<$Res> implements $SetHigherThanAmountCop
 }
 
 /// @nodoc
-abstract class $SetHigherThanAmount$CopyWith<$Res> implements $SetHigherThanAmountCopyWith<$Res> {
-  factory $SetHigherThanAmount$CopyWith(SetHigherThanAmount$ value, $Res Function(SetHigherThanAmount$) then) =
+abstract class $SetHigherThanAmount$CopyWith<$Res>
+    implements $SetHigherThanAmountCopyWith<$Res> {
+  factory $SetHigherThanAmount$CopyWith(SetHigherThanAmount$ value,
+          $Res Function(SetHigherThanAmount$) then) =
       _$SetHigherThanAmount$CopyWithImpl<$Res>;
   @override
   $Res call({double limit});
 }
 
 /// @nodoc
-class _$SetHigherThanAmount$CopyWithImpl<$Res> extends _$SetHigherThanAmountCopyWithImpl<$Res>
+class _$SetHigherThanAmount$CopyWithImpl<$Res>
+    extends _$SetHigherThanAmountCopyWithImpl<$Res>
     implements $SetHigherThanAmount$CopyWith<$Res> {
-  _$SetHigherThanAmount$CopyWithImpl(SetHigherThanAmount$ _value, $Res Function(SetHigherThanAmount$) _then)
+  _$SetHigherThanAmount$CopyWithImpl(
+      SetHigherThanAmount$ _value, $Res Function(SetHigherThanAmount$) _then)
       : super(_value, (v) => _then(v as SetHigherThanAmount$));
 
   @override
@@ -359,7 +582,8 @@ class _$SetHigherThanAmount$ implements SetHigherThanAmount$ {
   @JsonKey(ignore: true)
   @override
   $SetHigherThanAmount$CopyWith<SetHigherThanAmount$> get copyWith =>
-      _$SetHigherThanAmount$CopyWithImpl<SetHigherThanAmount$>(this, _$identity);
+      _$SetHigherThanAmount$CopyWithImpl<SetHigherThanAmount$>(
+          this, _$identity);
 }
 
 abstract class SetHigherThanAmount$ implements SetHigherThanAmount {
@@ -369,7 +593,8 @@ abstract class SetHigherThanAmount$ implements SetHigherThanAmount {
   double get limit;
   @override
   @JsonKey(ignore: true)
-  $SetHigherThanAmount$CopyWith<SetHigherThanAmount$> get copyWith => throw _privateConstructorUsedError;
+  $SetHigherThanAmount$CopyWith<SetHigherThanAmount$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -391,18 +616,21 @@ mixin _$SetLowerThanAmount {
   double get amount1 => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SetLowerThanAmountCopyWith<SetLowerThanAmount> get copyWith => throw _privateConstructorUsedError;
+  $SetLowerThanAmountCopyWith<SetLowerThanAmount> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SetLowerThanAmountCopyWith<$Res> {
-  factory $SetLowerThanAmountCopyWith(SetLowerThanAmount value, $Res Function(SetLowerThanAmount) then) =
+  factory $SetLowerThanAmountCopyWith(
+          SetLowerThanAmount value, $Res Function(SetLowerThanAmount) then) =
       _$SetLowerThanAmountCopyWithImpl<$Res>;
   $Res call({double amount1});
 }
 
 /// @nodoc
-class _$SetLowerThanAmountCopyWithImpl<$Res> implements $SetLowerThanAmountCopyWith<$Res> {
+class _$SetLowerThanAmountCopyWithImpl<$Res>
+    implements $SetLowerThanAmountCopyWith<$Res> {
   _$SetLowerThanAmountCopyWithImpl(this._value, this._then);
 
   final SetLowerThanAmount _value;
@@ -423,17 +651,21 @@ class _$SetLowerThanAmountCopyWithImpl<$Res> implements $SetLowerThanAmountCopyW
 }
 
 /// @nodoc
-abstract class $SetLowerThanAmount$CopyWith<$Res> implements $SetLowerThanAmountCopyWith<$Res> {
-  factory $SetLowerThanAmount$CopyWith(SetLowerThanAmount$ value, $Res Function(SetLowerThanAmount$) then) =
+abstract class $SetLowerThanAmount$CopyWith<$Res>
+    implements $SetLowerThanAmountCopyWith<$Res> {
+  factory $SetLowerThanAmount$CopyWith(
+          SetLowerThanAmount$ value, $Res Function(SetLowerThanAmount$) then) =
       _$SetLowerThanAmount$CopyWithImpl<$Res>;
   @override
   $Res call({double amount1});
 }
 
 /// @nodoc
-class _$SetLowerThanAmount$CopyWithImpl<$Res> extends _$SetLowerThanAmountCopyWithImpl<$Res>
+class _$SetLowerThanAmount$CopyWithImpl<$Res>
+    extends _$SetLowerThanAmountCopyWithImpl<$Res>
     implements $SetLowerThanAmount$CopyWith<$Res> {
-  _$SetLowerThanAmount$CopyWithImpl(SetLowerThanAmount$ _value, $Res Function(SetLowerThanAmount$) _then)
+  _$SetLowerThanAmount$CopyWithImpl(
+      SetLowerThanAmount$ _value, $Res Function(SetLowerThanAmount$) _then)
       : super(_value, (v) => _then(v as SetLowerThanAmount$));
 
   @override
@@ -489,7 +721,8 @@ abstract class SetLowerThanAmount$ implements SetLowerThanAmount {
   double get amount1;
   @override
   @JsonKey(ignore: true)
-  $SetLowerThanAmount$CopyWith<SetLowerThanAmount$> get copyWith => throw _privateConstructorUsedError;
+  $SetLowerThanAmount$CopyWith<SetLowerThanAmount$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -509,7 +742,8 @@ mixin _$SetLowerThan {}
 
 /// @nodoc
 abstract class $SetLowerThanCopyWith<$Res> {
-  factory $SetLowerThanCopyWith(SetLowerThan value, $Res Function(SetLowerThan) then) =
+  factory $SetLowerThanCopyWith(
+          SetLowerThan value, $Res Function(SetLowerThan) then) =
       _$SetLowerThanCopyWithImpl<$Res>;
 }
 
@@ -524,14 +758,16 @@ class _$SetLowerThanCopyWithImpl<$Res> implements $SetLowerThanCopyWith<$Res> {
 
 /// @nodoc
 abstract class $SetLowerThan$CopyWith<$Res> {
-  factory $SetLowerThan$CopyWith(SetLowerThan$ value, $Res Function(SetLowerThan$) then) =
+  factory $SetLowerThan$CopyWith(
+          SetLowerThan$ value, $Res Function(SetLowerThan$) then) =
       _$SetLowerThan$CopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$SetLowerThan$CopyWithImpl<$Res> extends _$SetLowerThanCopyWithImpl<$Res>
     implements $SetLowerThan$CopyWith<$Res> {
-  _$SetLowerThan$CopyWithImpl(SetLowerThan$ _value, $Res Function(SetLowerThan$) _then)
+  _$SetLowerThan$CopyWithImpl(
+      SetLowerThan$ _value, $Res Function(SetLowerThan$) _then)
       : super(_value, (v) => _then(v as SetLowerThan$));
 
   @override
@@ -550,7 +786,8 @@ class _$SetLowerThan$ implements SetLowerThan$ {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is SetLowerThan$);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SetLowerThan$);
   }
 
   @override
@@ -578,12 +815,14 @@ mixin _$SetHigherThan {}
 
 /// @nodoc
 abstract class $SetHigherThanCopyWith<$Res> {
-  factory $SetHigherThanCopyWith(SetHigherThan value, $Res Function(SetHigherThan) then) =
+  factory $SetHigherThanCopyWith(
+          SetHigherThan value, $Res Function(SetHigherThan) then) =
       _$SetHigherThanCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SetHigherThanCopyWithImpl<$Res> implements $SetHigherThanCopyWith<$Res> {
+class _$SetHigherThanCopyWithImpl<$Res>
+    implements $SetHigherThanCopyWith<$Res> {
   _$SetHigherThanCopyWithImpl(this._value, this._then);
 
   final SetHigherThan _value;
@@ -593,14 +832,17 @@ class _$SetHigherThanCopyWithImpl<$Res> implements $SetHigherThanCopyWith<$Res> 
 
 /// @nodoc
 abstract class $SetHigherThan$CopyWith<$Res> {
-  factory $SetHigherThan$CopyWith(SetHigherThan$ value, $Res Function(SetHigherThan$) then) =
+  factory $SetHigherThan$CopyWith(
+          SetHigherThan$ value, $Res Function(SetHigherThan$) then) =
       _$SetHigherThan$CopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SetHigherThan$CopyWithImpl<$Res> extends _$SetHigherThanCopyWithImpl<$Res>
+class _$SetHigherThan$CopyWithImpl<$Res>
+    extends _$SetHigherThanCopyWithImpl<$Res>
     implements $SetHigherThan$CopyWith<$Res> {
-  _$SetHigherThan$CopyWithImpl(SetHigherThan$ _value, $Res Function(SetHigherThan$) _then)
+  _$SetHigherThan$CopyWithImpl(
+      SetHigherThan$ _value, $Res Function(SetHigherThan$) _then)
       : super(_value, (v) => _then(v as SetHigherThan$));
 
   @override
@@ -619,7 +861,8 @@ class _$SetHigherThan$ implements SetHigherThan$ {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is SetHigherThan$);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SetHigherThan$);
   }
 
   @override
@@ -647,12 +890,14 @@ mixin _$SetOnlyUnpaid {}
 
 /// @nodoc
 abstract class $SetOnlyUnpaidCopyWith<$Res> {
-  factory $SetOnlyUnpaidCopyWith(SetOnlyUnpaid value, $Res Function(SetOnlyUnpaid) then) =
+  factory $SetOnlyUnpaidCopyWith(
+          SetOnlyUnpaid value, $Res Function(SetOnlyUnpaid) then) =
       _$SetOnlyUnpaidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SetOnlyUnpaidCopyWithImpl<$Res> implements $SetOnlyUnpaidCopyWith<$Res> {
+class _$SetOnlyUnpaidCopyWithImpl<$Res>
+    implements $SetOnlyUnpaidCopyWith<$Res> {
   _$SetOnlyUnpaidCopyWithImpl(this._value, this._then);
 
   final SetOnlyUnpaid _value;
@@ -662,14 +907,17 @@ class _$SetOnlyUnpaidCopyWithImpl<$Res> implements $SetOnlyUnpaidCopyWith<$Res> 
 
 /// @nodoc
 abstract class $SetOnlyUnpaid$CopyWith<$Res> {
-  factory $SetOnlyUnpaid$CopyWith(SetOnlyUnpaid$ value, $Res Function(SetOnlyUnpaid$) then) =
+  factory $SetOnlyUnpaid$CopyWith(
+          SetOnlyUnpaid$ value, $Res Function(SetOnlyUnpaid$) then) =
       _$SetOnlyUnpaid$CopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SetOnlyUnpaid$CopyWithImpl<$Res> extends _$SetOnlyUnpaidCopyWithImpl<$Res>
+class _$SetOnlyUnpaid$CopyWithImpl<$Res>
+    extends _$SetOnlyUnpaidCopyWithImpl<$Res>
     implements $SetOnlyUnpaid$CopyWith<$Res> {
-  _$SetOnlyUnpaid$CopyWithImpl(SetOnlyUnpaid$ _value, $Res Function(SetOnlyUnpaid$) _then)
+  _$SetOnlyUnpaid$CopyWithImpl(
+      SetOnlyUnpaid$ _value, $Res Function(SetOnlyUnpaid$) _then)
       : super(_value, (v) => _then(v as SetOnlyUnpaid$));
 
   @override
@@ -688,7 +936,8 @@ class _$SetOnlyUnpaid$ implements SetOnlyUnpaid$ {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is SetOnlyUnpaid$);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SetOnlyUnpaid$);
   }
 
   @override
@@ -716,7 +965,9 @@ mixin _$SetOnlyPaid {}
 
 /// @nodoc
 abstract class $SetOnlyPaidCopyWith<$Res> {
-  factory $SetOnlyPaidCopyWith(SetOnlyPaid value, $Res Function(SetOnlyPaid) then) = _$SetOnlyPaidCopyWithImpl<$Res>;
+  factory $SetOnlyPaidCopyWith(
+          SetOnlyPaid value, $Res Function(SetOnlyPaid) then) =
+      _$SetOnlyPaidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -730,13 +981,16 @@ class _$SetOnlyPaidCopyWithImpl<$Res> implements $SetOnlyPaidCopyWith<$Res> {
 
 /// @nodoc
 abstract class $SetOnlyPaid$CopyWith<$Res> {
-  factory $SetOnlyPaid$CopyWith(SetOnlyPaid$ value, $Res Function(SetOnlyPaid$) then) =
+  factory $SetOnlyPaid$CopyWith(
+          SetOnlyPaid$ value, $Res Function(SetOnlyPaid$) then) =
       _$SetOnlyPaid$CopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SetOnlyPaid$CopyWithImpl<$Res> extends _$SetOnlyPaidCopyWithImpl<$Res> implements $SetOnlyPaid$CopyWith<$Res> {
-  _$SetOnlyPaid$CopyWithImpl(SetOnlyPaid$ _value, $Res Function(SetOnlyPaid$) _then)
+class _$SetOnlyPaid$CopyWithImpl<$Res> extends _$SetOnlyPaidCopyWithImpl<$Res>
+    implements $SetOnlyPaid$CopyWith<$Res> {
+  _$SetOnlyPaid$CopyWithImpl(
+      SetOnlyPaid$ _value, $Res Function(SetOnlyPaid$) _then)
       : super(_value, (v) => _then(v as SetOnlyPaid$));
 
   @override
@@ -755,7 +1009,8 @@ class _$SetOnlyPaid$ implements SetOnlyPaid$ {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is SetOnlyPaid$);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SetOnlyPaid$);
   }
 
   @override

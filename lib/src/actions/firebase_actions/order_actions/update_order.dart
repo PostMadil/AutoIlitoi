@@ -1,4 +1,4 @@
-part of firebase_actions;
+part of order_actions;
 
 @freezed
 class UpdateOrder with _$UpdateOrder implements AppAction {

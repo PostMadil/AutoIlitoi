@@ -14,509 +14,6 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UpdateOrderTearOff {
-  const _$UpdateOrderTearOff();
-
-  UpdateOrderStart call(Order order) {
-    return UpdateOrderStart(
-      order,
-    );
-  }
-
-  UpdateOrderSuccessful successful(Order updatedOrder) {
-    return UpdateOrderSuccessful(
-      updatedOrder,
-    );
-  }
-
-  UpdateOrderError error(Object error, StackTrace stackTrace) {
-    return UpdateOrderError(
-      error,
-      stackTrace,
-    );
-  }
-}
-
-/// @nodoc
-const $UpdateOrder = _$UpdateOrderTearOff();
-
-/// @nodoc
-mixin _$UpdateOrder {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Order order) $default, {
-    required TResult Function(Order updatedOrder) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value) $default, {
-    required TResult Function(UpdateOrderSuccessful value) successful,
-    required TResult Function(UpdateOrderError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateOrderCopyWith<$Res> {
-  factory $UpdateOrderCopyWith(UpdateOrder value, $Res Function(UpdateOrder) then) = _$UpdateOrderCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$UpdateOrderCopyWithImpl<$Res> implements $UpdateOrderCopyWith<$Res> {
-  _$UpdateOrderCopyWithImpl(this._value, this._then);
-
-  final UpdateOrder _value;
-  // ignore: unused_field
-  final $Res Function(UpdateOrder) _then;
-}
-
-/// @nodoc
-abstract class $UpdateOrderStartCopyWith<$Res> {
-  factory $UpdateOrderStartCopyWith(UpdateOrderStart value, $Res Function(UpdateOrderStart) then) =
-      _$UpdateOrderStartCopyWithImpl<$Res>;
-  $Res call({Order order});
-}
-
-/// @nodoc
-class _$UpdateOrderStartCopyWithImpl<$Res> extends _$UpdateOrderCopyWithImpl<$Res>
-    implements $UpdateOrderStartCopyWith<$Res> {
-  _$UpdateOrderStartCopyWithImpl(UpdateOrderStart _value, $Res Function(UpdateOrderStart) _then)
-      : super(_value, (v) => _then(v as UpdateOrderStart));
-
-  @override
-  UpdateOrderStart get _value => super._value as UpdateOrderStart;
-
-  @override
-  $Res call({
-    Object? order = freezed,
-  }) {
-    return _then(UpdateOrderStart(
-      order == freezed
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as Order,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdateOrderStart implements UpdateOrderStart {
-  const _$UpdateOrderStart(this.order);
-
-  @override
-  final Order order;
-
-  @override
-  String toString() {
-    return 'UpdateOrder(order: $order)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UpdateOrderStart &&
-            (identical(other.order, order) || other.order == order));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, order);
-
-  @JsonKey(ignore: true)
-  @override
-  $UpdateOrderStartCopyWith<UpdateOrderStart> get copyWith =>
-      _$UpdateOrderStartCopyWithImpl<UpdateOrderStart>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Order order) $default, {
-    required TResult Function(Order updatedOrder) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return $default(order);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return $default?.call(order);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(order);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value) $default, {
-    required TResult Function(UpdateOrderSuccessful value) successful,
-    required TResult Function(UpdateOrderError value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateOrderStart implements UpdateOrder {
-  const factory UpdateOrderStart(Order order) = _$UpdateOrderStart;
-
-  Order get order;
-  @JsonKey(ignore: true)
-  $UpdateOrderStartCopyWith<UpdateOrderStart> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateOrderSuccessfulCopyWith<$Res> {
-  factory $UpdateOrderSuccessfulCopyWith(UpdateOrderSuccessful value, $Res Function(UpdateOrderSuccessful) then) =
-      _$UpdateOrderSuccessfulCopyWithImpl<$Res>;
-  $Res call({Order updatedOrder});
-}
-
-/// @nodoc
-class _$UpdateOrderSuccessfulCopyWithImpl<$Res> extends _$UpdateOrderCopyWithImpl<$Res>
-    implements $UpdateOrderSuccessfulCopyWith<$Res> {
-  _$UpdateOrderSuccessfulCopyWithImpl(UpdateOrderSuccessful _value, $Res Function(UpdateOrderSuccessful) _then)
-      : super(_value, (v) => _then(v as UpdateOrderSuccessful));
-
-  @override
-  UpdateOrderSuccessful get _value => super._value as UpdateOrderSuccessful;
-
-  @override
-  $Res call({
-    Object? updatedOrder = freezed,
-  }) {
-    return _then(UpdateOrderSuccessful(
-      updatedOrder == freezed
-          ? _value.updatedOrder
-          : updatedOrder // ignore: cast_nullable_to_non_nullable
-              as Order,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdateOrderSuccessful implements UpdateOrderSuccessful {
-  const _$UpdateOrderSuccessful(this.updatedOrder);
-
-  @override
-  final Order updatedOrder;
-
-  @override
-  String toString() {
-    return 'UpdateOrder.successful(updatedOrder: $updatedOrder)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UpdateOrderSuccessful &&
-            (identical(other.updatedOrder, updatedOrder) || other.updatedOrder == updatedOrder));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, updatedOrder);
-
-  @JsonKey(ignore: true)
-  @override
-  $UpdateOrderSuccessfulCopyWith<UpdateOrderSuccessful> get copyWith =>
-      _$UpdateOrderSuccessfulCopyWithImpl<UpdateOrderSuccessful>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Order order) $default, {
-    required TResult Function(Order updatedOrder) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return successful(updatedOrder);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return successful?.call(updatedOrder);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(updatedOrder);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value) $default, {
-    required TResult Function(UpdateOrderSuccessful value) successful,
-    required TResult Function(UpdateOrderError value) error,
-  }) {
-    return successful(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-  }) {
-    return successful?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateOrderSuccessful implements UpdateOrder {
-  const factory UpdateOrderSuccessful(Order updatedOrder) = _$UpdateOrderSuccessful;
-
-  Order get updatedOrder;
-  @JsonKey(ignore: true)
-  $UpdateOrderSuccessfulCopyWith<UpdateOrderSuccessful> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateOrderErrorCopyWith<$Res> {
-  factory $UpdateOrderErrorCopyWith(UpdateOrderError value, $Res Function(UpdateOrderError) then) =
-      _$UpdateOrderErrorCopyWithImpl<$Res>;
-  $Res call({Object error, StackTrace stackTrace});
-}
-
-/// @nodoc
-class _$UpdateOrderErrorCopyWithImpl<$Res> extends _$UpdateOrderCopyWithImpl<$Res>
-    implements $UpdateOrderErrorCopyWith<$Res> {
-  _$UpdateOrderErrorCopyWithImpl(UpdateOrderError _value, $Res Function(UpdateOrderError) _then)
-      : super(_value, (v) => _then(v as UpdateOrderError));
-
-  @override
-  UpdateOrderError get _value => super._value as UpdateOrderError;
-
-  @override
-  $Res call({
-    Object? error = freezed,
-    Object? stackTrace = freezed,
-  }) {
-    return _then(UpdateOrderError(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-      stackTrace == freezed
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
-              as StackTrace,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdateOrderError implements UpdateOrderError {
-  const _$UpdateOrderError(this.error, this.stackTrace);
-
-  @override
-  final Object error;
-  @override
-  final StackTrace stackTrace;
-
-  @override
-  String toString() {
-    return 'UpdateOrder.error(error: $error, stackTrace: $stackTrace)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UpdateOrderError &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
-
-  @JsonKey(ignore: true)
-  @override
-  $UpdateOrderErrorCopyWith<UpdateOrderError> get copyWith =>
-      _$UpdateOrderErrorCopyWithImpl<UpdateOrderError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(Order order) $default, {
-    required TResult Function(Order updatedOrder) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return error(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return error?.call(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Order order)? $default, {
-    TResult Function(Order updatedOrder)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error, stackTrace);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value) $default, {
-    required TResult Function(UpdateOrderSuccessful value) successful,
-    required TResult Function(UpdateOrderError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(UpdateOrderStart value)? $default, {
-    TResult Function(UpdateOrderSuccessful value)? successful,
-    TResult Function(UpdateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateOrderError implements UpdateOrder {
-  const factory UpdateOrderError(Object error, StackTrace stackTrace) = _$UpdateOrderError;
-
-  Object get error;
-  StackTrace get stackTrace;
-  @JsonKey(ignore: true)
-  $UpdateOrderErrorCopyWith<UpdateOrderError> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 class _$InitializeAppTearOff {
   const _$InitializeAppTearOff();
 
@@ -591,12 +88,14 @@ mixin _$InitializeApp {
 
 /// @nodoc
 abstract class $InitializeAppCopyWith<$Res> {
-  factory $InitializeAppCopyWith(InitializeApp value, $Res Function(InitializeApp) then) =
+  factory $InitializeAppCopyWith(
+          InitializeApp value, $Res Function(InitializeApp) then) =
       _$InitializeAppCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeAppCopyWithImpl<$Res> implements $InitializeAppCopyWith<$Res> {
+class _$InitializeAppCopyWithImpl<$Res>
+    implements $InitializeAppCopyWith<$Res> {
   _$InitializeAppCopyWithImpl(this._value, this._then);
 
   final InitializeApp _value;
@@ -606,14 +105,17 @@ class _$InitializeAppCopyWithImpl<$Res> implements $InitializeAppCopyWith<$Res> 
 
 /// @nodoc
 abstract class $InitializeAppStartCopyWith<$Res> {
-  factory $InitializeAppStartCopyWith(InitializeAppStart value, $Res Function(InitializeAppStart) then) =
+  factory $InitializeAppStartCopyWith(
+          InitializeAppStart value, $Res Function(InitializeAppStart) then) =
       _$InitializeAppStartCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeAppStartCopyWithImpl<$Res> extends _$InitializeAppCopyWithImpl<$Res>
+class _$InitializeAppStartCopyWithImpl<$Res>
+    extends _$InitializeAppCopyWithImpl<$Res>
     implements $InitializeAppStartCopyWith<$Res> {
-  _$InitializeAppStartCopyWithImpl(InitializeAppStart _value, $Res Function(InitializeAppStart) _then)
+  _$InitializeAppStartCopyWithImpl(
+      InitializeAppStart _value, $Res Function(InitializeAppStart) _then)
       : super(_value, (v) => _then(v as InitializeAppStart));
 
   @override
@@ -632,7 +134,8 @@ class _$InitializeAppStart implements InitializeAppStart {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is InitializeAppStart);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InitializeAppStart);
   }
 
   @override
@@ -713,15 +216,18 @@ abstract class InitializeAppStart implements InitializeApp {
 
 /// @nodoc
 abstract class $InitializeAppSuccessfulCopyWith<$Res> {
-  factory $InitializeAppSuccessfulCopyWith(InitializeAppSuccessful value, $Res Function(InitializeAppSuccessful) then) =
+  factory $InitializeAppSuccessfulCopyWith(InitializeAppSuccessful value,
+          $Res Function(InitializeAppSuccessful) then) =
       _$InitializeAppSuccessfulCopyWithImpl<$Res>;
   $Res call({AppUser? user});
 }
 
 /// @nodoc
-class _$InitializeAppSuccessfulCopyWithImpl<$Res> extends _$InitializeAppCopyWithImpl<$Res>
+class _$InitializeAppSuccessfulCopyWithImpl<$Res>
+    extends _$InitializeAppCopyWithImpl<$Res>
     implements $InitializeAppSuccessfulCopyWith<$Res> {
-  _$InitializeAppSuccessfulCopyWithImpl(InitializeAppSuccessful _value, $Res Function(InitializeAppSuccessful) _then)
+  _$InitializeAppSuccessfulCopyWithImpl(InitializeAppSuccessful _value,
+      $Res Function(InitializeAppSuccessful) _then)
       : super(_value, (v) => _then(v as InitializeAppSuccessful));
 
   @override
@@ -767,7 +273,8 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
   @JsonKey(ignore: true)
   @override
   $InitializeAppSuccessfulCopyWith<InitializeAppSuccessful> get copyWith =>
-      _$InitializeAppSuccessfulCopyWithImpl<InitializeAppSuccessful>(this, _$identity);
+      _$InitializeAppSuccessfulCopyWithImpl<InitializeAppSuccessful>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -839,24 +346,29 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
 }
 
 abstract class InitializeAppSuccessful implements InitializeApp {
-  const factory InitializeAppSuccessful(AppUser? user) = _$InitializeAppSuccessful;
+  const factory InitializeAppSuccessful(AppUser? user) =
+      _$InitializeAppSuccessful;
 
   AppUser? get user;
   @JsonKey(ignore: true)
-  $InitializeAppSuccessfulCopyWith<InitializeAppSuccessful> get copyWith => throw _privateConstructorUsedError;
+  $InitializeAppSuccessfulCopyWith<InitializeAppSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $InitializeAppErrorCopyWith<$Res> {
-  factory $InitializeAppErrorCopyWith(InitializeAppError value, $Res Function(InitializeAppError) then) =
+  factory $InitializeAppErrorCopyWith(
+          InitializeAppError value, $Res Function(InitializeAppError) then) =
       _$InitializeAppErrorCopyWithImpl<$Res>;
   $Res call({Object error, StackTrace stackTrace});
 }
 
 /// @nodoc
-class _$InitializeAppErrorCopyWithImpl<$Res> extends _$InitializeAppCopyWithImpl<$Res>
+class _$InitializeAppErrorCopyWithImpl<$Res>
+    extends _$InitializeAppCopyWithImpl<$Res>
     implements $InitializeAppErrorCopyWith<$Res> {
-  _$InitializeAppErrorCopyWithImpl(InitializeAppError _value, $Res Function(InitializeAppError) _then)
+  _$InitializeAppErrorCopyWithImpl(
+      InitializeAppError _value, $Res Function(InitializeAppError) _then)
       : super(_value, (v) => _then(v as InitializeAppError));
 
   @override
@@ -901,11 +413,13 @@ class _$InitializeAppError implements InitializeAppError {
         (other.runtimeType == runtimeType &&
             other is InitializeAppError &&
             const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
   @JsonKey(ignore: true)
   @override
@@ -982,968 +496,14 @@ class _$InitializeAppError implements InitializeAppError {
 }
 
 abstract class InitializeAppError implements InitializeApp {
-  const factory InitializeAppError(Object error, StackTrace stackTrace) = _$InitializeAppError;
+  const factory InitializeAppError(Object error, StackTrace stackTrace) =
+      _$InitializeAppError;
 
   Object get error;
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
-  $InitializeAppErrorCopyWith<InitializeAppError> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-class _$CreateOrderTearOff {
-  const _$CreateOrderTearOff();
-
-  CreateOrderStart call({required OrderDetails details, required List<CarPart> items}) {
-    return CreateOrderStart(
-      details: details,
-      items: items,
-    );
-  }
-
-  CreateOrderSuccessful successful() {
-    return const CreateOrderSuccessful();
-  }
-
-  CreateOrderError error(Object error, StackTrace stackTrace) {
-    return CreateOrderError(
-      error,
-      stackTrace,
-    );
-  }
-}
-
-/// @nodoc
-const $CreateOrder = _$CreateOrderTearOff();
-
-/// @nodoc
-mixin _$CreateOrder {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) =>
+  $InitializeAppErrorCopyWith<InitializeAppError> get copyWith =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(CreateOrderStart value) $default, {
-    required TResult Function(CreateOrderSuccessful value) successful,
-    required TResult Function(CreateOrderError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CreateOrderCopyWith<$Res> {
-  factory $CreateOrderCopyWith(CreateOrder value, $Res Function(CreateOrder) then) = _$CreateOrderCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateOrderCopyWithImpl<$Res> implements $CreateOrderCopyWith<$Res> {
-  _$CreateOrderCopyWithImpl(this._value, this._then);
-
-  final CreateOrder _value;
-  // ignore: unused_field
-  final $Res Function(CreateOrder) _then;
-}
-
-/// @nodoc
-abstract class $CreateOrderStartCopyWith<$Res> {
-  factory $CreateOrderStartCopyWith(CreateOrderStart value, $Res Function(CreateOrderStart) then) =
-      _$CreateOrderStartCopyWithImpl<$Res>;
-  $Res call({OrderDetails details, List<CarPart> items});
-}
-
-/// @nodoc
-class _$CreateOrderStartCopyWithImpl<$Res> extends _$CreateOrderCopyWithImpl<$Res>
-    implements $CreateOrderStartCopyWith<$Res> {
-  _$CreateOrderStartCopyWithImpl(CreateOrderStart _value, $Res Function(CreateOrderStart) _then)
-      : super(_value, (v) => _then(v as CreateOrderStart));
-
-  @override
-  CreateOrderStart get _value => super._value as CreateOrderStart;
-
-  @override
-  $Res call({
-    Object? details = freezed,
-    Object? items = freezed,
-  }) {
-    return _then(CreateOrderStart(
-      details: details == freezed
-          ? _value.details
-          : details // ignore: cast_nullable_to_non_nullable
-              as OrderDetails,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<CarPart>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CreateOrderStart implements CreateOrderStart {
-  const _$CreateOrderStart({required this.details, required this.items});
-
-  @override
-  final OrderDetails details;
-  @override
-  final List<CarPart> items;
-
-  @override
-  String toString() {
-    return 'CreateOrder(details: $details, items: $items)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CreateOrderStart &&
-            (identical(other.details, details) || other.details == details) &&
-            const DeepCollectionEquality().equals(other.items, items));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, details, const DeepCollectionEquality().hash(items));
-
-  @JsonKey(ignore: true)
-  @override
-  $CreateOrderStartCopyWith<CreateOrderStart> get copyWith =>
-      _$CreateOrderStartCopyWithImpl<CreateOrderStart>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return $default(details, items);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return $default?.call(details, items);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(details, items);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(CreateOrderStart value) $default, {
-    required TResult Function(CreateOrderSuccessful value) successful,
-    required TResult Function(CreateOrderError value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateOrderStart implements CreateOrder {
-  const factory CreateOrderStart({required OrderDetails details, required List<CarPart> items}) = _$CreateOrderStart;
-
-  OrderDetails get details;
-  List<CarPart> get items;
-  @JsonKey(ignore: true)
-  $CreateOrderStartCopyWith<CreateOrderStart> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CreateOrderSuccessfulCopyWith<$Res> {
-  factory $CreateOrderSuccessfulCopyWith(CreateOrderSuccessful value, $Res Function(CreateOrderSuccessful) then) =
-      _$CreateOrderSuccessfulCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CreateOrderSuccessfulCopyWithImpl<$Res> extends _$CreateOrderCopyWithImpl<$Res>
-    implements $CreateOrderSuccessfulCopyWith<$Res> {
-  _$CreateOrderSuccessfulCopyWithImpl(CreateOrderSuccessful _value, $Res Function(CreateOrderSuccessful) _then)
-      : super(_value, (v) => _then(v as CreateOrderSuccessful));
-
-  @override
-  CreateOrderSuccessful get _value => super._value as CreateOrderSuccessful;
-}
-
-/// @nodoc
-
-class _$CreateOrderSuccessful implements CreateOrderSuccessful {
-  const _$CreateOrderSuccessful();
-
-  @override
-  String toString() {
-    return 'CreateOrder.successful()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is CreateOrderSuccessful);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return successful();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return successful?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(CreateOrderStart value) $default, {
-    required TResult Function(CreateOrderSuccessful value) successful,
-    required TResult Function(CreateOrderError value) error,
-  }) {
-    return successful(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-  }) {
-    return successful?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateOrderSuccessful implements CreateOrder {
-  const factory CreateOrderSuccessful() = _$CreateOrderSuccessful;
-}
-
-/// @nodoc
-abstract class $CreateOrderErrorCopyWith<$Res> {
-  factory $CreateOrderErrorCopyWith(CreateOrderError value, $Res Function(CreateOrderError) then) =
-      _$CreateOrderErrorCopyWithImpl<$Res>;
-  $Res call({Object error, StackTrace stackTrace});
-}
-
-/// @nodoc
-class _$CreateOrderErrorCopyWithImpl<$Res> extends _$CreateOrderCopyWithImpl<$Res>
-    implements $CreateOrderErrorCopyWith<$Res> {
-  _$CreateOrderErrorCopyWithImpl(CreateOrderError _value, $Res Function(CreateOrderError) _then)
-      : super(_value, (v) => _then(v as CreateOrderError));
-
-  @override
-  CreateOrderError get _value => super._value as CreateOrderError;
-
-  @override
-  $Res call({
-    Object? error = freezed,
-    Object? stackTrace = freezed,
-  }) {
-    return _then(CreateOrderError(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-      stackTrace == freezed
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
-              as StackTrace,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CreateOrderError implements CreateOrderError {
-  const _$CreateOrderError(this.error, this.stackTrace);
-
-  @override
-  final Object error;
-  @override
-  final StackTrace stackTrace;
-
-  @override
-  String toString() {
-    return 'CreateOrder.error(error: $error, stackTrace: $stackTrace)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CreateOrderError &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
-
-  @JsonKey(ignore: true)
-  @override
-  $CreateOrderErrorCopyWith<CreateOrderError> get copyWith =>
-      _$CreateOrderErrorCopyWithImpl<CreateOrderError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return error(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return error?.call(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error, stackTrace);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(CreateOrderStart value) $default, {
-    required TResult Function(CreateOrderSuccessful value) successful,
-    required TResult Function(CreateOrderError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(CreateOrderStart value)? $default, {
-    TResult Function(CreateOrderSuccessful value)? successful,
-    TResult Function(CreateOrderError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CreateOrderError implements CreateOrder {
-  const factory CreateOrderError(Object error, StackTrace stackTrace) = _$CreateOrderError;
-
-  Object get error;
-  StackTrace get stackTrace;
-  @JsonKey(ignore: true)
-  $CreateOrderErrorCopyWith<CreateOrderError> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-class _$GetOrdersTearOff {
-  const _$GetOrdersTearOff();
-
-  GetOrdersStart call() {
-    return const GetOrdersStart();
-  }
-
-  GetOrdersSuccessful successful(List<Order> orders) {
-    return GetOrdersSuccessful(
-      orders,
-    );
-  }
-
-  GetOrdersError error(Object error, StackTrace stackTrace) {
-    return GetOrdersError(
-      error,
-      stackTrace,
-    );
-  }
-}
-
-/// @nodoc
-const $GetOrders = _$GetOrdersTearOff();
-
-/// @nodoc
-mixin _$GetOrders {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(List<Order> orders) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(GetOrdersStart value) $default, {
-    required TResult Function(GetOrdersSuccessful value) successful,
-    required TResult Function(GetOrdersError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GetOrdersCopyWith<$Res> {
-  factory $GetOrdersCopyWith(GetOrders value, $Res Function(GetOrders) then) = _$GetOrdersCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GetOrdersCopyWithImpl<$Res> implements $GetOrdersCopyWith<$Res> {
-  _$GetOrdersCopyWithImpl(this._value, this._then);
-
-  final GetOrders _value;
-  // ignore: unused_field
-  final $Res Function(GetOrders) _then;
-}
-
-/// @nodoc
-abstract class $GetOrdersStartCopyWith<$Res> {
-  factory $GetOrdersStartCopyWith(GetOrdersStart value, $Res Function(GetOrdersStart) then) =
-      _$GetOrdersStartCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GetOrdersStartCopyWithImpl<$Res> extends _$GetOrdersCopyWithImpl<$Res>
-    implements $GetOrdersStartCopyWith<$Res> {
-  _$GetOrdersStartCopyWithImpl(GetOrdersStart _value, $Res Function(GetOrdersStart) _then)
-      : super(_value, (v) => _then(v as GetOrdersStart));
-
-  @override
-  GetOrdersStart get _value => super._value as GetOrdersStart;
-}
-
-/// @nodoc
-
-class _$GetOrdersStart implements GetOrdersStart {
-  const _$GetOrdersStart();
-
-  @override
-  String toString() {
-    return 'GetOrders()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is GetOrdersStart);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(List<Order> orders) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return $default();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return $default?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(GetOrdersStart value) $default, {
-    required TResult Function(GetOrdersSuccessful value) successful,
-    required TResult Function(GetOrdersError value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetOrdersStart implements GetOrders {
-  const factory GetOrdersStart() = _$GetOrdersStart;
-}
-
-/// @nodoc
-abstract class $GetOrdersSuccessfulCopyWith<$Res> {
-  factory $GetOrdersSuccessfulCopyWith(GetOrdersSuccessful value, $Res Function(GetOrdersSuccessful) then) =
-      _$GetOrdersSuccessfulCopyWithImpl<$Res>;
-  $Res call({List<Order> orders});
-}
-
-/// @nodoc
-class _$GetOrdersSuccessfulCopyWithImpl<$Res> extends _$GetOrdersCopyWithImpl<$Res>
-    implements $GetOrdersSuccessfulCopyWith<$Res> {
-  _$GetOrdersSuccessfulCopyWithImpl(GetOrdersSuccessful _value, $Res Function(GetOrdersSuccessful) _then)
-      : super(_value, (v) => _then(v as GetOrdersSuccessful));
-
-  @override
-  GetOrdersSuccessful get _value => super._value as GetOrdersSuccessful;
-
-  @override
-  $Res call({
-    Object? orders = freezed,
-  }) {
-    return _then(GetOrdersSuccessful(
-      orders == freezed
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<Order>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetOrdersSuccessful implements GetOrdersSuccessful {
-  const _$GetOrdersSuccessful(this.orders);
-
-  @override
-  final List<Order> orders;
-
-  @override
-  String toString() {
-    return 'GetOrders.successful(orders: $orders)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is GetOrdersSuccessful &&
-            const DeepCollectionEquality().equals(other.orders, orders));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(orders));
-
-  @JsonKey(ignore: true)
-  @override
-  $GetOrdersSuccessfulCopyWith<GetOrdersSuccessful> get copyWith =>
-      _$GetOrdersSuccessfulCopyWithImpl<GetOrdersSuccessful>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(List<Order> orders) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return successful(orders);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return successful?.call(orders);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(orders);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(GetOrdersStart value) $default, {
-    required TResult Function(GetOrdersSuccessful value) successful,
-    required TResult Function(GetOrdersError value) error,
-  }) {
-    return successful(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-  }) {
-    return successful?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetOrdersSuccessful implements GetOrders {
-  const factory GetOrdersSuccessful(List<Order> orders) = _$GetOrdersSuccessful;
-
-  List<Order> get orders;
-  @JsonKey(ignore: true)
-  $GetOrdersSuccessfulCopyWith<GetOrdersSuccessful> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GetOrdersErrorCopyWith<$Res> {
-  factory $GetOrdersErrorCopyWith(GetOrdersError value, $Res Function(GetOrdersError) then) =
-      _$GetOrdersErrorCopyWithImpl<$Res>;
-  $Res call({Object error, StackTrace stackTrace});
-}
-
-/// @nodoc
-class _$GetOrdersErrorCopyWithImpl<$Res> extends _$GetOrdersCopyWithImpl<$Res>
-    implements $GetOrdersErrorCopyWith<$Res> {
-  _$GetOrdersErrorCopyWithImpl(GetOrdersError _value, $Res Function(GetOrdersError) _then)
-      : super(_value, (v) => _then(v as GetOrdersError));
-
-  @override
-  GetOrdersError get _value => super._value as GetOrdersError;
-
-  @override
-  $Res call({
-    Object? error = freezed,
-    Object? stackTrace = freezed,
-  }) {
-    return _then(GetOrdersError(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-      stackTrace == freezed
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
-              as StackTrace,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetOrdersError implements GetOrdersError {
-  const _$GetOrdersError(this.error, this.stackTrace);
-
-  @override
-  final Object error;
-  @override
-  final StackTrace stackTrace;
-
-  @override
-  String toString() {
-    return 'GetOrders.error(error: $error, stackTrace: $stackTrace)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is GetOrdersError &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
-
-  @JsonKey(ignore: true)
-  @override
-  $GetOrdersErrorCopyWith<GetOrdersError> get copyWith =>
-      _$GetOrdersErrorCopyWithImpl<GetOrdersError>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function(List<Order> orders) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return error(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return error?.call(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function(List<Order> orders)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error, stackTrace);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(GetOrdersStart value) $default, {
-    required TResult Function(GetOrdersSuccessful value) successful,
-    required TResult Function(GetOrdersError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(GetOrdersStart value)? $default, {
-    TResult Function(GetOrdersSuccessful value)? successful,
-    TResult Function(GetOrdersError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetOrdersError implements GetOrders {
-  const factory GetOrdersError(Object error, StackTrace stackTrace) = _$GetOrdersError;
-
-  Object get error;
-  StackTrace get stackTrace;
-  @JsonKey(ignore: true)
-  $GetOrdersErrorCopyWith<GetOrdersError> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2019,7 +579,8 @@ mixin _$Logout {
 
 /// @nodoc
 abstract class $LogoutCopyWith<$Res> {
-  factory $LogoutCopyWith(Logout value, $Res Function(Logout) then) = _$LogoutCopyWithImpl<$Res>;
+  factory $LogoutCopyWith(Logout value, $Res Function(Logout) then) =
+      _$LogoutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -2033,12 +594,16 @@ class _$LogoutCopyWithImpl<$Res> implements $LogoutCopyWith<$Res> {
 
 /// @nodoc
 abstract class $LogoutStartCopyWith<$Res> {
-  factory $LogoutStartCopyWith(LogoutStart value, $Res Function(LogoutStart) then) = _$LogoutStartCopyWithImpl<$Res>;
+  factory $LogoutStartCopyWith(
+          LogoutStart value, $Res Function(LogoutStart) then) =
+      _$LogoutStartCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LogoutStartCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res> implements $LogoutStartCopyWith<$Res> {
-  _$LogoutStartCopyWithImpl(LogoutStart _value, $Res Function(LogoutStart) _then)
+class _$LogoutStartCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res>
+    implements $LogoutStartCopyWith<$Res> {
+  _$LogoutStartCopyWithImpl(
+      LogoutStart _value, $Res Function(LogoutStart) _then)
       : super(_value, (v) => _then(v as LogoutStart));
 
   @override
@@ -2057,7 +622,8 @@ class _$LogoutStart implements LogoutStart {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is LogoutStart);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LogoutStart);
   }
 
   @override
@@ -2138,14 +704,16 @@ abstract class LogoutStart implements Logout {
 
 /// @nodoc
 abstract class $LogoutSuccessfulCopyWith<$Res> {
-  factory $LogoutSuccessfulCopyWith(LogoutSuccessful value, $Res Function(LogoutSuccessful) then) =
+  factory $LogoutSuccessfulCopyWith(
+          LogoutSuccessful value, $Res Function(LogoutSuccessful) then) =
       _$LogoutSuccessfulCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LogoutSuccessfulCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res>
     implements $LogoutSuccessfulCopyWith<$Res> {
-  _$LogoutSuccessfulCopyWithImpl(LogoutSuccessful _value, $Res Function(LogoutSuccessful) _then)
+  _$LogoutSuccessfulCopyWithImpl(
+      LogoutSuccessful _value, $Res Function(LogoutSuccessful) _then)
       : super(_value, (v) => _then(v as LogoutSuccessful));
 
   @override
@@ -2164,7 +732,8 @@ class _$LogoutSuccessful implements LogoutSuccessful {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is LogoutSuccessful);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LogoutSuccessful);
   }
 
   @override
@@ -2245,13 +814,17 @@ abstract class LogoutSuccessful implements Logout {
 
 /// @nodoc
 abstract class $LogoutErrorCopyWith<$Res> {
-  factory $LogoutErrorCopyWith(LogoutError value, $Res Function(LogoutError) then) = _$LogoutErrorCopyWithImpl<$Res>;
+  factory $LogoutErrorCopyWith(
+          LogoutError value, $Res Function(LogoutError) then) =
+      _$LogoutErrorCopyWithImpl<$Res>;
   $Res call({Object error, StackTrace stackTrace});
 }
 
 /// @nodoc
-class _$LogoutErrorCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res> implements $LogoutErrorCopyWith<$Res> {
-  _$LogoutErrorCopyWithImpl(LogoutError _value, $Res Function(LogoutError) _then)
+class _$LogoutErrorCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res>
+    implements $LogoutErrorCopyWith<$Res> {
+  _$LogoutErrorCopyWithImpl(
+      LogoutError _value, $Res Function(LogoutError) _then)
       : super(_value, (v) => _then(v as LogoutError));
 
   @override
@@ -2296,15 +869,18 @@ class _$LogoutError implements LogoutError {
         (other.runtimeType == runtimeType &&
             other is LogoutError &&
             const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) || other.stackTrace == stackTrace));
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
   @JsonKey(ignore: true)
   @override
-  $LogoutErrorCopyWith<LogoutError> get copyWith => _$LogoutErrorCopyWithImpl<LogoutError>(this, _$identity);
+  $LogoutErrorCopyWith<LogoutError> get copyWith =>
+      _$LogoutErrorCopyWithImpl<LogoutError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2376,19 +952,24 @@ class _$LogoutError implements LogoutError {
 }
 
 abstract class LogoutError implements Logout {
-  const factory LogoutError(Object error, StackTrace stackTrace) = _$LogoutError;
+  const factory LogoutError(Object error, StackTrace stackTrace) =
+      _$LogoutError;
 
   Object get error;
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
-  $LogoutErrorCopyWith<LogoutError> get copyWith => throw _privateConstructorUsedError;
+  $LogoutErrorCopyWith<LogoutError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$LoginTearOff {
   const _$LoginTearOff();
 
-  Login$ call({required String email, required String password, required ActionResponse response}) {
+  Login$ call(
+      {required String email,
+      required String password,
+      required ActionResponse response}) {
     return Login$(
       email: email,
       password: password,
@@ -2416,21 +997,24 @@ const $Login = _$LoginTearOff();
 mixin _$Login {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response) $default, {
+    TResult Function(String email, String password, ActionResponse response)
+        $default, {
     required TResult Function(AppUser user) successful,
     required TResult Function(dynamic error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -2462,7 +1046,8 @@ mixin _$Login {
 
 /// @nodoc
 abstract class $LoginCopyWith<$Res> {
-  factory $LoginCopyWith(Login value, $Res Function(Login) then) = _$LoginCopyWithImpl<$Res>;
+  factory $LoginCopyWith(Login value, $Res Function(Login) then) =
+      _$LoginCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -2476,13 +1061,16 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
 
 /// @nodoc
 abstract class $Login$CopyWith<$Res> {
-  factory $Login$CopyWith(Login$ value, $Res Function(Login$) then) = _$Login$CopyWithImpl<$Res>;
+  factory $Login$CopyWith(Login$ value, $Res Function(Login$) then) =
+      _$Login$CopyWithImpl<$Res>;
   $Res call({String email, String password, ActionResponse response});
 }
 
 /// @nodoc
-class _$Login$CopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res> implements $Login$CopyWith<$Res> {
-  _$Login$CopyWithImpl(Login$ _value, $Res Function(Login$) _then) : super(_value, (v) => _then(v as Login$));
+class _$Login$CopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
+    implements $Login$CopyWith<$Res> {
+  _$Login$CopyWithImpl(Login$ _value, $Res Function(Login$) _then)
+      : super(_value, (v) => _then(v as Login$));
 
   @override
   Login$ get _value => super._value as Login$;
@@ -2513,7 +1101,8 @@ class _$Login$CopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res> implements $L
 /// @nodoc
 
 class _$Login$ implements Login$ {
-  const _$Login$({required this.email, required this.password, required this.response});
+  const _$Login$(
+      {required this.email, required this.password, required this.response});
 
   @override
   final String email;
@@ -2533,8 +1122,10 @@ class _$Login$ implements Login$ {
         (other.runtimeType == runtimeType &&
             other is Login$ &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) || other.password == password) &&
-            (identical(other.response, response) || other.response == response));
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
@@ -2542,12 +1133,14 @@ class _$Login$ implements Login$ {
 
   @JsonKey(ignore: true)
   @override
-  $Login$CopyWith<Login$> get copyWith => _$Login$CopyWithImpl<Login$>(this, _$identity);
+  $Login$CopyWith<Login$> get copyWith =>
+      _$Login$CopyWithImpl<Login$>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response) $default, {
+    TResult Function(String email, String password, ActionResponse response)
+        $default, {
     required TResult Function(AppUser user) successful,
     required TResult Function(dynamic error) error,
   }) {
@@ -2557,7 +1150,8 @@ class _$Login$ implements Login$ {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
   }) {
@@ -2567,7 +1161,8 @@ class _$Login$ implements Login$ {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -2614,7 +1209,10 @@ class _$Login$ implements Login$ {
 }
 
 abstract class Login$ implements Login {
-  const factory Login$({required String email, required String password, required ActionResponse response}) = _$Login$;
+  const factory Login$(
+      {required String email,
+      required String password,
+      required ActionResponse response}) = _$Login$;
 
   String get email;
   String get password;
@@ -2625,14 +1223,17 @@ abstract class Login$ implements Login {
 
 /// @nodoc
 abstract class $LoginSuccessfulCopyWith<$Res> {
-  factory $LoginSuccessfulCopyWith(LoginSuccessful value, $Res Function(LoginSuccessful) then) =
+  factory $LoginSuccessfulCopyWith(
+          LoginSuccessful value, $Res Function(LoginSuccessful) then) =
       _$LoginSuccessfulCopyWithImpl<$Res>;
   $Res call({AppUser user});
 }
 
 /// @nodoc
-class _$LoginSuccessfulCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res> implements $LoginSuccessfulCopyWith<$Res> {
-  _$LoginSuccessfulCopyWithImpl(LoginSuccessful _value, $Res Function(LoginSuccessful) _then)
+class _$LoginSuccessfulCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
+    implements $LoginSuccessfulCopyWith<$Res> {
+  _$LoginSuccessfulCopyWithImpl(
+      LoginSuccessful _value, $Res Function(LoginSuccessful) _then)
       : super(_value, (v) => _then(v as LoginSuccessful));
 
   @override
@@ -2683,7 +1284,8 @@ class _$LoginSuccessful implements LoginSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response) $default, {
+    TResult Function(String email, String password, ActionResponse response)
+        $default, {
     required TResult Function(AppUser user) successful,
     required TResult Function(dynamic error) error,
   }) {
@@ -2693,7 +1295,8 @@ class _$LoginSuccessful implements LoginSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
   }) {
@@ -2703,7 +1306,8 @@ class _$LoginSuccessful implements LoginSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -2754,17 +1358,21 @@ abstract class LoginSuccessful implements Login {
 
   AppUser get user;
   @JsonKey(ignore: true)
-  $LoginSuccessfulCopyWith<LoginSuccessful> get copyWith => throw _privateConstructorUsedError;
+  $LoginSuccessfulCopyWith<LoginSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LoginErrorCopyWith<$Res> {
-  factory $LoginErrorCopyWith(LoginError value, $Res Function(LoginError) then) = _$LoginErrorCopyWithImpl<$Res>;
+  factory $LoginErrorCopyWith(
+          LoginError value, $Res Function(LoginError) then) =
+      _$LoginErrorCopyWithImpl<$Res>;
   $Res call({dynamic error});
 }
 
 /// @nodoc
-class _$LoginErrorCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res> implements $LoginErrorCopyWith<$Res> {
+class _$LoginErrorCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
+    implements $LoginErrorCopyWith<$Res> {
   _$LoginErrorCopyWithImpl(LoginError _value, $Res Function(LoginError) _then)
       : super(_value, (v) => _then(v as LoginError));
 
@@ -2806,16 +1414,19 @@ class _$LoginError implements LoginError {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  $LoginErrorCopyWith<LoginError> get copyWith => _$LoginErrorCopyWithImpl<LoginError>(this, _$identity);
+  $LoginErrorCopyWith<LoginError> get copyWith =>
+      _$LoginErrorCopyWithImpl<LoginError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response) $default, {
+    TResult Function(String email, String password, ActionResponse response)
+        $default, {
     required TResult Function(AppUser user) successful,
     required TResult Function(dynamic error) error,
   }) {
@@ -2825,7 +1436,8 @@ class _$LoginError implements LoginError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
   }) {
@@ -2835,7 +1447,8 @@ class _$LoginError implements LoginError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, ActionResponse response)? $default, {
+    TResult Function(String email, String password, ActionResponse response)?
+        $default, {
     TResult Function(AppUser user)? successful,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -2886,5 +1499,6 @@ abstract class LoginError implements Login {
 
   dynamic get error;
   @JsonKey(ignore: true)
-  $LoginErrorCopyWith<LoginError> get copyWith => throw _privateConstructorUsedError;
+  $LoginErrorCopyWith<LoginError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class EditSelectedOrder extends StatefulWidget {
-  const EditSelectedOrder({Key? key, required Order order})
+  const EditSelectedOrder({Key? key, required Order order, required List<Client> clients})
       : order = order,
+        clients = clients,
         super(key: key);
+
   final Order order;
+  final List<Client> clients;
 
   @override
   _EditSelectedOrderState createState() => _EditSelectedOrderState();
@@ -23,9 +26,13 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
   String _telefon = '';
   double _total = 0;
   bool _isPaid = false;
-  String _cif = '';
-  String _adresa = '';
+  String _make = '';
+  String _model = '';
+  bool _isOffer = false;
+  bool _isFromClient = false;
+  String? _clientId = null;
 
+  Client? selectedClient = null;
   List<CarPartBuilder> items = <CarPartBuilder>[];
 
   List<String?> _nameErrorText = <String?>[];
@@ -37,12 +44,14 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
   List<String?> _priceErrorText = <String?>[];
   List<TextEditingController> _priceFieldControlers = <TextEditingController>[];
   List<TextEditingController> _typeFieldControlers = <TextEditingController>[];
+  List<TextEditingController> _providerFieldControlers = <TextEditingController>[];
 
   String _type = '';
   String _numePiesa = '';
   String _codPiesa = '';
   String _pretPiesa = '';
   String _qty = '';
+  String _provider = '';
 
   bool itemsAreValid() {
     return false;
@@ -71,7 +80,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
     items.forEach((element) {
       if (isValidItemForTotal(element)) {
         newTotal += double.parse(
-            ((double.parse(element.build().price!) * double.parse(element.build().qty!)) * 1.19).toStringAsFixed(2));
+            (double.parse(element.build().price!) * double.parse(element.build().qty!)).toStringAsFixed(2));
       }
     });
     setState(() {
@@ -95,7 +104,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
         _typeFieldControlers.add(TextEditingController()..text = element.type == null ? '' : element.type!);
         _qtyFieldControlers.add(TextEditingController()..text = element.qty == null ? '' : element.qty!);
         _priceFieldControlers.add(TextEditingController()..text = element.price == null ? '' : element.price!);
-
+        _providerFieldControlers.add(TextEditingController()..text = element.provider == null ? '' : element.provider!);
         //Verify name
         if (element.name == '' || element.name == null) {
           _nameErrorText.add('Numele este invalid');
@@ -135,15 +144,27 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
       _telefon = widget.order.phoneNumber;
       _total = double.parse(widget.order.total);
       _isPaid = widget.order.paid;
+      _isOffer = widget.order.isOffer;
 
-      if (widget.order.address == null)
-        _adresa = '';
+      _clientId = widget.order.clientId;
+      if (widget.order.clientId != null && widget.order.clientId != '') {
+        _isFromClient = true;
+          widget.clients.forEach((Client client) {
+            if(client.id == widget.order.clientId){
+              selectedClient = client;
+            }
+          });
+      }
+
+
+      if (widget.order.model == null)
+        _model = '';
       else
-        _adresa = widget.order.address!;
-      if (widget.order.cif == null)
-        _cif = '';
+        _model = widget.order.model!;
+      if (widget.order.make == null)
+        _make = '';
       else
-        _cif = widget.order.cif!;
+        _make = widget.order.make!;
     });
   }
 
@@ -215,47 +236,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
             width: MediaQuery.of(context).size.width / 6,
             child: TextFormField(
               decoration: new InputDecoration(
-                labelText: "Numar inmatriculare",
-                fillColor: Colors.white,
-                border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(25.0),
-                  borderSide: new BorderSide(),
-                ),
-                //fillColor: Colors.green
-              ),
-              validator: (String? val) {
-                if (val == '') {
-                  return "Numar inmatriculare cannot be empty";
-                } else {
-                  return null;
-                }
-              },
-              keyboardType: TextInputType.emailAddress,
-              style: new TextStyle(
-                fontFamily: "Poppins",
-              ),
-              onChanged: (value) {
-                _numarInmatriculare = value;
-              },
-              initialValue: _numarInmatriculare,
-            ),
-          ),
-        ),
-      ],
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    );
-  }
-
-  Widget getPhoneAndVin() {
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: MediaQuery.of(context).size.width / 6,
-            child: TextFormField(
-              decoration: new InputDecoration(
-                labelText: "Telefon: ",
+                labelText: "Telefon",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
@@ -281,6 +262,42 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
             ),
           ),
         ),
+      ],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    );
+  }
+
+  Widget getPhoneAndVin() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: MediaQuery.of(context).size.width / 6,
+            child: TextFormField(
+              decoration: new InputDecoration(
+                labelText: "Numar inmatriculare:",
+                fillColor: Colors.white,
+                border: new OutlineInputBorder(
+                  borderRadius: new BorderRadius.circular(25.0),
+                  borderSide: new BorderSide(),
+                ),
+                //fillColor: Colors.green
+              ),
+              validator: (String? val) {
+                return null;
+              },
+              keyboardType: TextInputType.emailAddress,
+              style: new TextStyle(
+                fontFamily: "Poppins",
+              ),
+              onChanged: (value) {
+                _numarInmatriculare = value;
+              },
+              initialValue: _numarInmatriculare,
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -296,11 +313,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 //fillColor: Colors.green
               ),
               validator: (String? val) {
-                if (val == '') {
-                  return "Serie sasiu cannot be empty";
-                } else {
-                  return null;
-                }
+                return null;
               },
               keyboardType: TextInputType.emailAddress,
               style: new TextStyle(
@@ -318,7 +331,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
     );
   }
 
-  Widget getCifAndAdress() {
+  Widget getMakeAndModel() {
     return Row(
       children: <Widget>[
         Padding(
@@ -326,9 +339,9 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
           child: Container(
             width: MediaQuery.of(context).size.width / 6,
             child: TextFormField(
-              initialValue: _cif,
+              initialValue: _make,
               decoration: new InputDecoration(
-                labelText: "CIF *optional",
+                labelText: "Marca",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
@@ -337,7 +350,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 //fillColor: Colors.green
               ),
               validator: (String? val) {
-                log("validated cif: $_cif");
+                log("validated make: $_make");
                 return null;
               },
               keyboardType: TextInputType.emailAddress,
@@ -346,8 +359,8 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
               ),
               onChanged: (value) {
                 setState(() {
-                  _cif = value;
-                  log("EDIT CIF: $_cif");
+                  _make = value;
+                  log("EDIT MAKE: $_make");
                 });
               },
             ),
@@ -358,9 +371,9 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
           child: Container(
             width: MediaQuery.of(context).size.width / 6,
             child: TextFormField(
-              initialValue: _adresa,
+              initialValue: _model,
               decoration: new InputDecoration(
-                labelText: "ADRESA *optional",
+                labelText: "Model ",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
@@ -377,7 +390,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
               ),
               onChanged: (value) {
                 setState(() {
-                  _adresa = value;
+                  _model = value;
                 });
               },
             ),
@@ -400,9 +413,49 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
               padding: const EdgeInsets.all(56.0),
               child: Column(
                 children: <Widget>[
-                  getNameAndPlateFormFields(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Checkbox(
+                        value: _isFromClient,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isFromClient = !_isFromClient;
+                            if(_isFromClient){
+                              selectedClient = widget.clients.first;
+                              _nume = selectedClient!.name;
+                              _telefon = selectedClient!.phoneNumber;
+                            }
+                          });
+                        },
+                      ),
+                      Text('Alege dintre clienti'),
+                    ],
+                  ),
+                  _isFromClient == false
+                      ? getNameAndPlateFormFields()
+                      : Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: DropdownButton(
+                            value: selectedClient,
+                            items: widget.clients
+                                .map((Client e) => DropdownMenuItem(
+                                      child: Text(e.name),
+                                      value: e,
+                                    ))
+                                .toList(),
+                            onChanged: (Client? client) {
+                              setState(() {
+                                selectedClient = client!;
+                                _nume = client.name;
+                                _telefon = client.phoneNumber;
+                              });
+                            },
+                            isExpanded: true,
+                          ),
+                        ),
                   getPhoneAndVin(),
-                  getCifAndAdress(),
+                  getMakeAndModel(),
                   const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -448,6 +501,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                 Container(
                                   width: 250,
                                   child: TextField(
+                                    textDirection: TextDirection.ltr,
                                     controller: _nameFieldControlers[index],
                                     decoration: InputDecoration(
                                       labelText: 'NUME PRODUS/SERVICIU',
@@ -456,7 +510,6 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                     onChanged: (value) {
                                       setState(() {
                                         items[index].name = value;
-                                        _nameFieldControlers[index].text = value;
                                         if (items[index].build().name == '') {
                                           _nameErrorText[index] = 'Nume invalid';
                                         } else {
@@ -475,8 +528,23 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        _typeFieldControlers[index].text = value;
+                                        //_typeFieldControlers[index].text = value;
                                         items[index].type = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: TextField(
+                                    controller: _providerFieldControlers[index],
+                                    decoration: InputDecoration(
+                                      labelText: 'Furnizor',
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        items[index].provider = value;
+                                        //_providerFieldControlers[index].text = value;
                                       });
                                     },
                                   ),
@@ -492,7 +560,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        _codeFieldControlers[index].text = value;
+                                        //_codeFieldControlers[index].text = value;
                                         items[index].code = value;
                                         if (items[index].build().code == '') {
                                           _codeErrorText[index] = 'Cod invalid';
@@ -514,7 +582,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        _qtyFieldControlers[index].text = value;
+                                        //_qtyFieldControlers[index].text = value;
                                         items[index].qty = value;
                                         if (double.tryParse(value) != null) {
                                           _qtyErrorText[index] = null;
@@ -537,7 +605,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        _priceFieldControlers[index].text = value;
+                                        //_priceFieldControlers[index].text = value;
                                         items[index].price = value;
                                         if (double.tryParse(value) != null) {
                                           _priceErrorText[index] = null;
@@ -569,6 +637,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                       _typeFieldControlers.removeAt(index);
                                       _qtyFieldControlers.removeAt(index);
                                       _priceFieldControlers.removeAt(index);
+                                      _providerFieldControlers.removeAt(index);
                                       //REMOVING THE ITEM AT INDEX
                                       items.removeAt(index);
                                       //RECALCULATE TOTAL
@@ -590,7 +659,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                       builder: (BuildContext context) {
                         return Container(
                           height: MediaQuery.of(context).size.height / 10,
-                          width: MediaQuery.of(context).size.width / 2,
+                          width: MediaQuery.of(context).size.width / 1.5,
                           decoration: BoxDecoration(
                             color: Colors.white60,
                             borderRadius: BorderRadius.circular(60),
@@ -636,6 +705,30 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                   ),
                                   onChanged: (value) {
                                     _type = value;
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: new TextStyle(
+                                    fontFamily: "Poppins",
+                                  ),
+                                  validator: (String? val) {
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              Container(
+                                width: 150,
+                                child: TextFormField(
+                                  decoration: new InputDecoration(
+                                    labelText: "Furnizor",
+                                    fillColor: Colors.white,
+                                    border: new OutlineInputBorder(
+                                      borderRadius: new BorderRadius.circular(25.0),
+                                      borderSide: new BorderSide(),
+                                    ),
+                                    //fillColor: Colors.green
+                                  ),
+                                  onChanged: (value) {
+                                    _provider = value;
                                   },
                                   keyboardType: TextInputType.emailAddress,
                                   style: new TextStyle(
@@ -737,16 +830,18 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                                   code: _codPiesa,
                                                   price: _pretPiesa,
                                                   qty: _qty,
-                                                  type: _type)
+                                                  type: _type,
+                                                  provider: _provider)
                                               .toBuilder());
                                           if (isValidItemForTotal(CarPart.fromData(
                                                   name: _numePiesa,
                                                   code: _codPiesa,
                                                   price: _pretPiesa,
                                                   qty: _qty,
-                                                  type: _type)
+                                                  type: _type,
+                                                  provider: _provider)
                                               .toBuilder())) {
-                                            _total += double.parse(_pretPiesa) * double.parse(_qty) * 1.19;
+                                            _total += double.parse(_pretPiesa) * double.parse(_qty);
                                           }
                                           //ADDING ERROR CHECKERS FOR NEW ITEM
                                           if (_numePiesa == '' || _numePiesa == null) {
@@ -776,6 +871,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                           _codeFieldControlers.add(TextEditingController()..text = _codPiesa);
                                           _qtyFieldControlers.add(TextEditingController()..text = _qty);
                                           _priceFieldControlers.add(TextEditingController()..text = _pretPiesa);
+                                          _providerFieldControlers.add(TextEditingController()..text = 'none');
                                           //Verify price
                                           if (_pretPiesa == '' || _pretPiesa == null) {
                                             _priceErrorText.add('Pret invalid');
@@ -817,14 +913,16 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                   StoreProvider.of<AppState>(context).dispatch(UpdateOrder(Order.fromData(
                       id: widget.order.id,
                       details: OrderDetails.fromData(
+                        isOffer: _isOffer,
                         carPlate: _numarInmatriculare,
                         chassisNumber: _serieSasiu,
                         name: _nume,
                         phoneNumber: _telefon,
                         total: _total.toString(),
                         paid: _isPaid,
-                        cif: _cif,
-                        address: _adresa,
+                        make: _make,
+                        model: _model,
+                        clientId: _isFromClient == true? selectedClient!.id:'',
                       ),
                       items: builtItems,
                       dateTime: widget.order.dateTime)));

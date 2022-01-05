@@ -5,9 +5,10 @@ abstract class CarPart implements Built<CarPart, CarPartBuilder> {
   factory CarPart.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
 
   factory CarPart.fromData(
-      {required String name, required String code, required String price, required String qty, required String type}) {
+      {required String name, required String code, required String price, required String qty, required String type,required String provider}) {
     return _$CarPart((CarPartBuilder b) {
       b
+        ..provider = provider
         ..name = name
         ..price = price
         ..code = code
@@ -27,6 +28,8 @@ abstract class CarPart implements Built<CarPart, CarPartBuilder> {
   String? get price;
 
   String? get type;
+
+  String? get provider;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 
