@@ -5,7 +5,15 @@
 - [x] CRUD Orders
 - [x] Statistics
 - [x] Generate Invoice
+- [x] Offers
+- [x] Clients
+- [x] Value of item with VAT
+- [x] Invoice calculates all automatically
+- [x] Filtering
 - [ ] UI
+- [ ] Testing
+- [ ] Search potential bugs
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
