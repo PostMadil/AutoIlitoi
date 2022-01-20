@@ -6,6 +6,7 @@ import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:auto_ilitoi/src/presentation/home/clients_view.dart';
 import 'package:auto_ilitoi/src/presentation/home/dashboard_commands.dart';
 import 'package:auto_ilitoi/src/presentation/home/edit_selected_order.dart';
+import 'package:auto_ilitoi/src/presentation/home/finished_orders_view.dart';
 import 'package:auto_ilitoi/src/presentation/home/offers_view.dart';
 import 'package:auto_ilitoi/src/presentation/home/orders_view.dart';
 import 'package:auto_ilitoi/src/presentation/home/selected_order_details.dart';
@@ -39,6 +40,20 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
                   TextButton(
                     onPressed: () {
                       StoreProvider.of<AppState>(context)
+                          .dispatch(SetSelectedView(10));
+                    },
+                    child: Text(
+                      'Finalizate',
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: (selectedView == 10 )  || (selectedOrder != null &&(selectedOrder!.finished != null && selectedOrder.finished == true &&  selectedView == 1))
+                              ? Colors.white
+                              : Colors.white60),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      StoreProvider.of<AppState>(context)
                           .dispatch(SetSelectedView(0));
                     },
                     child: Text(
@@ -47,7 +62,7 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
                           fontSize: 30,
                           color: (selectedView == 0) ||
                                   ((selectedView == 1 || selectedView == 2) &&
-                                      selectedOrder!.isOffer == false)
+                                      selectedOrder!.isOffer == false && (selectedOrder!.finished == null || selectedOrder.finished != true))
                               ? Colors.white
                               : Colors.white60),
                     ),
@@ -141,6 +156,7 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
                           .clients
                           .toList());
                     if (selectedView == 5) return listOfClients();
+                    if (selectedView == 10) return listOfFinishedOrders();
                     return listOfOrders();
                   },
                 ),

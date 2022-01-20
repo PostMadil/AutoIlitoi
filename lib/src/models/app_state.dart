@@ -22,6 +22,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   BuiltList<Order> get selectedOrders;
 
+  BuiltList<Order> get finishedOrders;
+
   BuiltList<Order> get offers;
 
   BuiltList<Client> get clients;

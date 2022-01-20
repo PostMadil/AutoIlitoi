@@ -15,8 +15,7 @@ Future<void> showCreateInvoiceMixin(BuildContext context) {
   String _modPlataError = '';
   String _cifError = '';
   String _addressError = '';
-
-  bool _isLoading = false;
+  bool isRon = true;
 
   return showDialog(
       context: context,
@@ -164,6 +163,44 @@ Future<void> showCreateInvoiceMixin(BuildContext context) {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 284,
+                      child: Row(
+                        children: <Widget>[
+                          Text('RON:'),
+                          Checkbox(
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isRon = true;
+                              });
+                            },
+                            value: isRon,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 284,
+                      child: Row(
+                        children: <Widget>[
+                          Text('EURO:'),
+                          Checkbox(
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isRon = false;
+                              });
+                            },
+                            value: !isRon,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -173,12 +210,15 @@ Future<void> showCreateInvoiceMixin(BuildContext context) {
                 onPressed: () {
                   if (_serie != '' && _numar != '' && _modPlata != '') {
                     PdfApi.generate(
-                        order: StoreProvider.of<AppState>(context).state.selectedOrder!,
+                        order: StoreProvider.of<AppState>(context)
+                            .state
+                            .selectedOrder!,
                         serie: _serie,
                         numar: _numar,
                         modPlata: _modPlata,
                         cif: _cif,
-                        address: _address);
+                        address: _address,
+                        isRon: isRon,isOffer: false);
                     Navigator.of(context).pop();
                   } else {
                     setState(() {

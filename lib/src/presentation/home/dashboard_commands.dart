@@ -169,7 +169,7 @@ class _DashboardCommandsState extends State<DashboardCommands> with CreateOrderM
                         //     },
                         //   ),
                         // ),
-                        selectedView == 4 || selectedView == 5? SizedBox():Column(children: <Widget>[
+                        selectedView == 4 || selectedView == 5 || selectedView == 10? SizedBox():Column(children: <Widget>[
                           ListTile(
                             title: Text('Achitate'),
                             leading: Checkbox(

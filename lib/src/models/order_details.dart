@@ -1,9 +1,12 @@
 part of models;
 
-abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> {
-  factory OrderDetails([void Function(OrderDetailsBuilder b) updates]) = _$OrderDetails;
+abstract class OrderDetails
+    implements Built<OrderDetails, OrderDetailsBuilder> {
+  factory OrderDetails([void Function(OrderDetailsBuilder b) updates]) =
+      _$OrderDetails;
 
-  factory OrderDetails.fromJson(dynamic json) => serializers.deserializeWith(serializer, json) as OrderDetails;
+  factory OrderDetails.fromJson(dynamic json) =>
+      serializers.deserializeWith(serializer, json) as OrderDetails;
 
   factory OrderDetails.initialState() {
     return _$OrderDetails((OrderDetailsBuilder b) {
@@ -27,7 +30,8 @@ abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> 
     required bool paid,
     required String make,
     required String model,
-    required String? clientId
+    required String? clientId,
+    required bool? finished,
   }) {
     return _$OrderDetails((OrderDetailsBuilder b) {
       b
@@ -40,7 +44,8 @@ abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> 
         ..paid = paid
         ..make = make
         ..clientId = clientId
-        ..model = model;
+        ..model = model
+        ..finished = finished;
     });
   }
 
@@ -66,7 +71,10 @@ abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> 
 
   String? get clientId;
 
-  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
+  bool? get finished;
+
+  Map<String, dynamic> get json =>
+      serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<OrderDetails> get serializer => _$orderDetailsSerializer;
 }

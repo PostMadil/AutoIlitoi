@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+part 'finished_orders_container.dart';
 part 'clients_container.dart';
 part 'offers_container.dart';
 part 'statistics_container.dart';

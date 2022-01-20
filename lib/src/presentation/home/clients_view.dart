@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
-import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
 import 'package:auto_ilitoi/src/container/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
-import 'package:auto_ilitoi/src/presentation/home/home_page.dart';
 import 'package:auto_ilitoi/src/presentation/mixins/dialog/delete_client_mixin.dart';
 import 'package:auto_ilitoi/src/presentation/mixins/dialog/edit_client_mixin.dart';
 import 'package:flutter/material.dart';
@@ -81,15 +79,16 @@ Widget listOfClients() {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            IconButton(
-                              onPressed: () {
-                                showDeleteClient(context, currentClient);
-                              },
-                              icon: Icon(
-                                Icons.delete_forever,
-                                color: Colors.red,
-                              ),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {
+                            //     //showDeleteClient(context, currentClient);
+                            //     SnackBar
+                            //   },
+                            //   icon: Icon(
+                            //     Icons.delete_forever,
+                            //     color: Colors.red,
+                            //   ),
+                            // ),
                             IconButton(
                               onPressed: () {
                                 log('Edit dialog should open up');

@@ -7,9 +7,9 @@ import 'package:auto_ilitoi/src/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-Widget listOfOrders() {
+Widget listOfFinishedOrders() {
   return ClientsContainer(builder: (BuildContext context, List<Client> clients){
-    return OrdersContainer(
+    return FinishedOrdersContainer(
       builder: (BuildContext context, List<Order> orders) {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -85,14 +85,14 @@ Widget listOfOrders() {
               if(currentOrder.clientId != null && currentOrder.clientId != ''){
                 currentClient = clients.firstWhere((element) => element.id == currentOrder.clientId);
               }
-              Color currentColor = Colors.amber;
+              Color currentColor = Colors.green;
 
-              if (isOrderValid(currentOrder)) {
-                if(index ~/ 7 % 2 == 1) currentColor = Colors.white60;
-                else currentColor = Colors.blue;
-              } else {
-                currentColor = Colors.amberAccent;
-              }
+              // if (isOrderValid(currentOrder)) {
+              //   if(index ~/ 7 % 2 == 1) currentColor = Colors.white60;
+              //   else currentColor = Colors.blue;
+              // } else {
+              //   currentColor = Colors.amberAccent;
+              // }
 
               switch (index % 7) {
                 case 0:
@@ -164,6 +164,7 @@ Widget listOfOrders() {
                         onPressed: () {
                           StoreProvider.of<AppState>(context).dispatch(SetSelectedOrder(currentOrder));
                           StoreProvider.of<AppState>(context).dispatch(const SetSelectedView(1));
+                          log("I was pressed");
                         },
                       ),
                     );

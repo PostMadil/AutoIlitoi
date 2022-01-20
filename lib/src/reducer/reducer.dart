@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+
 import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
@@ -18,6 +19,8 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
 
   TypedReducer<AppState, GetOrdersSuccessful>(_getOrdersSuccessful),
   TypedReducer<AppState, DeleteOrderSuccessful>(_deleteOrderSuccessful),
+  TypedReducer<AppState, CreateOrderSuccessful>(_createOrderSuccessful),
+  TypedReducer<AppState, UpdateOrderSuccessful>(_updateOrderSuccessful),
 
   TypedReducer<AppState, GetClientsSuccessful>(_getClientsSuccessful),
   TypedReducer<AppState, DeleteClientSuccessful>(_deleteClientSuccessful),
@@ -55,16 +58,22 @@ AppState _getOrdersSuccessful(AppState state, GetOrdersSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     List<Order> offers = <Order>[];
     List<Order> orders = <Order>[];
+    List<Order> finishedOrders = <Order>[];
 
     action.orders.forEach((Order order) {
       if (order.isOffer) {
         offers.add(order);
       } else {
-        orders.add(order);
+        if(order.finished != null && order.finished! == true){
+          finishedOrders.add(order);
+        } else {
+          orders.add(order);
+        }
       }
     });
     b.offers = ListBuilder(offers);
     b.orders = ListBuilder(action.orders);
+    b.finishedOrders = ListBuilder(finishedOrders);
     b.selectedOrders = ListBuilder(orders);
 
     double total = 0;
@@ -219,12 +228,30 @@ AppState _setLowerThanAmount(AppState state, SetLowerThanAmount action) {
 AppState _filterOrders(AppState state, FilterOrders action) {
   return state.rebuild((AppStateBuilder b) {
     List<Order> orders = <Order>[];
+    List<Order> offers = <Order>[];
+    List<Order> finished = <Order>[];
 
-    b.orders.build().toList().forEach((Order order) {
-      if (!order.isOffer) {
-        orders.add(order);
+    //if(action.order!=null) orders.insert(0, action.order!);
+    b.orders.build().forEach((Order order) {
+      if (order.isOffer == true) {
+        offers.add(order);
+        log("i was filtered as asn offer");
+      } else {
+        if(order.finished != null && order.finished! == true){
+          finished.add(order);
+          log("Added to finished!");
+        } else {
+          orders.add(order);
+        }
       }
     });
+
+
+    b.offers = ListBuilder(offers);
+    b.finishedOrders = ListBuilder(finished);
+
+
+
     if(state.filterOptions.selectedClient != null){
       List<Order> aux = <Order>[];
       orders.forEach((Order order) {
@@ -305,7 +332,9 @@ AppState _filterOrders(AppState state, FilterOrders action) {
           }
       }
       orders.clear();
-      orders.addAll(aux);
+      if(aux.length!=0){
+        orders.addAll(aux);
+      }
     }
     if (state.filterOptions.onlyUnpaid) {
       log('filtering only unpaid...');
@@ -341,9 +370,14 @@ AppState _filterOrders(AppState state, FilterOrders action) {
       orders.clear();
       orders.addAll(aux);
     }
-    log(orders.toString());
+    log("HERE IS THE MEW ORDER" + orders.last.name.toString());
     log('length: ${orders.length}');
-    b.selectedOrders = ListBuilder(orders);
+    if(orders.length!=0){
+      b.selectedOrders = ListBuilder(orders);
+    }else {
+      log("No remaining orders");
+      b.selectedOrders.clear();
+    }
     log('SelectedOrders list lenght: ${b.selectedOrders.length}');
   });
 }
@@ -365,22 +399,50 @@ AppState _deleteOrderSuccessful(AppState state, DeleteOrderSuccessful action) {
     if(b.selectedOrder.isOffer == true) {
       b.selectedView = 4;
     } else {
-      b.selectedView = 0;
+      if(b.selectedOrder.finished == true) {
+        b.selectedView = 10;
+      } else{
+        b.selectedView = 0;
+      }
     }
     b.orders.remove(action.order);
-    b.selectedOrders.remove(action.order);
+    if(action.order.isOffer){
+      b.offers.remove(action.order);
+    }else{
+      if(action.order.finished == true) {
+        b.finishedOrders.remove(action.order);
+      } else {
+        b.selectedOrders.remove(action.order);
+      }
+    }
+
 
   });
 }
 
 AppState _getClientsSuccessful(AppState state, GetClientsSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.clients = ListBuilder(action.clients);
+    if(action.clients.isEmpty){
+      log('clients not found');
+    }else{
+      b.clients = ListBuilder(action.clients);
+      log('clients found and added');
+
+    }
   });
 }
 
 AppState _deleteClientSuccessful(AppState state, DeleteClientSuccessful action) {
   return state.rebuild((AppStateBuilder b ) {
+    state.orders.forEach((Order order) {
+      if(order.clientId != null && order.clientId != ''){
+        if(order.clientId == action.client.id){
+          b.orders.remove(order);
+          b.selectedOrders.remove(order);
+          b.offers.remove(order);
+        }
+      }
+    });
     b.clients.remove(action.client);
   });
 }
@@ -398,5 +460,20 @@ AppState _setSelectedClient(AppState state, SetSelectedClient action) {
     } else {
       b.filterOptions.selectedClient = null;
     }
+  });
+}
+
+AppState _createOrderSuccessful(AppState state, CreateOrderSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.orders.insert(0, action.order);
+  });
+}
+
+AppState _updateOrderSuccessful(AppState state, UpdateOrderSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    log("reducer updated order: finished: ${action.updatedOrder.finished}");
+    int c = b.orders.build().indexWhere((Order order) => order.id == action.updatedOrder.id);
+    log("C: (position) $c");
+    b.orders[c] = action.updatedOrder;
   });
 }

@@ -59,8 +59,17 @@ mixin CreateOrderMixin {
         context: context,
         builder: (BuildContext context) {
           bool _chooseFromClients = false;
+          bool _canChooseFromClients = true;
+
           List<Client> clients = StoreProvider.of<AppState>(context).state.clients.toList();
-          Client selectedClient = clients.first;
+
+          Client selectedClient = Client.fromData(id: '', name: '', phoneNumber: '');
+          if(clients.isEmpty){
+            _canChooseFromClients = false;
+            log('cannot choose from clients');
+          } else {
+            selectedClient = clients.first;
+          }
 
           String _numarInmatriculare = '';
           String _serieSasiu = '';
@@ -87,7 +96,7 @@ mixin CreateOrderMixin {
                         builder: (BuildContext context) {
                           return Column(
                             children: <Widget>[
-                              Row(
+                              clients.isEmpty? SizedBox():Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Checkbox(
@@ -103,7 +112,7 @@ mixin CreateOrderMixin {
                                   Text('Alege dintre clienti'),
                                 ],
                               ),
-                              _chooseFromClients == false
+                              _chooseFromClients == false || _canChooseFromClients == false
                                   ? Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
@@ -655,6 +664,7 @@ mixin CreateOrderMixin {
                                   make: _make,
                                   model: _model,
                                   clientId: _chooseFromClients == true? selectedClient.id:null,
+                                  finished: false,
                                 ),
                                 items: builtItems,
                               ));

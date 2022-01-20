@@ -329,6 +329,13 @@ class _$OrderDetailsSerializer implements StructuredSerializer<OrderDetails> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.finished;
+    if (value != null) {
+      result
+        ..add('finished')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -384,6 +391,10 @@ class _$OrderDetailsSerializer implements StructuredSerializer<OrderDetails> {
           result.clientId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'finished':
+          result.finished = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
       }
     }
 
@@ -407,6 +418,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
               const FullType(BuiltList, const [const FullType(Order)])),
       'selectedOrders',
       serializers.serialize(object.selectedOrders,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Order)])),
+      'finishedOrders',
+      serializers.serialize(object.finishedOrders,
           specifiedType:
               const FullType(BuiltList, const [const FullType(Order)])),
       'offers',
@@ -471,6 +486,12 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           break;
         case 'selectedOrders':
           result.selectedOrders.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(Order)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'finishedOrders':
+          result.finishedOrders.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(Order)]))!
               as BuiltList<Object?>);
@@ -712,6 +733,13 @@ class _$OrderSerializer implements StructuredSerializer<Order> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.finished;
+    if (value != null) {
+      result
+        ..add('finished')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -779,6 +807,10 @@ class _$OrderSerializer implements StructuredSerializer<Order> {
         case 'clientId':
           result.clientId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'finished':
+          result.finished = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -1290,6 +1322,8 @@ class _$OrderDetails extends OrderDetails {
   final bool isOffer;
   @override
   final String? clientId;
+  @override
+  final bool? finished;
 
   factory _$OrderDetails([void Function(OrderDetailsBuilder)? updates]) =>
       (new OrderDetailsBuilder()..update(updates)).build();
@@ -1304,7 +1338,8 @@ class _$OrderDetails extends OrderDetails {
       this.make,
       this.model,
       required this.isOffer,
-      this.clientId})
+      this.clientId,
+      this.finished})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isOffer, 'OrderDetails', 'isOffer');
   }
@@ -1329,7 +1364,8 @@ class _$OrderDetails extends OrderDetails {
         make == other.make &&
         model == other.model &&
         isOffer == other.isOffer &&
-        clientId == other.clientId;
+        clientId == other.clientId &&
+        finished == other.finished;
   }
 
   @override
@@ -1342,16 +1378,18 @@ class _$OrderDetails extends OrderDetails {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, carPlate.hashCode),
-                                        chassisNumber.hashCode),
-                                    name.hashCode),
-                                phoneNumber.hashCode),
-                            total.hashCode),
-                        paid.hashCode),
-                    make.hashCode),
-                model.hashCode),
-            isOffer.hashCode),
-        clientId.hashCode));
+                                    $jc(
+                                        $jc($jc(0, carPlate.hashCode),
+                                            chassisNumber.hashCode),
+                                        name.hashCode),
+                                    phoneNumber.hashCode),
+                                total.hashCode),
+                            paid.hashCode),
+                        make.hashCode),
+                    model.hashCode),
+                isOffer.hashCode),
+            clientId.hashCode),
+        finished.hashCode));
   }
 
   @override
@@ -1366,7 +1404,8 @@ class _$OrderDetails extends OrderDetails {
           ..add('make', make)
           ..add('model', model)
           ..add('isOffer', isOffer)
-          ..add('clientId', clientId))
+          ..add('clientId', clientId)
+          ..add('finished', finished))
         .toString();
   }
 }
@@ -1416,6 +1455,10 @@ class OrderDetailsBuilder
   String? get clientId => _$this._clientId;
   set clientId(String? clientId) => _$this._clientId = clientId;
 
+  bool? _finished;
+  bool? get finished => _$this._finished;
+  set finished(bool? finished) => _$this._finished = finished;
+
   OrderDetailsBuilder();
 
   OrderDetailsBuilder get _$this {
@@ -1431,6 +1474,7 @@ class OrderDetailsBuilder
       _model = $v.model;
       _isOffer = $v.isOffer;
       _clientId = $v.clientId;
+      _finished = $v.finished;
       _$v = null;
     }
     return this;
@@ -1461,7 +1505,8 @@ class OrderDetailsBuilder
             model: model,
             isOffer: BuiltValueNullFieldError.checkNotNull(
                 isOffer, 'OrderDetails', 'isOffer'),
-            clientId: clientId);
+            clientId: clientId,
+            finished: finished);
     replace(_$result);
     return _$result;
   }
@@ -1474,6 +1519,8 @@ class _$AppState extends AppState {
   final BuiltList<Order> orders;
   @override
   final BuiltList<Order> selectedOrders;
+  @override
+  final BuiltList<Order> finishedOrders;
   @override
   final BuiltList<Order> offers;
   @override
@@ -1496,6 +1543,7 @@ class _$AppState extends AppState {
       {this.user,
       required this.orders,
       required this.selectedOrders,
+      required this.finishedOrders,
       required this.offers,
       required this.clients,
       required this.isFetchingOrders,
@@ -1507,6 +1555,8 @@ class _$AppState extends AppState {
     BuiltValueNullFieldError.checkNotNull(orders, 'AppState', 'orders');
     BuiltValueNullFieldError.checkNotNull(
         selectedOrders, 'AppState', 'selectedOrders');
+    BuiltValueNullFieldError.checkNotNull(
+        finishedOrders, 'AppState', 'finishedOrders');
     BuiltValueNullFieldError.checkNotNull(offers, 'AppState', 'offers');
     BuiltValueNullFieldError.checkNotNull(clients, 'AppState', 'clients');
     BuiltValueNullFieldError.checkNotNull(
@@ -1532,6 +1582,7 @@ class _$AppState extends AppState {
         user == other.user &&
         orders == other.orders &&
         selectedOrders == other.selectedOrders &&
+        finishedOrders == other.finishedOrders &&
         offers == other.offers &&
         clients == other.clients &&
         isFetchingOrders == other.isFetchingOrders &&
@@ -1550,8 +1601,12 @@ class _$AppState extends AppState {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc($jc(0, user.hashCode), orders.hashCode),
-                                    selectedOrders.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, user.hashCode),
+                                            orders.hashCode),
+                                        selectedOrders.hashCode),
+                                    finishedOrders.hashCode),
                                 offers.hashCode),
                             clients.hashCode),
                         isFetchingOrders.hashCode),
@@ -1567,6 +1622,7 @@ class _$AppState extends AppState {
           ..add('user', user)
           ..add('orders', orders)
           ..add('selectedOrders', selectedOrders)
+          ..add('finishedOrders', finishedOrders)
           ..add('offers', offers)
           ..add('clients', clients)
           ..add('isFetchingOrders', isFetchingOrders)
@@ -1594,6 +1650,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _$this._selectedOrders ??= new ListBuilder<Order>();
   set selectedOrders(ListBuilder<Order>? selectedOrders) =>
       _$this._selectedOrders = selectedOrders;
+
+  ListBuilder<Order>? _finishedOrders;
+  ListBuilder<Order> get finishedOrders =>
+      _$this._finishedOrders ??= new ListBuilder<Order>();
+  set finishedOrders(ListBuilder<Order>? finishedOrders) =>
+      _$this._finishedOrders = finishedOrders;
 
   ListBuilder<Order>? _offers;
   ListBuilder<Order> get offers => _$this._offers ??= new ListBuilder<Order>();
@@ -1639,6 +1701,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _user = $v.user?.toBuilder();
       _orders = $v.orders.toBuilder();
       _selectedOrders = $v.selectedOrders.toBuilder();
+      _finishedOrders = $v.finishedOrders.toBuilder();
       _offers = $v.offers.toBuilder();
       _clients = $v.clients.toBuilder();
       _isFetchingOrders = $v.isFetchingOrders;
@@ -1671,6 +1734,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               user: _user?.build(),
               orders: orders.build(),
               selectedOrders: selectedOrders.build(),
+              finishedOrders: finishedOrders.build(),
               offers: offers.build(),
               clients: clients.build(),
               isFetchingOrders: BuiltValueNullFieldError.checkNotNull(
@@ -1689,6 +1753,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         orders.build();
         _$failedField = 'selectedOrders';
         selectedOrders.build();
+        _$failedField = 'finishedOrders';
+        finishedOrders.build();
         _$failedField = 'offers';
         offers.build();
         _$failedField = 'clients';
@@ -1945,6 +2011,8 @@ class _$Order extends Order {
   final bool isOffer;
   @override
   final String? clientId;
+  @override
+  final bool? finished;
 
   factory _$Order([void Function(OrderBuilder)? updates]) =>
       (new OrderBuilder()..update(updates)).build();
@@ -1962,7 +2030,8 @@ class _$Order extends Order {
       this.model,
       required this.items,
       required this.isOffer,
-      this.clientId})
+      this.clientId,
+      this.finished})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Order', 'id');
     BuiltValueNullFieldError.checkNotNull(carPlate, 'Order', 'carPlate');
@@ -2000,7 +2069,8 @@ class _$Order extends Order {
         model == other.model &&
         items == other.items &&
         isOffer == other.isOffer &&
-        clientId == other.clientId;
+        clientId == other.clientId &&
+        finished == other.finished;
   }
 
   @override
@@ -2016,19 +2086,21 @@ class _$Order extends Order {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, id.hashCode),
-                                                    carPlate.hashCode),
-                                                chassisNumber.hashCode),
-                                            dateTime.hashCode),
-                                        name.hashCode),
-                                    phoneNumber.hashCode),
-                                total.hashCode),
-                            paid.hashCode),
-                        make.hashCode),
-                    model.hashCode),
-                items.hashCode),
-            isOffer.hashCode),
-        clientId.hashCode));
+                                                $jc(
+                                                    $jc($jc(0, id.hashCode),
+                                                        carPlate.hashCode),
+                                                    chassisNumber.hashCode),
+                                                dateTime.hashCode),
+                                            name.hashCode),
+                                        phoneNumber.hashCode),
+                                    total.hashCode),
+                                paid.hashCode),
+                            make.hashCode),
+                        model.hashCode),
+                    items.hashCode),
+                isOffer.hashCode),
+            clientId.hashCode),
+        finished.hashCode));
   }
 
   @override
@@ -2046,7 +2118,8 @@ class _$Order extends Order {
           ..add('model', model)
           ..add('items', items)
           ..add('isOffer', isOffer)
-          ..add('clientId', clientId))
+          ..add('clientId', clientId)
+          ..add('finished', finished))
         .toString();
   }
 }
@@ -2108,6 +2181,10 @@ class OrderBuilder implements Builder<Order, OrderBuilder> {
   String? get clientId => _$this._clientId;
   set clientId(String? clientId) => _$this._clientId = clientId;
 
+  bool? _finished;
+  bool? get finished => _$this._finished;
+  set finished(bool? finished) => _$this._finished = finished;
+
   OrderBuilder();
 
   OrderBuilder get _$this {
@@ -2126,6 +2203,7 @@ class OrderBuilder implements Builder<Order, OrderBuilder> {
       _items = $v.items.toBuilder();
       _isOffer = $v.isOffer;
       _clientId = $v.clientId;
+      _finished = $v.finished;
       _$v = null;
     }
     return this;
@@ -2168,7 +2246,8 @@ class OrderBuilder implements Builder<Order, OrderBuilder> {
               items: items.build(),
               isOffer: BuiltValueNullFieldError.checkNotNull(
                   isOffer, 'Order', 'isOffer'),
-              clientId: clientId);
+              clientId: clientId,
+              finished: finished);
     } catch (_) {
       late String _$failedField;
       try {

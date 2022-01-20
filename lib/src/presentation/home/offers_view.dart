@@ -33,7 +33,7 @@ Widget listOfOffers(List<Client> clients) {
                 {
                   return Container(
                     child: Center(
-                      child: Text('Car Plate'),
+                      child: Text('Marca - Model'),
                     ),
                   );
                 }
@@ -95,7 +95,7 @@ Widget listOfOffers(List<Client> clients) {
                   return Container(
                     color: index ~/ 6 % 2 == 1 ? unfinishedOrder : Colors.white60,
                     child: Center(
-                      child: Text(currentOrder.carPlate),
+                      child: Text("${currentOrder.make} ${currentOrder.model}"),
                     ),
                   );
                 }

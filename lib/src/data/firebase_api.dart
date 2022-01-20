@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class FirebaseApi {
   FirebaseApi({required FirebaseAuth auth, required FirebaseFirestore firestore})
@@ -55,18 +54,19 @@ class FirebaseApi {
 
     return orders;
   }
-  Future<void> createOrder(OrderDetails details, List<CarPart> items) async {
+  Future<Order> createOrder(OrderDetails details, List<CarPart> items) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     String docId = ordersList.doc().id;
-
+    String date = DateTime.now().toString();
+    final Order newOrder = Order.fromData(id: docId, details: details, items: items, dateTime: date);
     try {
-      String date = DateTime.now().toString();
       log(docId);
-      final Order newOrder = Order.fromData(id: docId, details: details, items: items, dateTime: date);
+
       ordersList.doc(docId).set(newOrder.json);
     } catch (e) {
       log(e.toString());
     }
+    return newOrder;
   }
   Future<Order> updateOrder(Order order) async {
     final CollectionReference ordersList = _firestore.collection('orders');

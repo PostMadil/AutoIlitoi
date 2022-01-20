@@ -74,6 +74,8 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/Freeroad-Regular.ttf
+    - assets/fonts/AbhayaLibre-Regular.ttf
+    - assets/fonts/DejaVuSans.ttf
   uses-material-design: true
 
 

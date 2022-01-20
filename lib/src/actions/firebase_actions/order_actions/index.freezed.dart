@@ -1039,8 +1039,10 @@ class _$CreateOrderTearOff {
     );
   }
 
-  CreateOrderSuccessful successful() {
-    return const CreateOrderSuccessful();
+  CreateOrderSuccessful successful(Order order) {
+    return CreateOrderSuccessful(
+      order,
+    );
   }
 
   CreateOrderError error(Object error, StackTrace stackTrace) {
@@ -1059,21 +1061,21 @@ mixin _$CreateOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
+    required TResult Function(Order order) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -1192,7 +1194,7 @@ class _$CreateOrderStart implements CreateOrderStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
+    required TResult Function(Order order) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(details, items);
@@ -1202,7 +1204,7 @@ class _$CreateOrderStart implements CreateOrderStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(details, items);
@@ -1212,7 +1214,7 @@ class _$CreateOrderStart implements CreateOrderStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1274,6 +1276,7 @@ abstract class $CreateOrderSuccessfulCopyWith<$Res> {
   factory $CreateOrderSuccessfulCopyWith(CreateOrderSuccessful value,
           $Res Function(CreateOrderSuccessful) then) =
       _$CreateOrderSuccessfulCopyWithImpl<$Res>;
+  $Res call({Order order});
 }
 
 /// @nodoc
@@ -1286,57 +1289,80 @@ class _$CreateOrderSuccessfulCopyWithImpl<$Res>
 
   @override
   CreateOrderSuccessful get _value => super._value as CreateOrderSuccessful;
+
+  @override
+  $Res call({
+    Object? order = freezed,
+  }) {
+    return _then(CreateOrderSuccessful(
+      order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$CreateOrderSuccessful implements CreateOrderSuccessful {
-  const _$CreateOrderSuccessful();
+  const _$CreateOrderSuccessful(this.order);
+
+  @override
+  final Order order;
 
   @override
   String toString() {
-    return 'CreateOrder.successful()';
+    return 'CreateOrder.successful(order: $order)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CreateOrderSuccessful);
+        (other.runtimeType == runtimeType &&
+            other is CreateOrderSuccessful &&
+            (identical(other.order, order) || other.order == order));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, order);
+
+  @JsonKey(ignore: true)
+  @override
+  $CreateOrderSuccessfulCopyWith<CreateOrderSuccessful> get copyWith =>
+      _$CreateOrderSuccessfulCopyWithImpl<CreateOrderSuccessful>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
+    required TResult Function(Order order) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful();
+    return successful(order);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call();
+    return successful?.call(order);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful();
+      return successful(order);
     }
     return orElse();
   }
@@ -1377,7 +1403,12 @@ class _$CreateOrderSuccessful implements CreateOrderSuccessful {
 }
 
 abstract class CreateOrderSuccessful implements CreateOrder {
-  const factory CreateOrderSuccessful() = _$CreateOrderSuccessful;
+  const factory CreateOrderSuccessful(Order order) = _$CreateOrderSuccessful;
+
+  Order get order;
+  @JsonKey(ignore: true)
+  $CreateOrderSuccessfulCopyWith<CreateOrderSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1455,7 +1486,7 @@ class _$CreateOrderError implements CreateOrderError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items) $default, {
-    required TResult Function() successful,
+    required TResult Function(Order order) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -1465,7 +1496,7 @@ class _$CreateOrderError implements CreateOrderError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -1475,7 +1506,7 @@ class _$CreateOrderError implements CreateOrderError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(OrderDetails details, List<CarPart> items)? $default, {
-    TResult Function()? successful,
+    TResult Function(Order order)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

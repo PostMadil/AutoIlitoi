@@ -37,7 +37,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
 
   List<String?> _nameErrorText = <String?>[];
   List<TextEditingController> _nameFieldControlers = <TextEditingController>[];
-  List<String?> _codeErrorText = <String?>[];
+
   List<TextEditingController> _codeFieldControlers = <TextEditingController>[];
   List<String?> _qtyErrorText = <String?>[];
   List<TextEditingController> _qtyFieldControlers = <TextEditingController>[];
@@ -112,11 +112,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
           _nameErrorText.add(null);
         }
         //Verify cod
-        if (element.code == '' || element.code == null) {
-          _codeErrorText.add('CodInvalid');
-        } else {
-          _codeErrorText.add(null);
-        }
+
         //Verify qty
         if (element.qty == '' || element.qty == null) {
           _qtyErrorText.add('Cantitate invalida');
@@ -190,7 +186,31 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
             },
             icon: Icon(Icons.arrow_back_rounded)),
         SelectableText('Modifica detaliile comenzii:'),
-        const SizedBox(),
+        ElevatedButton(
+          child: Text('SALVEAZA'),
+          onPressed: () {
+            if (Form.of(context)!.validate()) {
+              List<CarPart> builtItems = items.map((e) => e.build()).toList();
+              StoreProvider.of<AppState>(context).dispatch(UpdateOrder(Order.fromData(
+                  id: widget.order.id,
+                  details: OrderDetails.fromData(
+                    isOffer: _isOffer,
+                    carPlate: _numarInmatriculare,
+                    chassisNumber: _serieSasiu,
+                    name: _nume,
+                    phoneNumber: _telefon == ''? '---':_telefon,
+                    total: _total.toString(),
+                    paid: _isPaid,
+                    make: _make,
+                    model: _model,
+                    clientId: _isFromClient == true? selectedClient!.id:'',
+                    finished: false,
+                  ),
+                  items: builtItems,
+                  dateTime: widget.order.dateTime)));
+            }
+          },
+        ),
       ],
     );
   }
@@ -245,11 +265,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 //fillColor: Colors.green
               ),
               validator: (String? val) {
-                if (val == '') {
-                  return "Telefon cannot be empty";
-                } else {
                   return null;
-                }
               },
               keyboardType: TextInputType.emailAddress,
               style: new TextStyle(
@@ -555,18 +571,14 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                   child: TextField(
                                     controller: _codeFieldControlers[index],
                                     decoration: InputDecoration(
-                                      errorText: _codeErrorText[index],
+
                                       labelText: 'COD PIESA',
                                     ),
                                     onChanged: (value) {
                                       setState(() {
                                         //_codeFieldControlers[index].text = value;
                                         items[index].code = value;
-                                        if (items[index].build().code == '') {
-                                          _codeErrorText[index] = 'Cod invalid';
-                                        } else {
-                                          _codeErrorText[index] = null;
-                                        }
+
                                       });
                                     },
                                   ),
@@ -628,8 +640,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                       log(_qtyErrorText.toString());
                                       _nameErrorText.removeAt(index);
                                       log(_nameErrorText.toString());
-                                      _codeErrorText.removeAt(index);
-                                      log(_codeErrorText.toString());
+
 
                                       //REMOVING THE STATE TEXT OF ITEM AT INDEX
                                       _codeFieldControlers.removeAt(index);
@@ -850,11 +861,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                             _nameErrorText.add(null);
                                           }
                                           //Verify cod
-                                          if (_codPiesa == '' || _codPiesa == null) {
-                                            _codeErrorText.add('CodInvalid');
-                                          } else {
-                                            _codeErrorText.add(null);
-                                          }
+
                                           //Verify qty
                                           if (_qty == '' || _qty == null) {
                                             _qtyErrorText.add('Cantitate invalida');
@@ -905,30 +912,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 ],
               ),
             ),
-            ElevatedButton(
-              child: Text('SALVEAZA'),
-              onPressed: () {
-                if (Form.of(context)!.validate()) {
-                  List<CarPart> builtItems = items.map((e) => e.build()).toList();
-                  StoreProvider.of<AppState>(context).dispatch(UpdateOrder(Order.fromData(
-                      id: widget.order.id,
-                      details: OrderDetails.fromData(
-                        isOffer: _isOffer,
-                        carPlate: _numarInmatriculare,
-                        chassisNumber: _serieSasiu,
-                        name: _nume,
-                        phoneNumber: _telefon,
-                        total: _total.toString(),
-                        paid: _isPaid,
-                        make: _make,
-                        model: _model,
-                        clientId: _isFromClient == true? selectedClient!.id:'',
-                      ),
-                      items: builtItems,
-                      dateTime: widget.order.dateTime)));
-                }
-              },
-            ),
+
           ],
         );
       },

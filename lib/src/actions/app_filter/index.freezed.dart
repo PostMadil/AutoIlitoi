@@ -399,8 +399,10 @@ abstract class SetSearchParam$ implements SetSearchParam {
 class _$FilterOrdersTearOff {
   const _$FilterOrdersTearOff();
 
-  FilterOrders$ call() {
-    return const FilterOrders$();
+  FilterOrders$ call({Order? order}) {
+    return FilterOrders$(
+      order: order,
+    );
   }
 }
 
@@ -408,13 +410,20 @@ class _$FilterOrdersTearOff {
 const $FilterOrders = _$FilterOrdersTearOff();
 
 /// @nodoc
-mixin _$FilterOrders {}
+mixin _$FilterOrders {
+  Order? get order => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $FilterOrdersCopyWith<FilterOrders> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $FilterOrdersCopyWith<$Res> {
   factory $FilterOrdersCopyWith(
           FilterOrders value, $Res Function(FilterOrders) then) =
       _$FilterOrdersCopyWithImpl<$Res>;
+  $Res call({Order? order});
 }
 
 /// @nodoc
@@ -424,13 +433,28 @@ class _$FilterOrdersCopyWithImpl<$Res> implements $FilterOrdersCopyWith<$Res> {
   final FilterOrders _value;
   // ignore: unused_field
   final $Res Function(FilterOrders) _then;
+
+  @override
+  $Res call({
+    Object? order = freezed,
+  }) {
+    return _then(_value.copyWith(
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $FilterOrders$CopyWith<$Res> {
+abstract class $FilterOrders$CopyWith<$Res>
+    implements $FilterOrdersCopyWith<$Res> {
   factory $FilterOrders$CopyWith(
           FilterOrders$ value, $Res Function(FilterOrders$) then) =
       _$FilterOrders$CopyWithImpl<$Res>;
+  @override
+  $Res call({Order? order});
 }
 
 /// @nodoc
@@ -442,30 +466,59 @@ class _$FilterOrders$CopyWithImpl<$Res> extends _$FilterOrdersCopyWithImpl<$Res>
 
   @override
   FilterOrders$ get _value => super._value as FilterOrders$;
+
+  @override
+  $Res call({
+    Object? order = freezed,
+  }) {
+    return _then(FilterOrders$(
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FilterOrders$ implements FilterOrders$ {
-  const _$FilterOrders$();
+  const _$FilterOrders$({this.order});
+
+  @override
+  final Order? order;
 
   @override
   String toString() {
-    return 'FilterOrders()';
+    return 'FilterOrders(order: $order)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FilterOrders$);
+        (other.runtimeType == runtimeType &&
+            other is FilterOrders$ &&
+            (identical(other.order, order) || other.order == order));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, order);
+
+  @JsonKey(ignore: true)
+  @override
+  $FilterOrders$CopyWith<FilterOrders$> get copyWith =>
+      _$FilterOrders$CopyWithImpl<FilterOrders$>(this, _$identity);
 }
 
 abstract class FilterOrders$ implements FilterOrders {
-  const factory FilterOrders$() = _$FilterOrders$;
+  const factory FilterOrders$({Order? order}) = _$FilterOrders$;
+
+  @override
+  Order? get order;
+  @override
+  @JsonKey(ignore: true)
+  $FilterOrders$CopyWith<FilterOrders$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
