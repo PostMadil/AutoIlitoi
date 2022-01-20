@@ -90,7 +90,7 @@ Widget listOfOffers(List<Client> clients) {
                     ),
                   );
                 }
-              case 1:
+              case 1: w
                 {
                   return Container(
                     color: index ~/ 6 % 2 == 1 ? unfinishedOrder : Colors.white60,
