@@ -129,7 +129,6 @@ class _DashboardCommandsState extends State<DashboardCommands> with CreateOrderM
                   return SelectedOrderContainer(builder: (BuildContext context, Order? selectedOrder) {
                     return Column(
                       children: <Widget>[
-
                         // ListTile(
                         //   title: Text('Comenzi'),
                         //   leading: Checkbox(
@@ -169,179 +168,183 @@ class _DashboardCommandsState extends State<DashboardCommands> with CreateOrderM
                         //     },
                         //   ),
                         // ),
-                        selectedView == 4 || selectedView == 5 || selectedView == 10? SizedBox():Column(children: <Widget>[
-                          ListTile(
-                            title: Text('Achitate'),
-                            leading: Checkbox(
-                              checkColor: Colors.white,
-                              fillColor: MaterialStateProperty.resolveWith(getColor),
-                              value: filterOptions.onlyPaid,
-                              onChanged: (bool? value) {
-                                StoreProvider.of<AppState>(context).dispatch(SetOnlyPaid());
-                                StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('Neachitate'),
-                            leading: Checkbox(
-                              checkColor: Colors.white,
-                              fillColor: MaterialStateProperty.resolveWith(getColor),
-                              value: filterOptions.onlyUnpaid,
-                              onChanged: (bool? value) {
-                                StoreProvider.of<AppState>(context).dispatch(SetOnlyUnpaid());
-                                StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('Mai mari decat:'),
-                            leading: Checkbox(
-                              checkColor: Colors.white,
-                              fillColor: MaterialStateProperty.resolveWith(getColor),
-                              value: filterOptions.higherThan,
-                              onChanged: (bool? value) {
-                                StoreProvider.of<AppState>(context).dispatch(SetHigherThan());
-                                StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 4 - 16,
-                              child: TextField(
-                                enabled: filterOptions.higherThan,
-                                decoration: new InputDecoration(
-                                  labelText: "LIMITA",
-                                  fillColor: Colors.white,
-                                  border: new OutlineInputBorder(
-                                    borderRadius: new BorderRadius.circular(25.0),
-                                    borderSide: new BorderSide(),
+                        selectedView == 4 || selectedView == 5 || selectedView == 10
+                            ? SizedBox()
+                            : Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    title: Text('Achitate'),
+                                    leading: Checkbox(
+                                      checkColor: Colors.white,
+                                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                                      value: filterOptions.onlyPaid,
+                                      onChanged: (bool? value) {
+                                        StoreProvider.of<AppState>(context).dispatch(SetOnlyPaid());
+                                        StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                      },
+                                    ),
                                   ),
-                                  //fillColor: Colors.green
-                                ),
-                                keyboardType: TextInputType.emailAddress,
-                                style: new TextStyle(
-                                  fontFamily: "Poppins",
-                                ),
-                                onChanged: (value) {
-                                  if (double.tryParse(value) != null) {
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(SetHigherThanAmount(double.parse(value)));
-                                    StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            title: Text('Mai mici decat:'),
-                            leading: Checkbox(
-                              checkColor: Colors.white,
-                              fillColor: MaterialStateProperty.resolveWith(getColor),
-                              value: filterOptions.lowerThan,
-                              onChanged: (bool? value) {
-                                StoreProvider.of<AppState>(context).dispatch(SetLowerThan());
-                                StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 4 - 16,
-                              child: TextField(
-                                enabled: filterOptions.lowerThan,
-                                decoration: new InputDecoration(
-                                  labelText: "LIMITA",
-                                  fillColor: Colors.white,
-                                  border: new OutlineInputBorder(
-                                    borderRadius: new BorderRadius.circular(25.0),
-                                    borderSide: new BorderSide(),
+                                  ListTile(
+                                    title: Text('Neachitate'),
+                                    leading: Checkbox(
+                                      checkColor: Colors.white,
+                                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                                      value: filterOptions.onlyUnpaid,
+                                      onChanged: (bool? value) {
+                                        StoreProvider.of<AppState>(context).dispatch(SetOnlyUnpaid());
+                                        StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                      },
+                                    ),
                                   ),
-                                  //fillColor: Colors.green
-                                ),
-                                keyboardType: TextInputType.emailAddress,
-                                style: new TextStyle(
-                                  fontFamily: "Poppins",
-                                ),
-                                onChanged: (value) {
-                                  if (double.tryParse(value) != null) {
-                                    StoreProvider.of<AppState>(context).dispatch(SetLowerThanAmount(double.parse(value)));
-                                    StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: DropdownButton(
-                              value: filterOptions.searchBy,
-                              items: searchBy
-                                  .map((e) => DropdownMenuItem(
-                                child: Text(e),
-                                value: e,
-                              ))
-                                  .toList(),
-                              onChanged: (String? value) {
-                                if (value != null && value != '') {
-                                  StoreProvider.of<AppState>(context).dispatch(SetSearchBy(value));
-                                  StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                                }
-                                log('SearchBy updated to: $value!');
-                              },
-                              isExpanded: true,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: TextField(
-                              textInputAction: TextInputAction.search,
-                              textCapitalization: TextCapitalization.words,
-                              decoration: InputDecoration(
-                                focusColor: Colors.blue,
-                                hintText: 'Cautare',
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                              onChanged: (String value) {
-                                StoreProvider.of<AppState>(context).dispatch(SetSearchParam(value: value));
-                                StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                              },
-                            ),
-                          ),
-                          //Expanded(child: SizedBox()),
-                          filterOptions.selectedClient != null
-                              ? Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.blue,
-                                ),
-                                borderRadius: BorderRadius.all(Radius.circular(20))
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(filterOptions.selectedClient!.name),
-                                IconButton(
-                                  onPressed: () {
-                                    StoreProvider.of<AppState>(context).dispatch(SetSelectedClient(null));
-                                    StoreProvider.of<AppState>(context).dispatch(FilterOrders());
-                                  },
-                                  icon: Icon(
-                                    Icons.cancel_outlined,
-                                    color: Colors.red,
+                                  ListTile(
+                                    title: Text('Mai mari decat:'),
+                                    leading: Checkbox(
+                                      checkColor: Colors.white,
+                                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                                      value: filterOptions.higherThan,
+                                      onChanged: (bool? value) {
+                                        StoreProvider.of<AppState>(context).dispatch(SetHigherThan());
+                                        StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                      },
+                                    ),
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                              : SizedBox(),
-                        ],),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width / 4 - 16,
+                                      child: TextField(
+                                        enabled: filterOptions.higherThan,
+                                        decoration: new InputDecoration(
+                                          labelText: "LIMITA",
+                                          fillColor: Colors.white,
+                                          border: new OutlineInputBorder(
+                                            borderRadius: new BorderRadius.circular(25.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          //fillColor: Colors.green
+                                        ),
+                                        keyboardType: TextInputType.emailAddress,
+                                        style: new TextStyle(
+                                          fontFamily: "Poppins",
+                                        ),
+                                        onChanged: (value) {
+                                          if (double.tryParse(value) != null) {
+                                            StoreProvider.of<AppState>(context)
+                                                .dispatch(SetHigherThanAmount(double.parse(value)));
+                                            StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text('Mai mici decat:'),
+                                    leading: Checkbox(
+                                      checkColor: Colors.white,
+                                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                                      value: filterOptions.lowerThan,
+                                      onChanged: (bool? value) {
+                                        StoreProvider.of<AppState>(context).dispatch(SetLowerThan());
+                                        StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width / 4 - 16,
+                                      child: TextField(
+                                        enabled: filterOptions.lowerThan,
+                                        decoration: new InputDecoration(
+                                          labelText: "LIMITA",
+                                          fillColor: Colors.white,
+                                          border: new OutlineInputBorder(
+                                            borderRadius: new BorderRadius.circular(25.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          //fillColor: Colors.green
+                                        ),
+                                        keyboardType: TextInputType.emailAddress,
+                                        style: new TextStyle(
+                                          fontFamily: "Poppins",
+                                        ),
+                                        onChanged: (value) {
+                                          if (double.tryParse(value) != null) {
+                                            StoreProvider.of<AppState>(context)
+                                                .dispatch(SetLowerThanAmount(double.parse(value)));
+                                            StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: DropdownButton(
+                                      value: filterOptions.searchBy,
+                                      items: searchBy
+                                          .map((e) => DropdownMenuItem(
+                                                child: Text(e),
+                                                value: e,
+                                              ))
+                                          .toList(),
+                                      onChanged: (String? value) {
+                                        if (value != null && value != '') {
+                                          StoreProvider.of<AppState>(context).dispatch(SetSearchBy(value));
+                                          StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                        }
+                                        log('SearchBy updated to: $value!');
+                                      },
+                                      isExpanded: true,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: TextField(
+                                      textInputAction: TextInputAction.search,
+                                      textCapitalization: TextCapitalization.words,
+                                      decoration: InputDecoration(
+                                        focusColor: Colors.blue,
+                                        hintText: 'Cautare',
+                                        suffixIcon: Icon(
+                                          Icons.search,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        StoreProvider.of<AppState>(context).dispatch(SetSearchParam(value: value));
+                                        StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                      },
+                                    ),
+                                  ),
+                                  //Expanded(child: SizedBox()),
+                                  filterOptions.selectedClient != null
+                                      ? Container(
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: Colors.blue,
+                                              ),
+                                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(filterOptions.selectedClient!.name),
+                                              IconButton(
+                                                onPressed: () {
+                                                  StoreProvider.of<AppState>(context).dispatch(SetSelectedClient(null));
+                                                  StoreProvider.of<AppState>(context).dispatch(FilterOrders());
+                                                },
+                                                icon: Icon(
+                                                  Icons.cancel_outlined,
+                                                  color: Colors.red,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      : SizedBox(),
+                                ],
+                              ),
                       ],
                     );
                   });

@@ -4,7 +4,6 @@ import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/container/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
-import 'package:auto_ilitoi/src/presentation/mixins/dialog/delete_client_mixin.dart';
 import 'package:auto_ilitoi/src/presentation/mixins/dialog/edit_client_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -104,7 +103,6 @@ Widget listOfClients() {
                                 StoreProvider.of<AppState>(context).dispatch(SetSelectedClient(currentClient));
                                 StoreProvider.of<AppState>(context).dispatch(FilterOrders());
                                 StoreProvider.of<AppState>(context).dispatch(SetSelectedView(0));
-
                               },
                               icon: Icon(
                                 Icons.open_in_new,

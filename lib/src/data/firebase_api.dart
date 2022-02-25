@@ -54,6 +54,7 @@ class FirebaseApi {
 
     return orders;
   }
+
   Future<Order> createOrder(OrderDetails details, List<CarPart> items) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     String docId = ordersList.doc().id;
@@ -68,6 +69,7 @@ class FirebaseApi {
     }
     return newOrder;
   }
+
   Future<Order> updateOrder(Order order) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     try {
@@ -77,6 +79,7 @@ class FirebaseApi {
     }
     return order;
   }
+
   Future<String> deleteOrder(String id) async {
     final CollectionReference ordersList = _firestore.collection('orders');
     try {
@@ -86,17 +89,18 @@ class FirebaseApi {
     }
     return id;
   }
+
   Future<List<Client>> getClients() async {
     final CollectionReference clientsList = _firestore.collection('clients');
     final List<Client> clients = <Client>[];
-    try{
-      await clientsList.orderBy('name',descending: false).get().then((querySnapshot) {
+    try {
+      await clientsList.orderBy('name', descending: false).get().then((querySnapshot) {
         querySnapshot.docs.forEach((element) {
           print(element.data);
           clients.add(Client.fromJson(element.data()));
         });
       });
-    }catch(e) {
+    } catch (e) {
       print(e);
     }
     return clients;
@@ -106,9 +110,9 @@ class FirebaseApi {
     final CollectionReference clientsList = _firestore.collection('clients');
     String docId = clientsList.doc().id;
     final Client newClient = Client.fromData(id: docId, name: name, phoneNumber: phoneNumber);
-    try{
+    try {
       clientsList.doc(docId).set(newClient.json);
-    } catch(e) {
+    } catch (e) {
       print(e);
     }
     return newClient;
@@ -117,21 +121,21 @@ class FirebaseApi {
   Future<void> updateClient(Client client) async {
     final CollectionReference clientsList = _firestore.collection('clients');
 
-    try{
+    try {
       await clientsList.doc(client.id).update(client.json);
-    }catch(e) {
+    } catch (e) {
       print(e);
     }
   }
 
-  Future<Client> deleteClient(Client client,List<Order> orders) async {
-    final  CollectionReference clientsList = _firestore.collection('clients');
+  Future<Client> deleteClient(Client client, List<Order> orders) async {
+    final CollectionReference clientsList = _firestore.collection('clients');
     final CollectionReference ordersList = _firestore.collection('orders');
     try {
-      orders.forEach((element)  async {
-        if(element.clientId != null && element.clientId != ''){
-          if(element.clientId == client.id){
-             await ordersList.doc(element.id).delete();
+      orders.forEach((element) async {
+        if (element.clientId != null && element.clientId != '') {
+          if (element.clientId == client.id) {
+            await ordersList.doc(element.id).delete();
           }
         }
       });

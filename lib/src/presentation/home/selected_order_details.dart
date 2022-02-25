@@ -1,7 +1,6 @@
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/container/index.dart';
-import 'package:auto_ilitoi/src/data/pdf_api.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:auto_ilitoi/src/presentation/home/create_invoice_dialog.dart';
 import 'package:auto_ilitoi/src/presentation/home/invalid_order_dialog.dart';
@@ -14,9 +13,8 @@ Widget selectedOrderDetails(List<Client> clients) {
   return SelectedOrderContainer(builder: (BuildContext context, Order? order) {
     if (order != null) {
       Client? currentClient = null;
-      if (order!.clientId != null && order!.clientId != '') {
-        currentClient =
-            clients.firstWhere((element) => element.id == order.clientId);
+      if (order.clientId != null && order.clientId != '') {
+        currentClient = clients.firstWhere((element) => element.id == order.clientId);
       }
       return Column(
         children: <Widget>[
@@ -25,12 +23,10 @@ Widget selectedOrderDetails(List<Client> clients) {
             children: <Widget>[
               IconButton(
                   onPressed: () {
-                    if(order.finished == true){
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(10));
+                    if (order.finished == true) {
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(10));
                     } else {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(0));
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(0));
                     }
                   },
                   icon: Icon(Icons.arrow_back_rounded)),
@@ -38,24 +34,23 @@ Widget selectedOrderDetails(List<Client> clients) {
               order.isOffer == true
                   ? ElevatedButton(
                       onPressed: () {
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(UpdateOrder(Order.fromData(
-                                id: order.id,
-                                details: OrderDetails.fromData(
-                                  isOffer: false,
-                                  carPlate: order.carPlate,
-                                  chassisNumber: order.chassisNumber,
-                                  name: order.name,
-                                  phoneNumber: order.phoneNumber,
-                                  total: order.total,
-                                  paid: order.paid,
-                                  make: order.make!,
-                                  model: order.model!,
-                                  clientId: order.clientId,
-                                  finished: false,
-                                ),
-                                items: order.items.toList(),
-                                dateTime: DateTime.now().toString())));
+                        StoreProvider.of<AppState>(context).dispatch(UpdateOrder(Order.fromData(
+                            id: order.id,
+                            details: OrderDetails.fromData(
+                              isOffer: false,
+                              carPlate: order.carPlate,
+                              chassisNumber: order.chassisNumber,
+                              name: order.name,
+                              phoneNumber: order.phoneNumber,
+                              total: order.total,
+                              paid: order.paid,
+                              make: order.make!,
+                              model: order.model!,
+                              clientId: order.clientId,
+                              finished: false,
+                            ),
+                            items: order.items.toList(),
+                            dateTime: DateTime.now().toString())));
                       },
                       child: Row(
                         children: <Widget>[
@@ -65,33 +60,29 @@ Widget selectedOrderDetails(List<Client> clients) {
                       ),
                     )
                   : SizedBox(),
-              (order.finished == null || order.finished == false) &&
-                      order.isOffer == false &&
-                      order.finished != true
+              (order.finished == null || order.finished == false) && order.isOffer == false && order.finished != true
                   ? ElevatedButton(
                       onPressed: () {
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(UpdateOrder(Order.fromData(
-                                id: order.id,
-                                details: OrderDetails.fromData(
-                                  isOffer: order.isOffer,
-                                  carPlate: order.carPlate,
-                                  chassisNumber: order.chassisNumber,
-                                  name: order.name,
-                                  phoneNumber: order.phoneNumber,
-                                  total: order.total,
-                                  paid: order.paid,
-                                  make: order.make!,
-                                  model: order.model!,
-                                  clientId: order.clientId,
-                                  finished: true,
-                                ),
-                                items: order.items.toList(),
-                                dateTime: DateTime.now().toString())));
+                        StoreProvider.of<AppState>(context).dispatch(UpdateOrder(Order.fromData(
+                            id: order.id,
+                            details: OrderDetails.fromData(
+                              isOffer: order.isOffer,
+                              carPlate: order.carPlate,
+                              chassisNumber: order.chassisNumber,
+                              name: order.name,
+                              phoneNumber: order.phoneNumber,
+                              total: order.total,
+                              paid: order.paid,
+                              make: order.make!,
+                              model: order.model!,
+                              clientId: order.clientId,
+                              finished: true,
+                            ),
+                            items: order.items.toList(),
+                            dateTime: DateTime.now().toString())));
                       },
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green),
+                        backgroundColor: MaterialStateProperty.all(Colors.green),
                       ),
                       child: Row(
                         children: <Widget>[
@@ -114,9 +105,7 @@ Widget selectedOrderDetails(List<Client> clients) {
                       Icons.delete_forever,
                       color: Colors.red,
                     ),
-                    order.isOffer == true
-                        ? Text('Sterge Oferta')
-                        : Text('Sterge Comanda'),
+                    order.isOffer == true ? Text('Sterge Oferta') : Text('Sterge Comanda'),
                   ],
                 ),
               ),
@@ -130,10 +119,7 @@ Widget selectedOrderDetails(List<Client> clients) {
                         }
                       },
                       child: Row(
-                        children: <Widget>[
-                          Icon(Icons.download_sharp),
-                          Text('FACTURA')
-                        ],
+                        children: <Widget>[Icon(Icons.download_sharp), Text('FACTURA')],
                       ),
                     )
                   : SizedBox(),
@@ -146,19 +132,15 @@ Widget selectedOrderDetails(List<Client> clients) {
                   }
                 },
                 child: Row(
-                  children: <Widget>[
-                    Icon(Icons.download_sharp),
-                    Text('OFERTA')
-                  ],
+                  children: <Widget>[Icon(Icons.download_sharp), Text('OFERTA')],
                 ),
               ),
-              order.finished != null && order.finished == true? SizedBox():IconButton(
-                onPressed: () {
-                  StoreProvider.of<AppState>(context)
-                      .dispatch(const SetSelectedView(2));
-                },
-                icon: Icon(Icons.edit),
-              ),
+               IconButton(
+                      onPressed: () {
+                        StoreProvider.of<AppState>(context).dispatch(const SetSelectedView(2));
+                      },
+                      icon: Icon(Icons.edit),
+                    ),
             ],
           ),
           Padding(
@@ -203,10 +185,7 @@ Widget selectedOrderDetails(List<Client> clients) {
                               color: Colors.amberAccent,
                             ),
                       Row(
-                        children: <Widget>[
-                          const SelectableText('Serie sasiu:'),
-                          SelectableText(order.chassisNumber)
-                        ],
+                        children: <Widget>[const SelectableText('Serie sasiu:'), SelectableText(order.chassisNumber)],
                       ),
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,17 +194,12 @@ Widget selectedOrderDetails(List<Client> clients) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Row(
-                        children: <Widget>[
-                          const SelectableText('Total: '),
-                          SelectableText(order.total)
-                        ],
+                        children: <Widget>[const SelectableText('Total: '), SelectableText(order.total)],
                       ),
                       Row(
                         children: <Widget>[
                           const SelectableText('Achitat: '),
-                          order.paid == true
-                              ? Icon(Icons.check_box)
-                              : Icon(Icons.check_box_outline_blank),
+                          order.paid == true ? Icon(Icons.check_box) : Icon(Icons.check_box_outline_blank),
                         ],
                       ),
                     ],
@@ -236,8 +210,7 @@ Widget selectedOrderDetails(List<Client> clients) {
           ),
           Expanded(
             child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, childAspectRatio: 6),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 6),
                 itemCount: (order.items.length + 1) * 3,
                 itemBuilder: (BuildContext context, int index) {
                   if (index < 3) {
@@ -267,17 +240,15 @@ Widget selectedOrderDetails(List<Client> clients) {
                       case 0:
                         {
                           return Center(
-                            child: currentPart.name == null
-                                ? SelectableText('----')
-                                : SelectableText(currentPart.name!),
+                            child:
+                                currentPart.name == null ? SelectableText('----') : SelectableText(currentPart.name!),
                           );
                         }
                       case 1:
                         {
                           return Center(
-                            child: currentPart.code == null
-                                ? SelectableText('----')
-                                : SelectableText(currentPart.code!),
+                            child:
+                                currentPart.code == null ? SelectableText('----') : SelectableText(currentPart.code!),
                           );
                         }
                       case 2:

@@ -1,23 +1,11 @@
-import 'dart:developer';
 
 import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
-import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 Future<void> showEditClientDialog(BuildContext context, Client client) {
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
-    }
-    return Colors.red;
-  }
+
 
   String _name = client.name;
   String _phoneNumber = client.phoneNumber;

@@ -1,5 +1,3 @@
-
-
 import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +12,8 @@ Future<void> showDeleteClient(BuildContext context, Client client) {
           'Sunteti sigur ca doriti sa stergeti mecanicul?',
           style: TextStyle(color: Colors.red),
         ),
-        content: Text('Odata cu stergerea mecanicului, toate comenzile corespunzatoare acelui mecanic vor fi sterse. Schimbarile sunt ireversibile!'),
+        content: Text(
+            'Odata cu stergerea mecanicului, toate comenzile corespunzatoare acelui mecanic vor fi sterse. Schimbarile sunt ireversibile!'),
         actions: <Widget>[
           TextButton(
             onPressed: () {

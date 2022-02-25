@@ -1,6 +1,5 @@
 part of client_actions;
 
-
 @freezed
 class UpdateClient with _$UpdateClient implements AppAction {
   const factory UpdateClient(Client client) = UpdateClientStart;

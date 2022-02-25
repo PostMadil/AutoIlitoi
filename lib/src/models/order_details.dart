@@ -1,12 +1,9 @@
 part of models;
 
-abstract class OrderDetails
-    implements Built<OrderDetails, OrderDetailsBuilder> {
-  factory OrderDetails([void Function(OrderDetailsBuilder b) updates]) =
-      _$OrderDetails;
+abstract class OrderDetails implements Built<OrderDetails, OrderDetailsBuilder> {
+  factory OrderDetails([void Function(OrderDetailsBuilder b) updates]) = _$OrderDetails;
 
-  factory OrderDetails.fromJson(dynamic json) =>
-      serializers.deserializeWith(serializer, json) as OrderDetails;
+  factory OrderDetails.fromJson(dynamic json) => serializers.deserializeWith(serializer, json) as OrderDetails;
 
   factory OrderDetails.initialState() {
     return _$OrderDetails((OrderDetailsBuilder b) {
@@ -73,8 +70,7 @@ abstract class OrderDetails
 
   bool? get finished;
 
-  Map<String, dynamic> get json =>
-      serializers.serializeWith(serializer, this) as Map<String, dynamic>;
+  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<OrderDetails> get serializer => _$orderDetailsSerializer;
 }

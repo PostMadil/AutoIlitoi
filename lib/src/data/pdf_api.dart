@@ -30,19 +30,10 @@ class PdfApi {
           pageFormat: PdfPageFormat.a4,
           build: (pw.Context context) {
             return [
-              buildHeader1(
-                  serie: serie,
-                  numar: numar,
-                  headerStyle: headerStyle,
-                  isRon: isRon),
-              buildHeader2(
-                  order: order, style: headerStyle, cif: cif, address: address),
+              buildHeader1(serie: serie, numar: numar, headerStyle: headerStyle, isRon: isRon),
+              buildHeader2(order: order, style: headerStyle, cif: cif, address: address),
               buildOrder(order, ttf),
-              buildFooter(
-                  order: order,
-                  style: headerStyle,
-                  modPlata: modPlata,
-                  isRon: isRon),
+              buildFooter(order: order, style: headerStyle, modPlata: modPlata, isRon: isRon),
             ];
           }));
     } else {
@@ -52,16 +43,14 @@ class PdfApi {
             return <pw.Widget>[
               buildOfferHeader(make: order.make!, model: order.model!),
               buildOrder(order, ttf),
-              buildFooter(
-                  order: order, style: headerStyle, modPlata: '', isRon: isRon),
+              buildFooter(order: order, style: headerStyle, modPlata: '', isRon: isRon),
             ];
           }));
     }
 
     final bytes = await pdf.save();
 
-    final blob =
-        html.Blob([bytes], 'application/bills/${order.name + order.dateTime}');
+    final blob = html.Blob([bytes], 'application/bills/${order.name + order.dateTime}');
 
     final url = html.Url.createObjectUrlFromBlob(blob);
     final anchor = html.document.createElement('a') as html.AnchorElement
@@ -74,8 +63,7 @@ class PdfApi {
     html.Url.revokeObjectUrl(url);
   }
 
-  static pw.Widget buildOfferHeader(
-      {required String make, required String model}) {
+  static pw.Widget buildOfferHeader({required String make, required String model}) {
     return pw.Padding(
         padding: const pw.EdgeInsets.all(16),
         child: pw.Row(
@@ -89,10 +77,7 @@ class PdfApi {
   }
 
   static pw.Widget buildHeader1(
-      {required String serie,
-      required String numar,
-      required pw.TextStyle headerStyle,
-      required bool isRon}) {
+      {required String serie, required String numar, required pw.TextStyle headerStyle, required bool isRon}) {
     DateTime dateTime = DateTime.now();
     return pw.Padding(
       padding: const pw.EdgeInsets.all(16),
@@ -107,8 +92,7 @@ class PdfApi {
           pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: <pw.Widget>[
-              pw.Text('Data ${dateTime.day}.${dateTime.month}.${dateTime.year}',
-                  style: headerStyle),
+              pw.Text('Data ${dateTime.day}.${dateTime.month}.${dateTime.year}', style: headerStyle),
               pw.Text(
                 isRon == true ? '-RON-' : '-EUR-',
                 style: headerStyle,
@@ -121,10 +105,7 @@ class PdfApi {
   }
 
   static pw.Widget buildHeader2(
-      {required Order order,
-      required pw.TextStyle style,
-      required String cif,
-      required String address}) {
+      {required Order order, required pw.TextStyle style, required String cif, required String address}) {
     return pw.Column(
       children: <pw.Widget>[
         pw.Row(
@@ -166,7 +147,7 @@ class PdfApi {
                   pw.Text('CAJVANA nr. 1083 jud. SUCEAVA', style: style),
                   pw.Text('Banca TRANSILVANIA', style: style),
                   pw.Text('IBAN', style: style),
-                  pw.Text('RO49BTRLRONCRT10292301', style: style),
+                  pw.Text('RO49BTRLRONCRT0510292301', style: style),
                 ],
               ),
             ),
@@ -210,11 +191,9 @@ class PdfApi {
         item.type == null ? '' : item.type!,
         double.parse(item.qty!).toStringAsFixed(3),
         ((double.parse(item.price!)) / 1.19).toStringAsFixed(4),
-        (double.parse(((double.parse(item.price!)) / 1.19).toStringAsFixed(4)) *
-                double.parse(item.qty!))
+        (double.parse(((double.parse(item.price!)) / 1.19).toStringAsFixed(4)) * double.parse(item.qty!))
             .toStringAsFixed(2),
-        (double.parse(item.price!) / 1.19 * double.parse(item.qty!) * 0.19)
-            .toStringAsFixed(2),
+        (double.parse(item.price!) / 1.19 * double.parse(item.qty!) * 0.19).toStringAsFixed(2),
       ];
     }).toList();
 
@@ -222,8 +201,7 @@ class PdfApi {
       data: data,
       headers: headers,
       border: null,
-      headerStyle: pw.TextStyle(
-          fontWeight: pw.FontWeight.normal, font: ttf, fontSize: 8),
+      headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.normal, font: ttf, fontSize: 8),
       headerDecoration: pw.BoxDecoration(color: PdfColors.grey300),
       cellHeight: 16,
       cellStyle: pw.TextStyle(font: ttf, fontSize: 8),
@@ -240,19 +218,12 @@ class PdfApi {
   }
 
   static pw.Widget buildFooter(
-      {required Order order,
-      required pw.TextStyle style,
-      required String modPlata,
-      required bool isRon}) {
+      {required Order order, required pw.TextStyle style, required String modPlata, required bool isRon}) {
     double valoareTotala = 0;
     double tvaTotal = 0;
     order.items.forEach((CarPart item) {
-      valoareTotala += double.parse(
-          (double.parse(item.price!) / 1.19 * double.parse(item.qty!))
-              .toStringAsFixed(2));
-      tvaTotal += double.parse(
-          (double.parse(item.price!) / 1.19 * double.parse(item.qty!) * 0.19)
-              .toStringAsFixed(2));
+      valoareTotala += double.parse((double.parse(item.price!) / 1.19 * double.parse(item.qty!)).toStringAsFixed(2));
+      tvaTotal += double.parse((double.parse(item.price!) / 1.19 * double.parse(item.qty!) * 0.19).toStringAsFixed(2));
     });
 
     return pw.Column(
@@ -273,7 +244,6 @@ class PdfApi {
                 children: <pw.Widget>[
                   pw.Text('Emis de', style: style),
                   pw.Text('ILITOI ADRIAN', style: style),
-
                   pw.Text('CI. SERIA: XV ', style: style),
                   pw.Text('NR. 352438 ', style: style),
                 ],
@@ -288,8 +258,7 @@ class PdfApi {
                 children: <pw.Widget>[
                   pw.Text('Date privind expeditia', style: style),
                   pw.Text('Numele delegatului', style: style),
-                  pw.Text('C.I. seria:          nr:           eliberat de:    ',
-                      style: style),
+                  pw.Text('C.I. seria:          nr:           eliberat de:    ', style: style),
                   pw.Text('Mijlocul de tansport: ', style: style),
                 ],
               ),
@@ -317,7 +286,7 @@ class PdfApi {
                   pw.SizedBox(height: 40),
                   pw.Divider(),
                   pw.Text(
-                      isRon! == true
+                      isRon == true
                           ? 'Total: ${(tvaTotal + valoareTotala).toStringAsFixed(2)} RON'
                           : 'Total: ${(tvaTotal + valoareTotala).toStringAsFixed(2)} EUR',
                       style: style),

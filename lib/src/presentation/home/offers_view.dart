@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/container/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
-import 'package:auto_ilitoi/src/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -73,7 +72,7 @@ Widget listOfOffers(List<Client> clients) {
           } else {
             Order currentOrder = orders[(index - 6) ~/ 6];
             Client? currentClient = null;
-            if(currentOrder.clientId != null && currentOrder.clientId != ''){
+            if (currentOrder.clientId != null && currentOrder.clientId != '') {
               currentClient = clients.firstWhere((element) => element.id == currentOrder.clientId);
             }
             Color unfinishedOrder = Colors.amber;
@@ -86,11 +85,13 @@ Widget listOfOffers(List<Client> clients) {
                   return Container(
                     color: index ~/ 6 % 2 == 1 ? unfinishedOrder : Colors.white60,
                     child: Center(
-                      child: Text(currentOrder.clientId == null || currentOrder.clientId ==''? currentOrder.name:currentClient!.name),
+                      child: Text(currentOrder.clientId == null || currentOrder.clientId == ''
+                          ? currentOrder.name
+                          : currentClient!.name),
                     ),
                   );
                 }
-              case 1: w
+              case 1:
                 {
                   return Container(
                     color: index ~/ 6 % 2 == 1 ? unfinishedOrder : Colors.white60,

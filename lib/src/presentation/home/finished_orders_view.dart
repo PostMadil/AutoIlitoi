@@ -3,12 +3,11 @@ import 'dart:developer';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/container/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
-import 'package:auto_ilitoi/src/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 Widget listOfFinishedOrders() {
-  return ClientsContainer(builder: (BuildContext context, List<Client> clients){
+  return ClientsContainer(builder: (BuildContext context, List<Client> clients) {
     return FinishedOrdersContainer(
       builder: (BuildContext context, List<Order> orders) {
         return GridView.builder(
@@ -82,7 +81,7 @@ Widget listOfFinishedOrders() {
             } else {
               Order currentOrder = orders[(index - 7) ~/ 7];
               Client? currentClient = null;
-              if(currentOrder.clientId != null && currentOrder.clientId != ''){
+              if (currentOrder.clientId != null && currentOrder.clientId != '') {
                 currentClient = clients.firstWhere((element) => element.id == currentOrder.clientId);
               }
               Color currentColor = Colors.green;
@@ -100,7 +99,7 @@ Widget listOfFinishedOrders() {
                     return Container(
                       color: currentColor,
                       child: Center(
-                        child: Text((orders.length + 1 - (index ~/ 7)).toString()) ,
+                        child: Text((orders.length + 1 - (index ~/ 7)).toString()),
                       ),
                     );
                   }
@@ -109,7 +108,9 @@ Widget listOfFinishedOrders() {
                     return Container(
                       color: currentColor,
                       child: Center(
-                        child: Text(currentOrder.clientId == null || currentOrder.clientId ==''? currentOrder.name:currentClient!.name) ,
+                        child: Text(currentOrder.clientId == null || currentOrder.clientId == ''
+                            ? currentOrder.name
+                            : currentClient!.name),
                       ),
                     );
                   }
@@ -118,7 +119,7 @@ Widget listOfFinishedOrders() {
                     return Container(
                       color: currentColor,
                       child: Center(
-                        child: Text('${currentOrder.make} ${currentOrder.model}' ),
+                        child: Text('${currentOrder.make} ${currentOrder.model}'),
                       ),
                     );
                   }
@@ -176,13 +177,12 @@ Widget listOfFinishedOrders() {
         );
       },
     );
-
   });
 }
 
 bool isOrderValid(Order order) {
   int length = order.items.length;
-  if(length < 1 ) return false;
+  if (length < 1) return false;
   for (int i = 0; i < length; i++) {
     if (order.items[i].name == '' || order.items[i].name == null) {
       return false;

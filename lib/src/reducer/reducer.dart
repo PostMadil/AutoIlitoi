@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:auto_ilitoi/src/actions/app_filter/index.dart';
 import 'package:auto_ilitoi/src/actions/app_logic/index.dart';
 import 'package:auto_ilitoi/src/actions/firebase_actions/client_actions/index.dart';
@@ -8,7 +7,6 @@ import 'package:auto_ilitoi/src/actions/firebase_actions/index.dart';
 import 'package:auto_ilitoi/src/models/index.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:redux/redux.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   //TypedReducer<AppState, GetBarsForSelectedStockStart>(_getBarsForSelectedStockStart),
@@ -25,7 +23,6 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetClientsSuccessful>(_getClientsSuccessful),
   TypedReducer<AppState, DeleteClientSuccessful>(_deleteClientSuccessful),
   TypedReducer<AppState, CreateClientSuccessful>(_createClientSuccessful),
-
 
   TypedReducer<AppState, SetSelectedClient>(_setSelectedClient),
   TypedReducer<AppState, SetSelectedOrder>(_setSelectedOrder),
@@ -64,7 +61,7 @@ AppState _getOrdersSuccessful(AppState state, GetOrdersSuccessful action) {
       if (order.isOffer) {
         offers.add(order);
       } else {
-        if(order.finished != null && order.finished! == true){
+        if (order.finished != null && order.finished! == true) {
           finishedOrders.add(order);
         } else {
           orders.add(order);
@@ -237,7 +234,7 @@ AppState _filterOrders(AppState state, FilterOrders action) {
         offers.add(order);
         log("i was filtered as asn offer");
       } else {
-        if(order.finished != null && order.finished! == true){
+        if (order.finished != null && order.finished! == true) {
           finished.add(order);
           log("Added to finished!");
         } else {
@@ -246,17 +243,14 @@ AppState _filterOrders(AppState state, FilterOrders action) {
       }
     });
 
-
     b.offers = ListBuilder(offers);
     b.finishedOrders = ListBuilder(finished);
 
-
-
-    if(state.filterOptions.selectedClient != null){
+    if (state.filterOptions.selectedClient != null) {
       List<Order> aux = <Order>[];
       orders.forEach((Order order) {
-        if(order.clientId != null  && order.clientId != ''){
-          if(order.clientId == state.filterOptions.selectedClient!.id){
+        if (order.clientId != null && order.clientId != '') {
+          if (order.clientId == state.filterOptions.selectedClient!.id) {
             aux.add(order);
           }
         }
@@ -271,9 +265,9 @@ AppState _filterOrders(AppState state, FilterOrders action) {
         case 'Nume':
           {
             orders.forEach((Order order) {
-              if(order.clientId != null && order.clientId !=''){
+              if (order.clientId != null && order.clientId != '') {
                 Client currentClient = state.clients.firstWhere((Client client) => client.id == order.clientId);
-                if(currentClient.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                if (currentClient.name.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
                   aux.add(order);
               } else {
                 if (order.name != null &&
@@ -285,9 +279,9 @@ AppState _filterOrders(AppState state, FilterOrders action) {
         case 'Telefon':
           {
             orders.forEach((Order order) {
-              if(order.clientId != null && order.clientId != ''){
+              if (order.clientId != null && order.clientId != '') {
                 Client currentClient = state.clients.firstWhere((Client client) => client.id == order.clientId);
-                if(currentClient.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
+                if (currentClient.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
                   aux.add(order);
               } else {
                 if (order.phoneNumber.toUpperCase().contains(state.filterOptions.searchParam.toUpperCase()))
@@ -332,7 +326,7 @@ AppState _filterOrders(AppState state, FilterOrders action) {
           }
       }
       orders.clear();
-      if(aux.length!=0){
+      if (aux.length != 0) {
         orders.addAll(aux);
       }
     }
@@ -372,9 +366,9 @@ AppState _filterOrders(AppState state, FilterOrders action) {
     }
     log("HERE IS THE MEW ORDER" + orders.last.name.toString());
     log('length: ${orders.length}');
-    if(orders.length!=0){
+    if (orders.length != 0) {
       b.selectedOrders = ListBuilder(orders);
-    }else {
+    } else {
       log("No remaining orders");
       b.selectedOrders.clear();
     }
@@ -396,47 +390,44 @@ AppState _setSearchBy(AppState state, SetSearchBy action) {
 
 AppState _deleteOrderSuccessful(AppState state, DeleteOrderSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    if(b.selectedOrder.isOffer == true) {
+    if (b.selectedOrder.isOffer == true) {
       b.selectedView = 4;
     } else {
-      if(b.selectedOrder.finished == true) {
+      if (b.selectedOrder.finished == true) {
         b.selectedView = 10;
-      } else{
+      } else {
         b.selectedView = 0;
       }
     }
     b.orders.remove(action.order);
-    if(action.order.isOffer){
+    if (action.order.isOffer) {
       b.offers.remove(action.order);
-    }else{
-      if(action.order.finished == true) {
+    } else {
+      if (action.order.finished == true) {
         b.finishedOrders.remove(action.order);
       } else {
         b.selectedOrders.remove(action.order);
       }
     }
-
-
   });
 }
 
 AppState _getClientsSuccessful(AppState state, GetClientsSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    if(action.clients.isEmpty){
+    if (action.clients.isEmpty) {
       log('clients not found');
-    }else{
+    } else {
       b.clients = ListBuilder(action.clients);
       log('clients found and added');
-
     }
   });
 }
 
 AppState _deleteClientSuccessful(AppState state, DeleteClientSuccessful action) {
-  return state.rebuild((AppStateBuilder b ) {
+  return state.rebuild((AppStateBuilder b) {
     state.orders.forEach((Order order) {
-      if(order.clientId != null && order.clientId != ''){
-        if(order.clientId == action.client.id){
+      if (order.clientId != null && order.clientId != '') {
+        if (order.clientId == action.client.id) {
           b.orders.remove(order);
           b.selectedOrders.remove(order);
           b.offers.remove(order);
@@ -455,7 +446,7 @@ AppState _createClientSuccessful(AppState state, CreateClientSuccessful action) 
 
 AppState _setSelectedClient(AppState state, SetSelectedClient action) {
   return state.rebuild((AppStateBuilder b) {
-    if(action.client != null) {
+    if (action.client != null) {
       b.filterOptions.selectedClient = action.client!.toBuilder();
     } else {
       b.filterOptions.selectedClient = null;
@@ -473,7 +464,11 @@ AppState _updateOrderSuccessful(AppState state, UpdateOrderSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     log("reducer updated order: finished: ${action.updatedOrder.finished}");
     int c = b.orders.build().indexWhere((Order order) => order.id == action.updatedOrder.id);
+    int d = b.selectedOrders.build().indexWhere((Order order) => order.id == action.updatedOrder.id);
     log("C: (position) $c");
+    log("D: (position) $d");
     b.orders[c] = action.updatedOrder;
+    if(d>=0)  b.selectedOrders[d] = action.updatedOrder;
+
   });
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 Future<void> showCreateOfferMixin(BuildContext context) {
-
   bool isRon = true;
 
   return showDialog(
@@ -61,25 +60,21 @@ Future<void> showCreateOfferMixin(BuildContext context) {
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('GENEREAZA OFERTA'),
-                onPressed: () {
-
+                  child: Text('GENEREAZA OFERTA'),
+                  onPressed: () {
                     PdfApi.generate(
-                        order: StoreProvider.of<AppState>(context)
-                            .state
-                            .selectedOrder!,
-                        serie: '',
-                        numar: '',
-                        modPlata: '',
-                        cif: '',
-                        address: '',
-                        isRon: isRon,
-                        isOffer: true,
+                      order: StoreProvider.of<AppState>(context).state.selectedOrder!,
+                      serie: '',
+                      numar: '',
+                      modPlata: '',
+                      cif: '',
+                      address: '',
+                      isRon: isRon,
+                      isOffer: true,
                     );
 
                     Navigator.of(context).pop();
-
-                    }),
+                  }),
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();

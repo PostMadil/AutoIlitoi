@@ -30,7 +30,7 @@ mixin CreateOrderMixin {
     // bool _isPaid = false;
     // String _cif = '';
     // String _adresa = '';
-    List<CarPartBuilder> items = <CarPartBuilder>[];
+    //List<CarPartBuilder> items = <CarPartBuilder>[];
 
     String? _numeErrorText = null;
     String? _numarInmatriculareErrorText = null;
@@ -64,7 +64,7 @@ mixin CreateOrderMixin {
           List<Client> clients = StoreProvider.of<AppState>(context).state.clients.toList();
 
           Client selectedClient = Client.fromData(id: '', name: '', phoneNumber: '');
-          if(clients.isEmpty){
+          if (clients.isEmpty) {
             _canChooseFromClients = false;
             log('cannot choose from clients');
           } else {
@@ -96,22 +96,24 @@ mixin CreateOrderMixin {
                         builder: (BuildContext context) {
                           return Column(
                             children: <Widget>[
-                              clients.isEmpty? SizedBox():Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Checkbox(
-                                    value: _chooseFromClients,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        _chooseFromClients = !_chooseFromClients;
-                                        _nume = selectedClient.name;
-                                        _telefon = selectedClient.phoneNumber;
-                                      });
-                                    },
-                                  ),
-                                  Text('Alege dintre clienti'),
-                                ],
-                              ),
+                              clients.isEmpty
+                                  ? SizedBox()
+                                  : Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Checkbox(
+                                          value: _chooseFromClients,
+                                          onChanged: (bool? value) {
+                                            setState(() {
+                                              _chooseFromClients = !_chooseFromClients;
+                                              _nume = selectedClient.name;
+                                              _telefon = selectedClient.phoneNumber;
+                                            });
+                                          },
+                                        ),
+                                        Text('Alege dintre clienti'),
+                                      ],
+                                    ),
                               _chooseFromClients == false || _canChooseFromClients == false
                                   ? Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -632,7 +634,6 @@ mixin CreateOrderMixin {
                     ),
                   ],
                 ),
-
                 actions: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -645,7 +646,10 @@ mixin CreateOrderMixin {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: ElevatedButton(
-                          child: const Text('Creeaza',style: TextStyle(fontSize: 24),),
+                          child: const Text(
+                            'Creeaza',
+                            style: TextStyle(fontSize: 24),
+                          ),
                           onPressed: () {
                             if (true) {
                               List<CarPart> builtItems = <CarPart>[];
@@ -663,7 +667,7 @@ mixin CreateOrderMixin {
                                   paid: _isPaid,
                                   make: _make,
                                   model: _model,
-                                  clientId: _chooseFromClients == true? selectedClient.id:null,
+                                  clientId: _chooseFromClients == true ? selectedClient.id : null,
                                   finished: false,
                                 ),
                                 items: builtItems,
@@ -697,8 +701,6 @@ mixin CreateOrderMixin {
                           },
                         ),
                       )
-
-
                     ],
                   ),
                 ],

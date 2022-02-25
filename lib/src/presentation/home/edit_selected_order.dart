@@ -30,7 +30,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
   String _model = '';
   bool _isOffer = false;
   bool _isFromClient = false;
-  String? _clientId = null;
+  //String? _clientId = null;
 
   Client? selectedClient = null;
   List<CarPartBuilder> items = <CarPartBuilder>[];
@@ -142,16 +142,15 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
       _isPaid = widget.order.paid;
       _isOffer = widget.order.isOffer;
 
-      _clientId = widget.order.clientId;
+      //_clientId = widget.order.clientId;
       if (widget.order.clientId != null && widget.order.clientId != '') {
         _isFromClient = true;
-          widget.clients.forEach((Client client) {
-            if(client.id == widget.order.clientId){
-              selectedClient = client;
-            }
-          });
+        widget.clients.forEach((Client client) {
+          if (client.id == widget.order.clientId) {
+            selectedClient = client;
+          }
+        });
       }
-
 
       if (widget.order.model == null)
         _model = '';
@@ -198,12 +197,12 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                     carPlate: _numarInmatriculare,
                     chassisNumber: _serieSasiu,
                     name: _nume,
-                    phoneNumber: _telefon == ''? '---':_telefon,
+                    phoneNumber: _telefon == '' ? '---' : _telefon,
                     total: _total.toString(),
                     paid: _isPaid,
                     make: _make,
                     model: _model,
-                    clientId: _isFromClient == true? selectedClient!.id:'',
+                    clientId: _isFromClient == true ? selectedClient!.id : '',
                     finished: false,
                   ),
                   items: builtItems,
@@ -265,7 +264,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 //fillColor: Colors.green
               ),
               validator: (String? val) {
-                  return null;
+                return null;
               },
               keyboardType: TextInputType.emailAddress,
               style: new TextStyle(
@@ -437,7 +436,7 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                         onChanged: (bool? value) {
                           setState(() {
                             _isFromClient = !_isFromClient;
-                            if(_isFromClient){
+                            if (_isFromClient) {
                               selectedClient = widget.clients.first;
                               _nume = selectedClient!.name;
                               _telefon = selectedClient!.phoneNumber;
@@ -506,10 +505,10 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                     child: ListView.builder(
                         itemCount: items.length,
                         itemBuilder: (BuildContext context, int index) {
-                          log('total items: ${items.length}');
-                          log('First item name: ${items[index].name}');
-                          log('building item at index: $index');
-                          String _initialName = items[index].name!;
+                          // log('total items: ${items.length}');
+                          // log('First item name: ${items[index].name}');
+                          // log('building item at index: $index');
+                          // //String _initialName = items[index].name!;
                           return Card(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -571,14 +570,12 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                   child: TextField(
                                     controller: _codeFieldControlers[index],
                                     decoration: InputDecoration(
-
                                       labelText: 'COD PIESA',
                                     ),
                                     onChanged: (value) {
                                       setState(() {
                                         //_codeFieldControlers[index].text = value;
                                         items[index].code = value;
-
                                       });
                                     },
                                   ),
@@ -640,7 +637,6 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                                       log(_qtyErrorText.toString());
                                       _nameErrorText.removeAt(index);
                                       log(_nameErrorText.toString());
-
 
                                       //REMOVING THE STATE TEXT OF ITEM AT INDEX
                                       _codeFieldControlers.removeAt(index);
@@ -912,7 +908,6 @@ class _EditSelectedOrderState extends State<EditSelectedOrder> {
                 ],
               ),
             ),
-
           ],
         );
       },

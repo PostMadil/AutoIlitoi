@@ -5,7 +5,12 @@ abstract class CarPart implements Built<CarPart, CarPartBuilder> {
   factory CarPart.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
 
   factory CarPart.fromData(
-      {required String name, required String code, required String price, required String qty, required String type,required String provider}) {
+      {required String name,
+      required String code,
+      required String price,
+      required String qty,
+      required String type,
+      required String provider}) {
     return _$CarPart((CarPartBuilder b) {
       b
         ..provider = provider

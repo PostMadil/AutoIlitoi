@@ -31,30 +31,30 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
       appBar: AppBar(
         title: const Text('Dashboard'),
         actions: <Widget>[
-          SelectedViewContainer(
-              builder: (BuildContext context, int selectedView) {
-            return SelectedOrderContainer(
-                builder: (BuildContext context, Order? selectedOrder) {
+          SelectedViewContainer(builder: (BuildContext context, int selectedView) {
+            return SelectedOrderContainer(builder: (BuildContext context, Order? selectedOrder) {
               return Row(
                 children: <Widget>[
                   TextButton(
                     onPressed: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(10));
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(10));
                     },
                     child: Text(
                       'Finalizate',
                       style: TextStyle(
                           fontSize: 30,
-                          color: (selectedView == 10 )  || (selectedOrder != null &&(selectedOrder!.finished != null && selectedOrder.finished == true &&  selectedView == 1))
+                          color: (selectedView == 10) ||
+                                  (selectedOrder != null &&
+                                      (selectedOrder.finished != null &&
+                                          selectedOrder.finished == true &&
+                                          selectedView == 1))
                               ? Colors.white
                               : Colors.white60),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(0));
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(0));
                     },
                     child: Text(
                       'Comenzi',
@@ -62,46 +62,42 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
                           fontSize: 30,
                           color: (selectedView == 0) ||
                                   ((selectedView == 1 || selectedView == 2) &&
-                                      selectedOrder!.isOffer == false && (selectedOrder!.finished == null || selectedOrder.finished != true))
+                                      selectedOrder!.isOffer == false &&
+                                      (selectedOrder.finished == null || selectedOrder.finished != true))
                               ? Colors.white
                               : Colors.white60),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(4));
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(4));
                     },
                     child: Text(
                       'Oferte',
                       style: TextStyle(
                           fontSize: 30,
                           color: (selectedView == 4) ||
-                                  ((selectedView == 1 || selectedView == 2) &&
-                                      selectedOrder!.isOffer == true)
+                                  ((selectedView == 1 || selectedView == 2) && selectedOrder!.isOffer == true)
                               ? Colors.white
                               : Colors.white60),
                     ),
                   ),
                   TextButton(
                     onPressed: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(SetSelectedView(5));
+                      StoreProvider.of<AppState>(context).dispatch(SetSelectedView(5));
                     },
                     child: Text(
                       'Mecanici',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: selectedView == 5
-                              ? Colors.white
-                              : Colors.white60),
+                      style: TextStyle(fontSize: 30, color: selectedView == 5 ? Colors.white : Colors.white60),
                     ),
                   ),
                 ],
               );
             });
           }),
-          SizedBox(width: 300,),
+          SizedBox(
+            width: 300,
+          ),
           IconButton(
               onPressed: () {
                 StoreProvider.of<AppState>(context).dispatch(GetOrders());
@@ -134,27 +130,15 @@ class _HomePageState extends State<HomePage> with CreateOrderMixin {
                 child: SelectedViewContainer(
                   builder: (BuildContext context, int selectedView) {
                     if (selectedView == 1)
-                      return selectedOrderDetails(
-                          StoreProvider.of<AppState>(context)
-                              .state
-                              .clients
-                              .toList());
+                      return selectedOrderDetails(StoreProvider.of<AppState>(context).state.clients.toList());
                     if (selectedView == 2)
                       return EditSelectedOrder(
-                        order: StoreProvider.of<AppState>(context)
-                            .state
-                            .selectedOrder!,
-                        clients: StoreProvider.of<AppState>(context)
-                            .state
-                            .clients
-                            .toList(),
+                        order: StoreProvider.of<AppState>(context).state.selectedOrder!,
+                        clients: StoreProvider.of<AppState>(context).state.clients.toList(),
                       );
                     if (selectedView == 3) return statisticsView();
                     if (selectedView == 4)
-                      return listOfOffers(StoreProvider.of<AppState>(context)
-                          .state
-                          .clients
-                          .toList());
+                      return listOfOffers(StoreProvider.of<AppState>(context).state.clients.toList());
                     if (selectedView == 5) return listOfClients();
                     if (selectedView == 10) return listOfFinishedOrders();
                     return listOfOrders();

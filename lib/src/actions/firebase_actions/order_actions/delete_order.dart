@@ -1,6 +1,5 @@
 part of order_actions;
 
-
 @freezed
 class DeleteOrder with _$DeleteOrder implements AppAction {
   const factory DeleteOrder() = DeleteOrderStart;
