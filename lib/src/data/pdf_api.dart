@@ -147,7 +147,7 @@ class PdfApi {
                   pw.Text('CAJVANA nr. 1083 jud. SUCEAVA', style: style),
                   pw.Text('Banca TRANSILVANIA', style: style),
                   pw.Text('IBAN', style: style),
-                  pw.Text('RO49BTRLRONCRT0510292301', style: style),
+                  pw.Text('RO92BTRLRONCRT0510292303', style: style),
                 ],
               ),
             ),

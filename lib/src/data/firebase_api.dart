@@ -1,16 +1,16 @@
 import 'dart:developer';
 
 import 'package:auto_ilitoi/src/models/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseApi {
-  FirebaseApi({required FirebaseAuth auth, required FirebaseFirestore firestore})
+  FirebaseApi({required FirebaseAuth auth, required fs.FirebaseFirestore firestore})
       : _auth = auth,
         _firestore = firestore;
 
   final FirebaseAuth _auth;
-  final FirebaseFirestore _firestore;
+  final fs.FirebaseFirestore _firestore;
 
   Future<AppUser?> getCurrentUser() async {
     final User? user = _auth.currentUser;
@@ -18,7 +18,7 @@ class FirebaseApi {
       return null;
     }
 
-    final DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore //
+    final fs.DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore //
         .doc('users/${user.uid}')
         .get();
 
@@ -30,14 +30,14 @@ class FirebaseApi {
 
     final UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
     log('Auth result is: $result');
-    final DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore.doc('users/${result.user!.uid}').get();
+    final fs.DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore.doc('users/${result.user!.uid}').get();
     final AppUser user = AppUser.fromJson(snapshot.data());
 
     return user;
   }
 
   Future<List<Order>> getOrders() async {
-    final CollectionReference ordersList = _firestore.collection('orders');
+    final fs.CollectionReference ordersList = _firestore.collection('orders');
 
     final List<Order> orders = <Order>[];
 
@@ -56,7 +56,7 @@ class FirebaseApi {
   }
 
   Future<Order> createOrder(OrderDetails details, List<CarPart> items) async {
-    final CollectionReference ordersList = _firestore.collection('orders');
+    final fs.CollectionReference ordersList = _firestore.collection('orders');
     String docId = ordersList.doc().id;
     String date = DateTime.now().toString();
     final Order newOrder = Order.fromData(id: docId, details: details, items: items, dateTime: date);
@@ -71,7 +71,7 @@ class FirebaseApi {
   }
 
   Future<Order> updateOrder(Order order) async {
-    final CollectionReference ordersList = _firestore.collection('orders');
+    final fs.CollectionReference ordersList = _firestore.collection('orders');
     try {
       await ordersList.doc(order.id).update(order.json);
     } catch (e) {
@@ -81,7 +81,7 @@ class FirebaseApi {
   }
 
   Future<String> deleteOrder(String id) async {
-    final CollectionReference ordersList = _firestore.collection('orders');
+    final fs.CollectionReference ordersList = _firestore.collection('orders');
     try {
       await ordersList.doc(id).delete();
     } catch (e) {
@@ -91,7 +91,7 @@ class FirebaseApi {
   }
 
   Future<List<Client>> getClients() async {
-    final CollectionReference clientsList = _firestore.collection('clients');
+    final fs.CollectionReference clientsList = _firestore.collection('clients');
     final List<Client> clients = <Client>[];
     try {
       await clientsList.orderBy('name', descending: false).get().then((querySnapshot) {
@@ -107,7 +107,7 @@ class FirebaseApi {
   }
 
   Future<Client> createClient({required String name, required String phoneNumber}) async {
-    final CollectionReference clientsList = _firestore.collection('clients');
+    final fs.CollectionReference clientsList = _firestore.collection('clients');
     String docId = clientsList.doc().id;
     final Client newClient = Client.fromData(id: docId, name: name, phoneNumber: phoneNumber);
     try {
@@ -119,7 +119,7 @@ class FirebaseApi {
   }
 
   Future<void> updateClient(Client client) async {
-    final CollectionReference clientsList = _firestore.collection('clients');
+    final fs.CollectionReference clientsList = _firestore.collection('clients');
 
     try {
       await clientsList.doc(client.id).update(client.json);
@@ -129,8 +129,8 @@ class FirebaseApi {
   }
 
   Future<Client> deleteClient(Client client, List<Order> orders) async {
-    final CollectionReference clientsList = _firestore.collection('clients');
-    final CollectionReference ordersList = _firestore.collection('orders');
+    final fs.CollectionReference clientsList = _firestore.collection('clients');
+    final fs.CollectionReference ordersList = _firestore.collection('orders');
     try {
       orders.forEach((element) async {
         if (element.clientId != null && element.clientId != '') {

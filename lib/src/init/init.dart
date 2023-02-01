@@ -16,7 +16,14 @@ import 'package:redux_epics/redux_epics.dart';
 Future<Store<AppState>> init() async {
   log('I was called :3');
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: 'AIzaSyB9W8YFnY5dAm2Z9NiL7tPYtbYQlsIoHfg',
+      appId: '1:447107770115:web:b92b92944f4537868f6b36',
+      messagingSenderId: '447107770115',
+      projectId: 'autoilitoi',
+    ),
+  );
 
   log('I was called x2 :3');
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
